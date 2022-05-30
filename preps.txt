@@ -1,0 +1,575 @@
+! Routing
+* app-sections
+/home               => Home
+/courses            => Courses
+/courses/:course    => Course
+  store.getTeacherData(userId)
+/events             => Events
+/events/:event      => Event
+/posts              => Posts
+/posts/:post        => Post
+  store.getTeacherData(userId)
+/contacts           => Contacts
+/about              => About
+
+
+
+
+=============================================
+!Sections
+* app-sections
+{
+  Home
+    Header
+
+    Main
+      Intro
+      AboutUs
+      Courses
+      Benefits
+      Events
+      Sertificate
+      OurTeamShort
+      Reviews
+
+    LatestPosts
+      
+    AnnouncementSubscribtionForm
+    Footer
+
+
+  AboutUs
+    Header
+
+    Main
+      AboutUs
+      Video
+      Advantages
+      Courses
+      EducationalProcess
+      OurTeamFull
+      Reviews
+      GradutesCompanies
+
+    LatestPosts
+
+    AnnouncementSubscribtionForm
+    Footer
+
+
+
+
+  Contacts
+    Header
+
+    Main
+      ContacstsInfo
+      Map
+
+    RequestForm 
+    Footer
+
+
+
+
+  Courses
+    Header
+
+    Main
+      Courses
+        CoursesToolbar
+        CoursesItems
+
+    Reviews
+    Sertificate
+      
+    AnnouncementSubscribtionForm
+    Footer
+
+
+
+  Course
+    Header
+
+    Main
+      CourseIntro
+      CourseAbout
+      AuthorProfilePreview
+
+      CourseSteps
+      SaleForm
+      CourseForWhom
+      CourseProgram
+
+    Reviews 
+    CourseRegistrationForm
+    OtherCoursesRecomendation
+
+    Footer
+
+
+
+
+  Events
+    Header
+
+    Main
+      Events
+        EventsToolbar
+        EventsItems
+
+    Sertificate
+      
+    SubscribtionEventAnnouncementForm
+    Footer
+
+
+
+  Event
+    Header
+
+    Main
+      EventIntro
+      EventAbout
+      AuthorProfilePreview
+
+      EventForWhom
+
+    EventNotificationForm
+    EventRegistrationForm
+
+    OtherEventsRecomendation
+    Footer
+
+
+
+  Posts
+    Header
+
+    Main
+      Posts
+        PostsToolbar
+        PostsItems
+
+    ArticleSubscribtionForm
+      
+    Footer
+
+
+
+  Post
+    Header
+
+    Main
+      PostArticle
+    Sidebar
+      PostAuthor
+      TrendingPostsRecomendation
+      PostTags
+
+    ArticleSubscribtionForm
+    OtherPostsRecomendation
+
+    Footer
+}
+
+
+
+=============================================
+ 
+* app-sections
+
+
+
+
+
+=============================================
+
+
+
+! MVVM
+* Entities
+Teacher
+Category
+Course
+Event
+Post
+
+Reviews
+
+Pages
+
+
+
+=============================================
+
+
+* state interface:
+{
+  Teacher: {
+    id,
+    name: text,
+    pos: text,
+    description: text,
+
+    imgTeacher: src,
+    imgCourse: src, 
+    socials: []Link, // icon = f(src)
+
+    rate: number,
+    courses: number,
+    students: number,
+  }
+
+
+
+  category: [], // categoryName is unicValue 
+                (so it is both value and id)
+
+
+
+  course: {
+    id,
+    title: text,
+    category: Category,
+    teacherId: id //get his info
+
+    content: {
+      description,
+      youWillLearn,
+      forWhom,
+      courseProgram,
+    },
+      price: number,
+      date: date,
+      duration:,
+    },
+  }
+
+
+  event: {
+    id,
+    title: text,
+    category: Category,
+    eventType: eventType [Workshop, Lecture, master-class],
+    teacherId: id, //get his info
+
+    content: {
+      eventProgram,
+      forWhom,
+    },
+    date: date,
+    time: time,
+    price: price,
+    eventLink: link,
+  }
+
+
+  Post: {
+    // preview
+    id,
+    title: text,
+    description: text,
+
+    img: src,
+    category: Category,
+    postType: postType [video, podcast, article],
+    teacherId: id, //get his info.
+    timeToRead?: number,
+    date: date,
+    tags: []tags,
+
+    // content
+    content: [
+      {p: text},
+      {pb: text},
+      {quoute: text},
+      {ul: {
+        icon: 'tick',
+        lis: []text,
+      }},
+    ],
+  }
+
+
+
+
+
+  Review: {
+    id,
+    body: text,
+  
+    Student: {
+      img,
+      pos,
+      course
+    } Student, 
+  }
+
+  ?pages: [home, courses, events, blog, about us, contacts]
+}
+
+=============================================
+
+
+* Filters and sorts
+
+courses: [category] {
+  fBy1Query: []
+
+  fBy1 () =>
+  fBy2 () =>
+
+
+}
+
+
+events
+posts
+
+
+
+=============================================
+
+
+* 
+
+
+=============================================
+
+
+
+
+! Figma
+* Vars
+// colors
+$color-red: #FF3F3A;
+$color-red-gradient: linear-gradient(55.95deg, #FF3F3A 0%, #F75E05 100%); // btn
+
+$color-success: #03CEA4;
+$color-warning: #F89828;
+$color-danger: #FF4242;
+$color-info: #F52F6E;
+$color-purple: #7772F1;
+$color-pink: #F52F6E;
+
+
+
+
+
+// fonts
+$ff-lato: 'Lato', Arial, sans-serif;
+
+$fz: 16px;
+$fz-m: 18px;
+$fz-xm: 20px;
+
+$title-big: 64px;
+$title: 46px;
+$title-sub: 28px;
+
+
+// layuot
+?$container-inner-width: 1230px;
+
+// decor
+$border-radius: 4px;
+$box-shadow: 0px 80px 80px -20px rgba(154, 156, 165, 0.08), 0px 30px 24px -10px rgba(154, 156, 165, 0.05), 0px 12px 10px -6px rgba(154, 156, 165, 0.04), 0px 4px 4px -4px rgba(30, 33, 44, 0.03);
+
+=============================================
+
+
+* Imgs fs 
+content
+  teachers
+  posts
+decor
+  illustrations
+icons
+  logo
+  socials
+  decor
+
+=============================================
+
+
+* 
+
+
+=============================================
+
+
+* 
+
+
+=============================================
+
+! mixins and reusable ui
+* UI-Blocks (css) [intercomponents]
+font
+  font
+  links
+  link_btned
+  span.red
+
+  label (upper + solid)
+  textWithIcon
+
+btns
+  btn
+  btn_out
+svg-icons
+
+
+
+
+=============================================
+
+
+* UI-elements (v-comp) [reusable html]
+formElemenets
+tabs
+spoilers
+sliders
+
+
+
+
+
+
+=============================================
+
+* Blocks+modifiers (v-comp) [reusable html, e.g cards, ]
+?abstractBody + img (?mobile => hidden)
+?text + icon
+
+abstractCard:
+  bgc + grid (labels)
+
+Cards:
+  TeacherCard
+    _s (in post__sidebar)
+    _full (in course__author)
+  CourseCard
+    _row
+    _col
+  PostCard
+    _row
+    _col
+    _s
+  EventCard
+    _row
+    _col
+    
+  CourseDetailsCard
+  EventDetailsCard
+
+    
+   
+
+Forms:
+  AnnouncementSubscribtionForm
+  EventSubscribtionForm
+  ArticlesSubscribtionForm
+
+  CourseSaleForm
+  
+  CourseRegistrationForm
+  EventRegistrationForm
+
+  SupportForm
+
+Popups:
+  SignUp
+  SignIn
+
+
+Recomendation
+SliderCustom
+SliderCasual
+
+Socials
+
+Logo
+
+
+
+=============================================
+
+
+* Icons (svg)
+logo
+textIcons
+socials
+gradutesCompanies
+other (login)
+
+
+=============================================
+
+
+* 
+
+
+=============================================
+
+
+* 
+
+
+=============================================
+
+
+* 
+
+
+=============================================
+
+
+* 
+
+
+=============================================
+
+! UI-logic
+* UI-block logic (js) [univarsal logic, e.g spoilers]
+spoilers
+tabs
+sliders
+timers
+formValidation
+
+
+
+=============================================
+
+
+* Directives (v-comp)
+
+
+=============================================
+
+
+* 
+
+
+=============================================
+
+
+* 
+
+
+=============================================
+
+* 
+
+
+=============================================
+
+
+* 
+
+
+=============================================
+
+

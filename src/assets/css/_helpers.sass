@@ -1,0 +1,5 @@
+@function em($px, $fz: $fz)
+  @return #{$px / $fz}em
+
+@function rem($px, $fz: $fz)
+  @return ($px / $fz) * 1rem
