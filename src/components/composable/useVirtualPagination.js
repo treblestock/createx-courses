@@ -8,9 +8,7 @@ export function useVirtualPagination(items) {
 
   // useVirtualPaginaton(posts)
   // const {limit, pages, currentPage, currentPageItems: currentPagePosts} = useVirtualPaginaton(posts)
-
-
-  const limit = ref(2)
+  const limit = ref(items.value.length || 1)
   const currentPage = ref(1)
 
   const pages = computed(

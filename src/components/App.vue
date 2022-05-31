@@ -6,6 +6,7 @@ import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 import { useRouter, useRoute } from 'vue-router'
 
 
+import Nav from '@/components/Nav.vue'
 import Post from '@/components/Post.vue'
 
 import { useVirtualPagination } from '@/components/composable/useVirtualPagination.js'
@@ -28,18 +29,23 @@ const {
   currentPageItems: currentPagePosts,
 } = useVirtualPagination(posts)
 
+limit.value = 10
+
+
+
 
 
 
 onMounted(async () => {
-  posts.value = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10').then(r => r.json())
+  // posts.value = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10').then(r => r.json())
 })
 
 </script>
 
 <template>
-  <!-- <RouterView></RouterView> -->
-  <div class="posts">
+  <Nav></Nav>
+  <RouterView></RouterView>
+  <!-- <div class="posts">
     <div class="pagination">
       <button class="pagination__item"
         v-for="page in pages" :key="page.id"
@@ -57,7 +63,7 @@ onMounted(async () => {
 
 
     <Post v-for="post in currentPagePosts" :key="post.id" :='post'/>
-  </div>
+  </div> -->
 </template>
 
 <style lang="scss">
@@ -81,6 +87,10 @@ body * {
 <style scoped lang="scss">
 @import '@/assets/css/_helpers';
 @import '@/assets/css/_vars';
+
+.search {
+  border: 1px solid #000;
+}
 
 .pagination {
   display: flex;
