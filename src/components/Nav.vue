@@ -26,22 +26,17 @@ const props = defineProps({
     <AppLink class="nav__link" :to="{name: 'courses'}">courses</AppLink>
     <AppLink class="nav__link" :to="{
       name: 'course', 
-      params: {
-        Boolean: false,
-        Number: 14,
-        Object: {key: 'value'},
-        Array: ['1', 12],
-      }
+      params: { courseId: 1 }
     }">course</AppLink>
     <AppLink class="nav__link link" :to="{name: 'events'}">events</AppLink>
     <AppLink class="nav__link" :to="{
       name: 'event', 
-      params: {event: 1}
+      params: { eventId: 1 }
     }">event</AppLink>
     <AppLink class="nav__link" :to="{name: 'blogPosts'}">blogPosts</AppLink>
     <AppLink class="nav__link" :to="{
       name: 'blogPost', 
-      params: {blogPost: 1}
+      params: { blogPostId: 1 }
     }">blogPost</AppLink>
     <AppLink class="nav__link" :to="{name: 'contacts'}">contacts</AppLink>
     <AppLink class="nav__link" :to="{name: 'about'}">about</AppLink>
@@ -49,11 +44,7 @@ const props = defineProps({
   </div>
 </template>
 
-<style lang="scss">
-.link {
-  color: green;
-}
-</style>
+
 <style scoped lang="scss">
 @import '@/assets/css/_vars';
 @import '@/assets/css/_helpers';

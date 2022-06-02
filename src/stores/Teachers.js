@@ -1,5 +1,6 @@
 import { defineStore } from "pinia"
 import { database } from "@/API"
+import { onRegister } from "./plugins/onRegister"
 
 
 
@@ -20,4 +21,8 @@ export const useStoreTeachers = defineStore('storeTeachers', {
       this.teachers = teachers
     },
   },
+
+  async onRegister(store) {
+    await store.fetchTeachers()
+  }
 })

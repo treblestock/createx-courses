@@ -37,6 +37,7 @@ limit.value = 10
 
 onMounted(async () => {
   // posts.value = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10').then(r => r.json())
+  
 })
 
 </script>
@@ -80,6 +81,13 @@ body * {
 
 #app {
 
+}
+
+.link {
+  color: green;
+  &:hover {
+    color: red;
+  }
 }
 </style>
 

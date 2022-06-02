@@ -20,4 +20,8 @@ export const useStoreEvents = defineStore('storeEvents', {
       this.events = events
     },
   },
+
+  async onRegister(store) {
+    await store.fetchEvents()
+  }
 })

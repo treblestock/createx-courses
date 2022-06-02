@@ -20,4 +20,8 @@ export const useStoreReviews = defineStore('storeReviews', {
       this.reviews = reviews
     },
   },
+
+  async onRegister(store) {
+    await store.fetchReviews()
+  }
 })

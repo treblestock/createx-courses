@@ -1,6 +1,6 @@
 // import { watch } from "vue"
 
-export function useStateCashing({app, pinia, store, options}) {
+export function stateCashing({app, pinia, store, options}) {
   if (options.stateCashingIgnore) return
   const localState = JSON.parse(localStorage.getItem(store.$id) )
   if (localState) store.$state = localState

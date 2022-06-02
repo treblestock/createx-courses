@@ -2,7 +2,7 @@ import categories from './data/categories.js'
 import teachers from './data/teachers.js'
 import courses from './data/courses.js'
 import events from './data/events.js'
-import posts from './data/posts.js'
+import blogPosts from './data/blogPosts.js'
 import tags from './data/tags.js'
 import reviews from './data/reviews.js'
 
@@ -10,7 +10,7 @@ import reviews from './data/reviews.js'
 // const teachers = require('./data/teachers.js')
 // const courses = require('./data/courses.js')
 // const events = require('./data/events.js')
-// const posts = require('./data/posts.js')
+// const blogPosts = require('./data/blogPosts.js')
 // const tags = require('./data/tags.js')
 // const reviews = require('./data/reviews.js')
 
@@ -22,7 +22,7 @@ const requestResponseMatches = {
   '/teachers': teachers,
   '/courses': courses,
   '/events': events,
-  '/posts': posts,
+  '/blogPosts': blogPosts,
   '/tags': tags,
 
   '/reviews': reviews,

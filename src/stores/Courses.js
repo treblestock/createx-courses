@@ -20,4 +20,8 @@ export const useStoreCourses = defineStore('storeCourses', {
       this.courses = courses
     },
   },
+
+  async onRegister(store) {
+    await store.fetchCourses()
+  }
 })

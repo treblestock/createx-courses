@@ -18,6 +18,9 @@ app.use(router)
 
 import { createPinia } from 'pinia'
 const pinia = createPinia()
+
+import { onRegister } from '@/stores/plugins/onRegister.js'
+pinia.use(onRegister)
 // pinia plugins
 
 

@@ -4,8 +4,15 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 import { useRouter, useRoute } from 'vue-router'
+
+import { useStoreBlogPosts } from '@/stores/BlogPosts.js'
+
+
+
 const route = useRoute()
 const router = useRouter()
+
+const storeBlogPosts = useStoreBlogPosts()
 
 
 const props = defineProps({

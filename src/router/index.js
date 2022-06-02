@@ -28,7 +28,7 @@ const routes = [
         component: () => import('@/components/view/Courses.vue'),
       },
       {
-        path: 'courses/:course?/:Boolean/:Number/:Object/:Array',
+        path: 'courses/:courseId',
         name: 'course',
         props: propsParser,
         component: () => import('@/components/view/Course.vue'),
@@ -40,7 +40,7 @@ const routes = [
         component: () => import('@/components/view/Events.vue'),
       },
       {
-        path: 'events/:event',
+        path: 'events/:eventId',
         name: 'event',
         props: propsParser,
         component: () => import('@/components/view/Event.vue'),
@@ -52,7 +52,7 @@ const routes = [
         component: () => import('@/components/view/BlogPosts.vue'),
       },
       {
-        path: 'blogPosts/:blogPost',
+        path: 'blogPosts/:blogPostId',
         name: 'blogPost',
         props: propsParser,
         component: () => import('@/components/view/BlogPost.vue'),
@@ -87,6 +87,9 @@ const router = createRouter({
     return savedPosition || {top: 0}
   },
 })
+
+
+
 
 
 

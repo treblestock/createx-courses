@@ -4,12 +4,18 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 import { useRouter, useRoute } from 'vue-router'
+
+import { useStoreEvents } from '@/stores/Events.js'
+
+
+
 const route = useRoute()
 const router = useRouter()
 
+const storeEvents = useStoreEvents()
 
 const props = defineProps({
-  
+  eventId: [Number, String],
 })
 
 </script>

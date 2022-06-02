@@ -20,4 +20,8 @@ export const useStoreBlogPosts = defineStore('storeBlogPosts', {
       this.blogPosts = blogPosts
     },
   },
+
+  async onRegister(store) {
+    await store.fetchBlogPosts()
+  }
 })
