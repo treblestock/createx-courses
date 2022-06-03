@@ -16,6 +16,12 @@ const routes = [
     component: () => import('@/components/view/InitialLayout.vue'),
     children: [
       {
+        path: '/UI',
+        name: 'UI',
+        props: propsParser,
+        component: () => import('@/components/view/UI.vue'),
+      },
+      {
         path: '/Main', alias: '',
         name: 'main',
         props: propsParser,

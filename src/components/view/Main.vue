@@ -60,6 +60,24 @@ const props = defineProps({
 
 <template>
   <RouterView></RouterView>
+  <Spoiler>
+    <template #title >
+      title
+    </template>
+    <template #body >
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo labore nihil quo ratione excepturi deleniti alias, laudantium dicta molestias accusantium nisi doloribus minus enim! Qui eos ducimus consectetur reiciendis quo.
+    </template>
+  </Spoiler>
+  <Tabs> <!-- TODO: test it -->
+    <template #insets >
+      <div class=""> title1</div>
+      <div class=""> title2</div>
+    </template>
+    <template #body >
+      <div class="">lorem ipusem</div>
+      <div class="">lorem ipusem 2</div>
+    </template>
+  </Tabs>
 </template>
 
 <style scoped lang="scss">

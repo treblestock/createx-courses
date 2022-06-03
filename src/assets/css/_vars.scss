@@ -1,0 +1,85 @@
+// colors
+$color-carrot: #FF3F3A;
+$color-carrot-gradient: linear-gradient(55.95deg, #FF3F3A 0%, #F75E05 100%); // btn
+$color-green-light: #03CEA4;
+$color-yellow: #FFCF2D;
+$color-orange: #F89828;
+$color-red: #FF4242;
+$color-info: #F52F6E;
+$color-purple: #7772F1;
+$color-pink: #F52F6E;
+$color-white: #fff;
+$color-black: #000;
+
+$color-gray-100: #fff;
+$color-gray-200: #fff;
+$color-gray-300: #E5E8ED;
+$color-gray-400: #fff;
+$color-gray-500: #fff;
+$color-gray-600: #fff;
+$color-gray-700: #787A80;
+$color-gray-800: #424551;
+$color-gray-900: #1E212C;
+
+// fz + media
+$fz-s: 14px;
+$fz: 16px;
+
+
+// font
+$ff-lato: 'Lato', Arial, sans-serif;
+$title-big: 64px;
+$title: 46px;
+$title-sub: 28px;
+
+// structure
+$container-inner-width: 1230px;
+$container-side-padding: 10px;
+
+
+// decor
+$border-radius: 4px;
+$box-shadow: 0px 80px 80px -20px rgba(154, 156, 165, 0.08), 0px 30px 24px -10px rgba(154, 156, 165, 0.05), 0px 12px 10px -6px rgba(154, 156, 165, 0.04), 0px 4px 4px -4px rgba(30, 33, 44, 0.03);
+
+:root {
+  // colors
+  --color-carrot: #FF3F3A;
+  --color-carrot-gradient: linear-gradient(55.95deg, #FF3F3A 0%, #F75E05 100%); // btn
+  --color-green-light: #03CEA4;
+  --color-yellow: #FFCF2D;
+  --color-orange: #F89828;
+  --color-red: #FF4242;
+  --color-info: #F52F6E;
+  --color-purple: #7772F1;
+  --color-pink: #F52F6E;
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-gray-100: #fff;
+  --color-gray-200: #fff;
+  --color-gray-300: #E5E8ED;
+  --color-gray-400: #fff;
+  --color-gray-500: #fff;
+  --color-gray-600: #fff;
+  --color-gray-700: #787A80;
+  --color-gray-800: #424551;
+  --color-gray-900: #1E212C;
+
+  // media + fz
+  // /--fz-s: 14px;
+  --fz: 16px;
+  --ff-lato: 'Lato', Arial, sans-serif;
+
+  // font
+  --title-big: 64px;
+  --title: 46px;
+  --title-sub: 28px;
+
+  // structure
+  --container-inner-width: 1230px;
+  --container-side-padding: 10px;
+
+  // decor
+  --border-radius: 4px;
+  --box-shadow: 0px 80px 80px -20px rgba(154, 156, 165, 0.08), 0px 30px 24px -10px rgba(154, 156, 165, 0.05), 0px 12px 10px -6px rgba(154, 156, 165, 0.04), 0px 4px 4px -4px rgba(30, 33, 44, 0.03);
+}

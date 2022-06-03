@@ -22,6 +22,7 @@ const props = defineProps({
 
 <template>
   <div class="nav">
+    <AppLink class="nav__link" :to="{name: 'UI'}">UI</AppLink>
     <AppLink class="nav__link" :to="{name: 'main'}">main</AppLink>
     <AppLink class="nav__link" :to="{name: 'courses'}">courses</AppLink>
     <AppLink class="nav__link" :to="{

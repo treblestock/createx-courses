@@ -7,7 +7,11 @@ import { useRouter, useRoute } from 'vue-router'
 
 
 import Nav from '@/components/Nav.vue'
-import Post from '@/components/Post.vue'
+
+
+
+
+
 
 import { useVirtualPagination } from '@/components/composable/useVirtualPagination.js'
 
@@ -45,6 +49,7 @@ onMounted(async () => {
 <template>
   <Nav></Nav>
   <RouterView></RouterView>
+  
   <!-- <div class="posts">
     <div class="pagination">
       <button class="pagination__item"
@@ -74,6 +79,7 @@ onMounted(async () => {
 html,
 body {
   font-size: 10px;
+  font-family: 'Lato';
 }
 body * {
   font-size: 2rem;
