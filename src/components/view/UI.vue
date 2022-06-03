@@ -15,6 +15,9 @@ import BlogPostCard_row_s from '@/components/BlogPostCard_row_s.vue'
 import CourseDetailsCard from '@/components/CourseDetailsCard.vue'
 import EventDetailsCard from '@/components/EventDetailsCard.vue'
 
+import EventPreviewCard from '@/components/EventPreviewCard.vue'
+import EventPreviewCard_row from '@/components/EventPreviewCard_row.vue'
+
 
 </script>
 
@@ -35,7 +38,8 @@ import EventDetailsCard from '@/components/EventDetailsCard.vue'
     <!-- <CourseDetailsCard></CourseDetailsCard>
     <EventDetailsCard></EventDetailsCard> -->
 
-
+    <EventPreviewCard></EventPreviewCard>
+    <EventPreviewCard_row></EventPreviewCard_row>
 
   </div>
 </template>
