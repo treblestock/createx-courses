@@ -1,0 +1,70 @@
+@import @/assets/css/_vars
+@import @/assets/css/_helpers
+
+
+// animations
+=hoverDark
+  position: relative
+  &:before 
+    position: absolute
+    top: 0
+    left: 0
+
+    display: block
+    width: 100%
+    height: 100%
+
+    content: ''
+    background: $color-black
+    opacity: .2
+
+// btns
+
+=btnSolidUI
+  border-radius: $border-radius
+  background: $color-carrot-gradient
+  color: $color-white
+
+=btnOutlUI
+  border-radius: $border-radius
+  box-shadow: inset 0 0 0 1px $color-carrot
+  background: $color-white
+  color: $color-carrot
+  
+
+
+.btn
+  padding: 1.5rem 3rem
+  font-size: 1.4rem
+  +btnSolidUI
+  
+  &._s
+    padding: 1.2rem 2.4rem
+    font-size: 1.2rem
+  &._l
+    padding: 1.8rem 4rem
+    font-size: 1.6rem
+
+  &:hover
+    +hoverDark
+
+.btn-outl
+  padding: 1.5rem 3rem
+  font-size: 1.4rem
+  +btnOutlUI
+
+  &._s
+    padding: 1.2rem 2.4rem
+    font-size: 1.2rem
+  &._l
+    padding: 1.8rem 4rem
+    font-size: 1.6rem
+
+  &:hover
+    +btnSolidUI
+
+// links
+.link
+  &:hover
+    cursor: pointer
+    color: $color-carrot
