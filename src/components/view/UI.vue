@@ -21,6 +21,9 @@ import EventPreviewCard_row from '@/components/EventPreviewCard_row.vue'
 
 const isActive = ref(true)
 
+const links = [
+  'facebook.com',
+]
 </script>
 
 <template>
@@ -30,7 +33,6 @@ const isActive = ref(true)
       <Popup :isActive="isActive" @closed="isActive = false">
         <div class="box"></div>
       </Popup> -->
-      
     </div>
 
     <!-- <TeacherCard></TeacherCard>

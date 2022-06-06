@@ -1,5 +1,4 @@
 export function onRegister({app, pinia, store, options}) {
-  console.log('form plugin...')
   if (!options.onRegister) return
   options.onRegister(store)
 }

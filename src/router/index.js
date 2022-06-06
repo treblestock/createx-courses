@@ -22,7 +22,7 @@ const routes = [
         component: () => import('@/components/view/UI.vue'),
       },
       {
-        path: '/Main', alias: '',
+        path: '/main', alias: '',
         name: 'main',
         props: propsParser,
         component: () => import('@/components/view/Main.vue'),

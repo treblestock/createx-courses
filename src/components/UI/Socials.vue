@@ -6,7 +6,12 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 const props = defineProps({
   links: Array,
+  colorInitial: String,
+  colorHover: String,
 })
+
+const iconColor = computed(() => props.colorInitial || '#1E212C')
+const iconColorHover = computed(() => props.colorHover || '#FF3F3A')
 
 
 </script>
@@ -38,10 +43,10 @@ const props = defineProps({
     margin-left: 2rem
   
 
-  color: $color-gray-900
+  color: v-bind(iconColor)
   &__link
     &:hover
-      color: $color-carrot
+      color: v-bind(iconColorHover)
 
   &__icon
     width: 2.4rem

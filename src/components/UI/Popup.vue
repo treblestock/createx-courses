@@ -19,7 +19,7 @@ const props = defineProps({
     <div class="popup__body">
       <div class="popup__cross" 
         @click="$emit('closed')"
-      >&#x2753;</div>
+      >&#x2573;</div>
       <slot></slot>
     </div>
   </div>

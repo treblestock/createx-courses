@@ -47,9 +47,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Nav></Nav>
   <RouterView></RouterView>
   
+</template>
+
   <!-- <div class="posts">
     <div class="pagination">
       <button class="pagination__item"
@@ -69,7 +70,6 @@ onMounted(async () => {
 
     <Post v-for="post in currentPagePosts" :key="post.id" :='post'/>
   </div> -->
-</template>
 
 <style lang="scss">
 // Preset
@@ -77,24 +77,9 @@ onMounted(async () => {
 @import '@/assets/css/_helpers';
 @import '@/assets/css/_UI';
 
-html,
-body {
-  font-size: 10px;
-  font-family: 'Lato';
-}
-body * {
-  font-size: 2rem;
-}
 
 #app {
 
-}
-
-.link {
-  color: green;
-  &:hover {
-    color: red;
-  }
 }
 </style>
 

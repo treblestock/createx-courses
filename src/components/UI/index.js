@@ -4,6 +4,9 @@ import ArrowLeft from '@/components/UI/ArrowLeft.vue'
 import ArrowBottom from '@/components/UI/ArrowBottom.vue'
 import ArrowRight from '@/components/UI/ArrowRight.vue'
 import Socials from '@/components/UI/Socials.vue'
+import Logo from '@/components/UI/Logo.vue'
+
+import UL from '@/components/UI/UL.vue'
 
 import Checkbox from '@/components/UI/Checkbox.vue'
 import Radio from '@/components/UI/Radio.vue'
@@ -29,6 +32,9 @@ export default {
   ArrowRight,
   
   Socials,
+  Logo,
+
+  UL,
   
   Checkbox,
   Radio,
