@@ -11,6 +11,7 @@ import UL from '@/components/UI/UL.vue'
 import Checkbox from '@/components/UI/Checkbox.vue'
 import Radio from '@/components/UI/Radio.vue'
 
+import Img from '@/components/UI/Img.vue'
 import AppLink from '@/components/UI/AppLink.vue'
 import Popup from '@/components/UI/Popup.vue'
 import Spoiler from '@/components/UI/Spoiler.vue'
@@ -39,6 +40,7 @@ export default {
   Checkbox,
   Radio,
   
+  Img,
   AppLink,
 
   Popup,

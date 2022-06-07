@@ -15,7 +15,7 @@ const lis = [
   "Etiam duis lobortis in fames ultrices commodo nibh.",
 ] 
 
-const postTypes = ['video', 'podcast', 'article']
+const blogPostTypes = ['video', 'podcast', 'article']
 const tags = [
   "#marketing",
   "#recruiting",
@@ -27,19 +27,19 @@ const tags = [
 
 
 let id = 0
-function postsFactory({title}) {
+function blogPostsFactory({title}) {
   return ({
     id: ++id,
     
     title,
     description: shuffled(description) + '...',
 
-    img: `img/content/posts/0${id}.webp`,
+    img: `src/assets/img/content/blogPosts/0${id}.webp`,
     teacherId: getRandom(1, 8),
     timeToRead: getRandom(4, 10),
     date: new Date(2021, 6, id * 4),
     category: getRandomItem(categories),
-    postType: getRandomItem(postTypes),
+    postType: getRandomItem(blogPostTypes),
     tags: getRandomItem(setOfSubsets(tags) ),
     
     content: [
@@ -59,7 +59,7 @@ function postsFactory({title}) {
 
 
 
-const postsData = [
+const blogPostsData = [
   {title: "What is traffic arbitrage and does it really make money?"},
   {title: "How to choose the first programming language for a beginner"},
   {title: "Should you choose a creative profession if you are attracted to creativity?"},
@@ -71,11 +71,11 @@ const postsData = [
 ]
 
 
-const posts = postsData.map(postsFactory)
-const outputPath = path.join(__dirname, '..', 'data', 'posts.js')
+const blogPosts = blogPostsData.map(blogPostsFactory)
+const outputPath = path.join(__dirname, '..', 'data', 'blogPosts.js')
 fs.writeFileSync(outputPath,
-  'const posts = \n' 
-  + JSON.stringify(posts) 
-  + '\n\nexport default JSON.stringify(posts)\n' 
-  + '// module.exports = JSON.stringify(posts)'
+  'const blogPosts = \n' 
+  + JSON.stringify(blogPosts) 
+  + '\n\nexport default JSON.stringify(blogPosts)\n' 
+  + '// module.exports = JSON.stringify(blogPosts)'
 )

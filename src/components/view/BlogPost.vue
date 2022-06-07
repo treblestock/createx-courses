@@ -8,21 +8,26 @@ import { useRouter, useRoute } from 'vue-router'
 import { useStoreBlogPosts } from '@/stores/BlogPosts.js'
 
 
+import BlogPostCard from '@/components/BlogPostCard.vue'
+import BlogPostCard_row_s from '@/components/BlogPostCard_row_s.vue'
 
 const route = useRoute()
 const router = useRouter()
+
 
 const storeBlogPosts = useStoreBlogPosts()
 
 
 const props = defineProps({
-  blogPost: Number
+  blogPostId: [Number, String]
 })
+
+const blogPost = computed(() => storeBlogPosts.findBlogPost(props.blogPostId))
 
 </script>
 
 <template>
-  
+  <BlogPostCard :='blogPost'></BlogPostCard>
 </template>
 
 <style scoped lang="scss">

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 import { database } from "@/API"
-import { onRegister } from "./plugins/onRegister"
+import { parseDateHandler } from "@/helpers"
 
 
 
@@ -16,7 +16,7 @@ export const useStoreTeachers = defineStore('storeTeachers', {
   },
   actions: {
     async fetchTeachers() {
-      const teachers = await database.get('/teachers').then(r => JSON.parse(r))
+      const teachers = await database.get('/teachers').then(r => JSON.parse(r, parseDateHandler))
       if (!teachers) throw new Error('api failed (no answer) on: storeTeacher.fetchTeachers()')
       this.teachers = teachers
     },

@@ -5,6 +5,7 @@ import events from './data/events.js'
 import blogPosts from './data/blogPosts.js'
 import tags from './data/tags.js'
 import reviews from './data/reviews.js'
+import createX from './data/createX.js'
 
 // const categories = require('./data/categories.js')
 // const teachers = require('./data/teachers.js')
@@ -26,6 +27,7 @@ const requestResponseMatches = {
   '/tags': tags,
 
   '/reviews': reviews,
+  '/createX': createX,
 }
 
 

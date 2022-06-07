@@ -4,9 +4,15 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 import { useRouter, useRoute } from 'vue-router'
+
+import { useStoreCreateX } from '@/stores/CreateX.js'
+
+
 const route = useRoute()
 const router = useRouter()
 
+
+const storeCreateX = useStoreCreateX()
 
 const props = defineProps({
   

@@ -24,10 +24,20 @@ const cssUrl = `url('${iconUrl.value}')`
 
 .ul
 
-  :slotted(> *)
+  :slotted(li)
+    display: flex
+    align-items: center
+    &:before
+      display: block
+      width: 2.4rem
+      height: 2.4rem
+
+      color: red
+      content: var(--url)
+      // content: url('@/assets/img/test.jpg')
+      padding-right: 0.5rem
     --url: v-bind(cssUrl)
-    list-style: var(--url)
-    padding-right: 0.5rem
+    // list-style: var(--url)
       
     
 

@@ -4,14 +4,22 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 import { useRouter, useRoute } from 'vue-router'
-import CourseCard_row from '../CourseCard_row.vue';
+
+import { useStoreCourses } from '@/stores/Courses.js'
+
+import CourseCard_row from '@/components/CourseCard_row.vue'
+
 const route = useRoute()
 const router = useRouter()
 
+const storeCourses = useStoreCourses()
 
 const props = defineProps({
   
 })
+
+const courses = computed(() => storeCourses.courses.slice(0, 6) )
+
 
 </script>
 
@@ -25,7 +33,7 @@ const props = defineProps({
       <button class="courses__btn btn-outl">View all courses</button>
     </div>
     <div class="courses__items">
-      <CourseCard_row></CourseCard_row>
+      <CourseCard_row v-for="course in courses" :key="course.id" :='course'></CourseCard_row>
     </div>
   </div>  
 </template>
@@ -54,7 +62,7 @@ const props = defineProps({
   &__items
     margin-top: 6rem
     display: grid
-    grid-template-columns: repeat(2, 1fr)
+    grid-template-columns: repeat(2, minmax(39rem, 1fr) )
     grid-gap: 3rem
 
 

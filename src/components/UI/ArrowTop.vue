@@ -11,8 +11,6 @@
 @import @/assets/css/_helpers
 
 .arrow__bg
-  color: $color-gray-900
-
   display: flex
   justify-content: center
   align-items: center
@@ -22,7 +20,8 @@
   border-radius: 50%
   &:hover
     background: $color-carrot
-    color: $color-white
+    svg
+      color: $color-white
 
 .arrow__icon
   width: 2.4rem

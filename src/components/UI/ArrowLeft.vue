@@ -24,7 +24,8 @@
   transform: rotate(90deg)
   &:hover
     background: $color-carrot
-    color: $color-white
+    svg
+      color: $color-white
 
 .arrow__icon
   width: 2.4rem

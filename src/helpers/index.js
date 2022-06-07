@@ -23,7 +23,23 @@ const r = /([0-9]{4})-([0-9]{2})-([0-9]{2})/
 const isDate = str => r.exec(str)
 
 const parseDateHandler = (key, value) => 
-  isDate(value) ? new Date(value) : value
+  isDate(value) ? separateDate(new Date(value)) : value
+
+
+
+const monthMap = [
+  'January', 'February', 'March',
+  'April', 'May', 'June',
+  'July', 'August', 'September',
+  'October', 'Novemmbar', 'December',
+]
+function separateDate(date) {
+  return {
+    date: date.getDate(),
+    month: monthMap[date.getMonth()],
+    year: date.getFullYear(),
+  }
+}
 
 
 

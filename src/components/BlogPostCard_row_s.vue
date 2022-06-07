@@ -4,82 +4,96 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 import { useRouter, useRoute } from 'vue-router'
+
+import { useStoreBlogPosts } from '@/stores/BlogPosts.js'
+
+
 const route = useRoute()
 const router = useRouter()
 
 
+const storeBlogPosts = useStoreBlogPosts()
+
 const props = defineProps({
-  
+  id: [Number, String]
 })
+
+const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id) )
+
 
 </script>
 
 <template>
   <div class="blog-post-card">
     <div class="blog-post-card__img">
-      <img src="@/assets/img/test.jpg" alt="">
+      <Img :src="blogPost.img"/>
         <div class="blog-post-card__img-labels">
       </div>
     </div>
     <div class="blog-post-card__body">
       <div class="blog-post-card__top">
-        <span class="blog-post-card__date">sept 12</span>
+        <span class="blog-post-card__date">{{ blogPost.date.date }} {{ blogPost.date.month }}</span>
       </div>
-      <a href="" class="blog-post-card__title link">title</a>
+      <AppLink class="blog-post-card__title link"
+        :to="{
+          name: 'blogPost',
+          params: {blogPostId: blogPost.id},
+        }"
+      >{{ blogPost.title }}</AppLink>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-@import '@/assets/css/_vars';
-@import '@/assets/css/_helpers';
+<style scoped lang="sass">
+@import @/assets/css/_vars
+@import @/assets/css/_helpers
 
 
-.blog-post-card {
-  width: 39rem;
-  height: 10rem;
-  display: flex;
+.blog-post-card
+  width: 39rem
+  height: 10rem
+  display: flex
 
-  &__img {
-    height: 10rem;
-    width: 10rem;
-    border-radius: $border-radius;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    margin-right: 2rem;
-  }
-  &__body {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
+  &__img
+    flex: 0 0 10rem
+    height: 10rem
+    border-radius: $border-radius
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
     
-    > * + * {
-      margin-top: 1rem;
-    }
-  }
-  &__title {
-    font-size: 1.6rem;
-    line-height: 1.6;
-    font-weight: 700;
-    color: $color-gray-900;
-  }
-  &__top {
-    font-size: 1.4rem;
-    line-height: 1.5;
 
-    color: $color-gray-700;
+    margin-right: 2rem
+  
+  &__body
+    display: flex
+    flex-direction: column
+    align-items: start
+    
+    > * + *
+      margin-top: 1rem
+    
+  
+  &__title
+    font-size: 1.6rem
+    line-height: 1.6
+    font-weight: 700
+    color: $color-gray-900
+  
+  &__top
+    font-size: 1.4rem
+    line-height: 1.5
 
-    > * + * {
-      &:before {
-        content: '|';
-        padding: 0 1rem;
-      }
-    }
-  }
-}
+    color: $color-gray-700
+
+    > * + *
+      &:before
+        content: '|'
+        padding: 0 1rem
+      
+    
+  
+
 
 </style>

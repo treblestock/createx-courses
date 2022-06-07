@@ -62,8 +62,8 @@ function propsParser(route) {
     It is annoing and boilerpalte enough to use
   The '2)' Seems good :)
  -->
-<template class="semen">
-  <span :="$attrs"> 
+<template>
+  <span :="$attrs" class="app-link"> 
     <a v-if="isExternalLink" :="$attrs" :href="to" target="_blank">
       <slot />
     </a>
@@ -88,8 +88,11 @@ function propsParser(route) {
   </span>
 </template>
 
-<style scoped lang="scss">
-@import '@/assets/css/_vars';
-@import '@/assets/css/_helpers';
+<style scoped lang="sass">
+@import @/assets/css/_vars
+@import @/assets/css/_helpers
+
+.app-link
+  cursor: pointer
 
 </style>

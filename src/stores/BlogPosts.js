@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 import { database } from "@/API"
-
+import { parseDateHandler } from "@/helpers"
 
 
 export const useStoreBlogPosts = defineStore('storeBlogPosts', {
@@ -15,7 +15,7 @@ export const useStoreBlogPosts = defineStore('storeBlogPosts', {
   },
   actions: {
     async fetchBlogPosts() {
-      const blogPosts = await database.get('/blogPosts').then(r => JSON.parse(r))
+      const blogPosts = await database.get('/blogPosts').then(r => JSON.parse(r, parseDateHandler))
       if (!blogPosts) throw new Error('api failed (no answer) on: storeTeacher.fetchblogPost()')
       this.blogPosts = blogPosts
     },

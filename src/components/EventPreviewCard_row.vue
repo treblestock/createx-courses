@@ -4,31 +4,45 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 import { useRouter, useRoute } from 'vue-router'
+
+import { useStoreEvents } from '@/stores/Events.js'
+
+
 const route = useRoute()
 const router = useRouter()
 
+const storeEvents = useStoreEvents()
 
 const props = defineProps({
-  
+  id: [Number, String],
 })
+
+const event = computed(() => storeEvents.findEvent(props.id) )
+
+
 
 </script>
 
 <template>
-  <div class="event-preview-card">
+  <div class="event-preview-card" v-if="event">
     <div class="event-preview-card__body">
-      <div class="event-preview-card__date-date">2</div>
+      <div class="event-preview-card__date-date">{{ event.date.date }}</div>
       <div class="event-preview-card__when">
-        <div class="event-preview-card__date-month">sept</div>
-        <div class="event-preview-card__time">11:30-12:20</div>
+        <div class="event-preview-card__date-month">{{ event.date.month }}</div>
+        <div class="event-preview-card__time">{{ event.time }}</div>
       </div>
       <div class="event-preview-card__when">
-        <div class="event-preview-card__title">Lorem ipsum dolor sit amet.</div>
-        <div class="event-preview-card__event-type">online lecture</div>
+        <div class="event-preview-card__title">{{ event.title }}</div>
+        <div class="event-preview-card__event-type">{{ event.eventType }}</div>
       </div>
     </div>
       
-    <button class="event-preview-card__btn btn">View more</button>
+    <AppLink class="event-preview-card__btn btn"
+      :to="{
+        name: 'event',
+        params: {eventId: event.id},
+      }"
+    >View more</AppLink>
   </div>
 </template>
 

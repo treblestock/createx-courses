@@ -23,7 +23,7 @@ const iconColorHover = computed(() => props.colorHover || '#FF3F3A')
       :href="'https://' + link" target="_blank"
     >
       <svg class="socials__icon">
-        <use :xlink:href="'src/assets/img/icons/socials/sprite.svg#' + link.split('.')[0]"></use>
+        <use :xlink:href="'http://localhost:3000/src/assets/img/icons/socials/sprite.svg#' + link.split('.')[0]"></use>
       </svg>
     </a>
   </div>

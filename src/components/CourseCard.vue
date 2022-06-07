@@ -4,27 +4,45 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 import { useRouter, useRoute } from 'vue-router'
+
+
+import { useStoreCourses } from '@/stores/Courses.js'
+import { useStoreTeachers } from '@/stores/Teachers.js'
+
+
 const route = useRoute()
 const router = useRouter()
 
 
+
+const storeTeachers = useStoreTeachers()
+const storeCourses = useStoreCourses()
+
 const props = defineProps({
-  
+  id: [Number, String],
 })
+const course = computed(() => storeCourses.findCourse(props.id))
+const teacher = computed(() => storeTeachers.findTeacher(course.value.teacherId))
+
 
 </script>
 
 <template>
-  <div class="course-card">
+  <div class="course-card" v-if="teacher">
     <div class="course-card__img">
-      <img src="@/assets/img/test.jpg" alt="">
+      <Img :src="teacher.imgCourse" />
     </div>
     <div class="course-card__body">
-      <div class="course-card__label">label</div>
-      <a class="course-card__title link">title</a>
+      <div class="course-card__category">{{ course.category }}</div>
+      <AppLink class="course-card__title link"
+        :to="{
+          name: 'course',
+          params: {courseId: course.id},
+        }"
+      >{{ course.title}}</AppLink>
       <div class="course-card__bottom">
-        <span class="course-card__price">100</span>
-        <span class="course-card__teacher">by teacher</span>
+        <span class="course-card__price">{{ course.price}}</span>
+        <span class="course-card__teacher">by {{ teacher.name }}</span>
       </div>
     </div>
   </div>
@@ -61,7 +79,7 @@ const props = defineProps({
       margin-top: 2rem;
     }
   }
-  &__label {    
+  &__category {    
     padding: 0.2rem;
     margin-bottom: .5rem;
 

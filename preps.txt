@@ -1,6 +1,6 @@
 ! Routing
 * app-sections
-/home               => Home
+/main               => Main
 /courses            => Courses
 /courses/:course    => Course
   store.getTeacherData(userId)
@@ -11,6 +11,52 @@
   store.getTeacherData(userId)
 /contacts           => Contacts
 /about              => About
+
+================================================
+
+! State fetching
+* app-sections
+main               
+  courses
+  events
+  blogPosts
+  Reviews
+  Teachers
+  
+
+courses            
+  courses
+  Reviews
+
+course           
+  course
+  courses
+  Reviews
+
+
+events
+  events
+event
+  event
+  events
+
+posts
+  blogPosts
+post
+  blogPost
+  blogPosts
+
+contacts
+  ?CreateX: (address, socials,...)
+
+
+about
+  courses
+  blogPosts
+  Reviews
+  Teachers
+  
+
 
 ================================================
 * Prompt to decorate router.$push()
@@ -34,7 +80,7 @@ export const Log = createDecorator((options, key) => {
 !Sections
 * app-sections
 {
-  Home
+  Main
     Header
 
     Main
@@ -321,7 +367,7 @@ Pages
     } Student, 
   }
 
-  ?pages: [home, courses, events, blog, about us, contacts]
+  ?pages: [Main, courses, events, blog, about us, contacts]
 }
 
 =============================================

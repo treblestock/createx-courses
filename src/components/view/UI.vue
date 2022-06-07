@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 import TeacherCard from '@/components/TeacherCard.vue'
 import TeacherCard_row from '@/components/TeacherCard_row.vue'
 import TeacherCard_row_l from '@/components/TeacherCard_row_l.vue'
@@ -19,20 +19,20 @@ import EventDetailsCard from '@/components/EventDetailsCard.vue'
 import EventPreviewCard from '@/components/EventPreviewCard.vue'
 import EventPreviewCard_row from '@/components/EventPreviewCard_row.vue'
 
-const isActive = ref(true)
 
-const links = [
-  'facebook.com',
-]
+import { useStoreTeachers } from '@/stores/Teachers.js'
+const storeTeachers = useStoreTeachers()
+
+const course = computed(() => storeCourses.findCourse(props.courseId) )
+const teachers = computed(() => storeTeachers.teachers)
 </script>
+
 
 <template>
   <div>
     <div class="block">
-      <!-- <button @click="isActive = true">on</button>
-      <Popup :isActive="isActive" @closed="isActive = false">
-        <div class="box"></div>
-      </Popup> -->
+      <TeacherCard v-for="teacher in teachers" :key="teacher.id" :='teacher'></TeacherCard>
+
     </div>
 
     <!-- <TeacherCard></TeacherCard>

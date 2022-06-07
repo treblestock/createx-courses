@@ -14,8 +14,8 @@ function teacherFactory({name, pos}) {
 
     description: shuffled(description),
 
-    imgTeacher: `/src/assets/img/content/teachers/for-teachers/0${id}.webp`,
-    imgCourse: `/src/assets/img/content/teachers/for-courses/0${id}.webp`,
+    imgTeacher: `src/assets/img/content/teachers/for-teachers/0${id}.webp`,
+    imgCourse: `src/assets/img/content/teachers/for-courses/0${id}.webp`,
     socials: [
       'facebook.com',
       'instagram.com',

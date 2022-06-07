@@ -32,7 +32,7 @@ const props = defineProps({
             <li class="why__list-item">Tincidunt sagittis neque sem ac eget.</li>
             <li class="why__list-item">Ultricies amet justo et eget quisque purus vulputate dapibus tortor.</li>
           </ul>
-          <div class="why__btn btn">More about us</div>
+          <button class="why__btn btn">More about us</button>
         </div>
       </div>
     </div>

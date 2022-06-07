@@ -132,6 +132,7 @@ let isShownSignUp = ref(false)
 
 .header
   &__section
+    z-index: 100
     position: fixed
     top: 0
     left: 0

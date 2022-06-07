@@ -4,9 +4,22 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 import { useRouter, useRoute } from 'vue-router'
+
+
+import { useStoreCourses } from '@/stores/Courses.js'
+import { useStoreReviews } from '@/stores/Reviews.js'
+import { useStoreBlogPosts } from '@/stores/BlogPosts.js'
+import { useStoreTeachers } from '@/stores/Teachers.js'
+
+
 const route = useRoute()
 const router = useRouter()
 
+
+const storeTeachers = useStoreTeachers()
+const storeBlogPosts = useStoreBlogPosts()
+const storeReviews = useStoreReviews()
+const storeCourses = useStoreCourses()
 
 const props = defineProps({
   
