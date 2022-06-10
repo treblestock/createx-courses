@@ -5,8 +5,8 @@ export default {
 </script>
 
 <template>
-  <label class="checkbox">
-    <input type="checkbox" class="checkbox__checkbox">
+  <label class="checkbox" :class="$attrs.class">
+    <input :="$attrs" type="checkbox" class="checkbox__checkbox">
     <span class="checkbox__ui"></span>
   </label>
 </template>

@@ -26,21 +26,26 @@ const event = computed(() => storeEvents.findEvent(props.id) )
 <template>
   <div class="event-preview-card" v-if="event">
     <div class="event-preview-card__body">
-      <div class="event-preview-card__date">{{ event.date.date }} {{event.date.month}}</div>
-      <div class="event-preview-card__time">{{ event.time }}</div>
-      <AppLink class="event-preview-card__title"
-        :to="{
-          name: 'event',
-          params: {eventId: event.id},
-        }"
-      >{{ event.title }}</AppLink>
-      <div class="event-preview-card__event-type">{{ event.eventType }}</div>
+      <div class="event-preview-card__date-date">{{ event.date.date }}</div>
+      <div class="event-preview-card__when">
+        <div class="event-preview-card__date-month">{{ event.date.month }}</div>
+        <div class="event-preview-card__time">{{ event.time }}</div>
+      </div>
+      <div class="event-preview-card__when">
+        <AppLink class="event-preview-card__title"
+          :to="{
+            course: 'event',
+            parmas: {eventId: event.id},
+          }"
+        >{{ event.title }}</AppLink>
+        <div class="event-preview-card__event-type">{{ event.eventType }}</div>
+      </div>
     </div>
       
-    <AppLink class="event-preview-card__btn btn _outl"
+    <AppLink class="event-preview-card__btn btn"
       :to="{
         name: 'event',
-        params: {eventId: event.id }
+        params: {eventId: event.id},
       }"
     >View more</AppLink>
   </div>
@@ -52,46 +57,61 @@ const event = computed(() => storeEvents.findEvent(props.id) )
 
 
 .event-preview-card {
-  width: 39rem;
-  padding: 2.4rem;
+  display: flex;
+  justify-content: space-between;
+  > * + * {
+    margin-left: 4rem;
+  }
+  width: 123rem;
+  padding: 3rem 4rem;
+
   border: solid 1px $color-gray-300;
   box-shadow: $box-shadow;
-  
+  background: $color-white;
   &__body {
     display: flex;
-    flex-direction: column;
-    align-items: start;
+    justify-content: space-between;
     > * + * {
-      margin-top: 1rem;
+      margin-left: 4rem;
     }
   }
-  &__date {
-    font-size: 2.8rem;
-    line-height: 1.5;
+  &__when {
+    margin-left: 2rem;
+  }
+  &__date-date {
+    font-size: 4.6rem;
+    line-height: 1.3;
     font-weight: 700;
     color: $color-carrot;
   }
+  &__date-month {
+    font-size: 1.8rem;
+    line-height: 1.5;
+    font-weight: 700;
+    color: $color-gray-900;
+  }
   &__time {
+    margin-top: 1rem;
+
     font-size: 1.6rem;
     line-height: 1.6;
     color: $color-gray-700
   }
   &__title {
-    margin-top: 2rem;
-
     font-size: 1.8rem;
     line-height: 1.5;
     font-weight: 700;
     color: $color-gray-900;
-
   }
   &__event-type {
+    margin-top: 1rem;
+
     font-size: 1.6rem;
     line-height: 1.6;
     color: $color-gray-700;
   }
   &__btn {
-    margin-top: 5rem;
+    margin-left: 5rem;
   }
 }
 

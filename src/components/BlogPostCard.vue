@@ -98,18 +98,22 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id))
     font-size: 1.4rem
     line-height: 1.5
     color: $color-black
+  
+  // &__title    
+  //   padding: 0.2rem
+  //   margin-bottom: .5rem
 
-  &__label    
-    padding: 0.2rem
-    margin-bottom: .5rem
+  //   border-radius: $border-radius
+  //   background: $color-green-light
 
-    border-radius: $border-radius
-    background: $color-green-light
-
-    font-size: 1.4rem
+  //   font-size: 1.4rem
+  //   line-height: 1.5
+  //   color: $color-white
+  &__title
+    font-size: 2rem
     line-height: 1.5
-    color: $color-white
- 
+    font-weight: 700
+
   &__body
     display: flex
     flex-direction: column
@@ -134,11 +138,7 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id))
  
   &__date
 
-  &__title
-    font-size: 2rem
-    line-height: 1.5
-    font-weight: 700
-    color: $color-gray-900
+
   
   &__description
 

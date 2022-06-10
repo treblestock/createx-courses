@@ -3,33 +3,26 @@ import {ref, computed, watch} from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
-import { useRouter, useRoute } from 'vue-router'
-const route = useRoute()
-const router = useRouter()
 
+
+import { useTabsLogic } from '@/components/composable/useTabsLogic'
 
 const props = defineProps({
-  
+  insetsClass: String,
+  bodyClass: String,
 })
 
-const insetsContainer = ref(null)
+const insets = ref(null)
 const body = ref(null)
 
 
-function setNewActiveTab(event) {
-  const bodyItems = [...body.value.children]
-  const insets = [...insetsContainer.value.children]
+const { setActiveTab }  = useTabsLogic({
+  insets,
+  body,
+})
 
-  const inset = event.target.closest('.tabs__insets>*')
-  const activeInd = [...inset.parentElement.children].indexOf(inset)
-
-  insets.forEach(inset => inset.classList.remove('_active') )
-  bodyItems.forEach(inset => inset.classList.remove('_active') )
-  insets[activeInd].classList.add('_active')
-  bodyItems[activeInd].classList.add('_active')
-}
 onMounted(() => {
-  insetsContainer.value.children[0].classList.add('_active')
+  insets.value.children[0].classList.add('_active')
   body.value.children[0].classList.add('_active')
 })
 
@@ -38,37 +31,40 @@ onMounted(() => {
 <template>
   <div class="tabs">
     <div class="tabs__insets"
-      ref="insetsContainer"
-      @click="setNewActiveTab"
+      ref="insets"
+      @click="setActiveTab"
+      :class="insetsClass"
     >
-      <slot name="insets"></slot>
+      <slot name="insets"
+        ref="ins"
+        :ins="$refs.ins"
+      ></slot>
     </div>
     <div class="tabs__body"
       ref="body"
+      :class="bodyClass"
     >
       <slot name="body"></slot>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-@import '@/assets/css/_vars';
-@import '@/assets/css/_helpers';
+<style scoped lang="sass">
+@import @/assets/css/_vars
+@import @/assets/css/_helpers
 
 
-.tabs {
-  &__insets {
+.tabs
+  &__insets
 
-    ._active {
-      background: red;
-    }
-  }
-  &__body {
-    >*:slotted( :not(._active) ) {
-      display: none;
-    }
-  }
-}
+    :slotted(> *)
+      cursor: pointer
+      
+
+
+  &__body
+    >*:slotted( :not(._active) )
+      display: none
 
 
 </style>

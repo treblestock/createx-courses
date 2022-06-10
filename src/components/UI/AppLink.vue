@@ -63,7 +63,7 @@ function propsParser(route) {
   The '2)' Seems good :)
  -->
 <template>
-  <span :="$attrs" class="app-link"> 
+  <span> 
     <a v-if="isExternalLink" :="$attrs" :href="to" target="_blank">
       <slot />
     </a>
@@ -77,10 +77,9 @@ function propsParser(route) {
       v-slot="{ isActive, href, navigate }"
     >
       <a
+        @click="navigate"
         :href="href"
         :="$attrs"
-        @click="navigate"
-        :class="$attrs.class"
       >
         <slot />
       </a>
@@ -92,7 +91,6 @@ function propsParser(route) {
 @import @/assets/css/_vars
 @import @/assets/css/_helpers
 
-.app-link
-  cursor: pointer
+
 
 </style>

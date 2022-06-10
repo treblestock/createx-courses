@@ -21,7 +21,7 @@
   height: 4.8rem
   border-radius: 50%
 
-  transform: rotate(270deg)
+  transform: rotate(90deg)
   &:hover
     background: $color-carrot
     svg

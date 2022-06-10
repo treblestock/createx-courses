@@ -8,8 +8,8 @@ import { useRouter, useRoute } from 'vue-router'
 
 import { useStoreEvents } from '@/stores/Events.js'
 
-import EventPreviewCard from '@/components/EventPreviewCard.vue'
-import EventPreviewCard_row from '@/components/EventPreviewCard_row.vue'
+import EventCard from '@/components/EventCard.vue'
+import EventCard_row from '@/components/EventCard_row.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -28,7 +28,7 @@ const event = computed(() => storeEvents.findEvent(props.eventId) )
 </script>
 
 <template>
-  <EventPreviewCard v-if="event" :="event"></EventPreviewCard>
+  <EventCard v-if="event" :="event"></EventCard>
 </template>
 
 <style scoped lang="sass">

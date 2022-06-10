@@ -75,7 +75,7 @@ let isShownSignUp = ref(false)
               <li class="menu__links-item">
                 <AppLink class="menu__links-link link"
                   :to="{name: 'contacts' }"
-                >Contacts us</AppLink>
+                >Contacts</AppLink>
               </li>
             </ul>
           </nav>

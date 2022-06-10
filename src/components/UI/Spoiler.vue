@@ -31,20 +31,58 @@ let isActive = ref(false)
   </div>
 </template>
 
-<style scoped lang="scss">
-@import '@/assets/css/_vars';
-@import '@/assets/css/_helpers';
+<style scoped lang="sass">
+@import @/assets/css/_vars
+@import @/assets/css/_helpers
 
 
-.spoiler {
-  &__title {
-  }
-  &__body {
-    .spoiler:not(._active) & {
-      display: none;
-    }
-  }
-}
+.spoiler
+  padding-left: 4rem
+  &__title
+    position: relative
+
+    transition: all ease-out .3s
+    cursor: pointer
+
+    &:after,
+    &:before
+      content: ''
+      position: absolute
+      top: .9rem
+      left: -4rem
+
+      display: block
+      width: 2rem
+      height: 1px
+
+      background: $color-carrot
+      transition: transform linear .3s
+    &:after 
+      transform: rotate(90deg)
+
+      .spoiler._active &
+        transform: rotate(90deg) scale(0)
+    
+    
+    
+  &__body
+    transition: all ease-out .3s
+
+    :slotted(> *)
+      padding-top: 1.5rem
+
+      width: 100%
+      transition: all ease-out .3s, opacity ease-in .6s
+
+    .spoiler:not(._active) &
+      :slotted(> *)
+        font-size: 0
+        padding: 0
+        margin: 0
+        opacity: 0
+        
+      
+
 
 
 </style>

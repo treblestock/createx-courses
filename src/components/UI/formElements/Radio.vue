@@ -5,11 +5,11 @@ export default {
 </script>
 
 <template>
-  <label class="checkbox">
-    <input type="radio" class="checkbox__checkbox"
+  <label class="radio" :class="$attrs.class">
+    <input type="radio" class="radio__radio"
       :="$attrs"
     >
-    <span class="checkbox__ui"></span>
+    <span class="radio__ui"></span>
   </label>
 </template>
 
@@ -18,7 +18,7 @@ export default {
 @import @/assets/css/_helpers
 
 
-.checkbox
+.radio
   display: inline-flex
   justify-content: center
   align-items: center
@@ -35,11 +35,11 @@ export default {
     border-radius: 50%
 
     cursor: pointer
-  &__checkbox
+  &__radio
     position: absolute
     opacity: 0
 
-    &:checked ~ .checkbox__ui
+    &:checked ~ .radio__ui
       background: $color-carrot
 
         
