@@ -3,6 +3,7 @@ export default {
   inheritAttrs: false,
   props: {
     modelValue: String,
+    icon: String
   },
 }
 </script>
@@ -11,9 +12,13 @@ export default {
   <label class="input" :class="$attrs.class">
     <input type="text" class="input__input"
       :="$attrs"
-      v-model="modelValue"
       @input="$emit('input', $event.target.value)"
     >
+    <button class="input__icon">
+      <slot>
+        <Img :src="icon || 'src/assets/img/icons/search.svg'" />
+      </slot>
+    </button>
   </label>
 </template>
 
@@ -23,18 +28,18 @@ export default {
 
 
 .input
-  display: inline-block
+  display: inline-flex
+  align-items: center
   width: 100%
   
+  padding: 1rem 1.5rem
+  box-shadow: 0 0 0 1px $color-gray-400
+
+  border-radius: $border-radius
   
   &__input
-    display: inline-block
-    width: 100%
+    flex: 1 1 auto
 
-    padding: 1rem 1.5rem
-    box-shadow: 0 0 0 1px $color-gray-400
-
-    border-radius: $border-radius
     cursor: text
 
     font-size: 1.6rem
@@ -46,6 +51,16 @@ export default {
       color: $color-gray-400
       text-transform: lowercase
 
+  &__icon
+    flex: 0 0 1.6rem
+    height: 1.6rem
+    cursor: pointer
+
+    img 
+      width: 100%
+      height: 100%
+      object-fit: cover
+    
 
 
         

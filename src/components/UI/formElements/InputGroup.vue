@@ -7,13 +7,21 @@ export default {
 const props = defineProps({
   label: String,
   tag: String,
+  modelValue: String,
 })
+
+
 </script>
 
 <template>
   <div class="input-group" :class="$attrs.class">
     <div class="input-group__label">{{ label }}</div>
-    <component class="input-group__input" :is="tag || 'Input'" :="$attrs"></component>
+    <component class="input-group__input" 
+      :is="tag || 'Input'" 
+      :="$attrs"
+      v-model="modelValue"
+      @input="$emit('input', $event)"
+    />
   </div>
 </template>
 

@@ -10,6 +10,12 @@ for (const key in UI) {
   app.component(key, value)
 }
 
+import directives from '@/components/directives'
+for (const key in directives) {
+  const value = directives[key]
+  app.directive(key, value)
+}
+
 
 import { router } from '@/router'
 app.use(router)

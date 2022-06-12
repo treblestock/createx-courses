@@ -3,13 +3,16 @@ import {ref, computed, watch} from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
-import { useRouter, useRoute } from 'vue-router'
 
-const route = useRoute()
-const router = useRouter()
+import { useStoreAccount } from '@/stores/Account.js'
+
+import Menu from '@/components/Menu.vue'
+import SignUp from '@/components/sections/SignUp.vue'
+import SignIn from '@/components/sections/SignIn.vue'
 
 
 
+const storeAccount = useStoreAccount()
 
 const props = defineProps({
   
@@ -30,9 +33,29 @@ onMounted(() => {
 
 
 
+// auth
+let isSignedIn = computed(() =>  storeAccount.isSignedIn)
+
+watch(
+  isSignedIn,
+  (value) => value ? isShownSignIn.value = isShownSignUp.value = false : null 
+)
+
+
 // popups
 let isShownSignIn = ref(false)
 let isShownSignUp = ref(false)
+
+
+function redirectSignUp() {
+  isShownSignIn.value = false
+  isShownSignUp.value = true
+}
+function redirectSignIn() {
+  isShownSignUp.value = false
+  isShownSignIn.value = true
+}
+
 
 </script>
 
@@ -45,40 +68,7 @@ let isShownSignUp = ref(false)
         <Logo class="header__logo"></Logo>
 
         <div class="burgered">
-          <nav class="menu">
-            <ul class="menu__links">
-              <li class="menu__links-item">
-                <AppLink class="menu__links-link link"
-                  :to="{name: 'UI' }"
-                >UI</AppLink>
-              </li>
-              <li class="menu__links-item">
-                <AppLink class="menu__links-link link"
-                  :to="{name: 'about' }"
-                >About us</AppLink>
-              </li>
-              <li class="menu__links-item">
-                <AppLink class="menu__links-link link"
-                  :to="{name: 'courses' }"
-                >Courses</AppLink>
-              </li>
-              <li class="menu__links-item">
-                <AppLink class="menu__links-link link"
-                  :to="{name: 'events' }"
-                >Events</AppLink>
-              </li>
-              <li class="menu__links-item">
-                <AppLink class="menu__links-link link"
-                  :to="{name: 'blogPosts' }"
-                >blog</AppLink>
-              </li>
-              <li class="menu__links-item">
-                <AppLink class="menu__links-link link"
-                  :to="{name: 'contacts' }"
-                >Contacts</AppLink>
-              </li>
-            </ul>
-          </nav>
+          <Menu></Menu>
         </div>
         <div class="burger">
           <span></span>
@@ -88,8 +78,13 @@ let isShownSignUp = ref(false)
           <button class="btn _l header__toolbar-btn">get consultation</button>
           <div class="header__toolbar-account">
             <a class="link"
+              v-if="!isSignedIn"
               @click.prevent="isShownSignIn = true"
             >log in</a>
+            <a class="link"
+              v-else
+              @click.prevent="storeAccount.signOut"
+            >log out</a>
              / 
             <a class="link"
               @click.prevent="isShownSignUp = true"
@@ -104,18 +99,18 @@ let isShownSignUp = ref(false)
         :isActive="isShownSignIn"
         @closed="isShownSignIn = false"
       >
-        <div class="sign-in">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex eos rem iure doloremque tempora assumenda dolorum voluptatum possimus delectus ratione in, reiciendis praesentium animi expedita eius consectetur architecto amet laudantium nobis eum, asperiores porro? Hic perspiciatis blanditiis temporibus, adipisci atque dicta consequatur ullam minus dolore accusamus mollitia voluptates at dolor optio facilis esse libero aut odit labore, explicabo soluta rem quasi. Suscipit nemo magnam officia, beatae impedit quo sint dolor dolores ullam commodi adipisci earum consequatur culpa numquam itaque nam perferendis eius unde non. Voluptatem, eum! Laboriosam et voluptatibus praesentium fugiat eos inventore neque eveniet unde, adipisci perferendis illum asperiores?
-        </div>
+        <SignIn 
+          @redirect-sign-up="redirectSignUp"
+        />
       </Popup>
 
       <Popup
         :isActive="isShownSignUp"
         @closed="isShownSignUp = false"
       >
-        <div class="sign-in">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex eos rem iure doloremque tempora assumenda dolorum voluptatum possimus delectus ratione in, reiciendis praesentium animi expedita eius consectetur architecto amet laudantium nobis eum, asperiores porro? Hic perspiciatis blanditiis temporibus, adipisci atque dicta consequatur ullam minus dolore accusamus mollitia voluptates at dolor optio facilis esse libero aut odit labore, explicabo soluta rem quasi. Suscipit nemo magnam officia, beatae impedit quo sint dolor dolores ullam commodi adipisci earum consequatur culpa numquam itaque nam perferendis eius unde non. Voluptatem, eum! Laboriosam et voluptatibus praesentium fugiat eos inventore neque eveniet unde, adipisci perferendis illum asperiores?
-        </div>
+        <SignUp 
+          @redirect-sign-in="redirectSignIn"
+        />
       </Popup>
 
 
@@ -176,28 +171,23 @@ let isShownSignUp = ref(false)
 
 .burgered
 
-.menu
-  &__links
-    display: flex
-    flex-direction: row
-    justify-content: space-between
-    align-items: center
+// .menu
+//   &__links
+//     display: flex
+//     flex-direction: row
+//     justify-content: space-between
+//     align-items: center
     
-    > * + * 
-      margin-left: 4rem
+//     > * + * 
+//       margin-left: 4rem
     
 
-  &__links-item
+//   &__links-item
 
-  &__links-link
+//   &__links-link
 
 .burger
 
-
-.sign-in
-  max-width: 30rem
-  padding: 2rem
-  background: #fff
 
 
 </style>

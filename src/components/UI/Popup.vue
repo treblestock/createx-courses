@@ -7,6 +7,9 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 const props = defineProps({
   isActive: Boolean,
 })
+const emit = defineEmits([
+  'closed',
+])
 
 
 </script>
@@ -14,11 +17,11 @@ const props = defineProps({
 <template>
   <div class="popup" v-if="isActive">
     <div class="popup__wrapper"
-      @click="$emit('closed')"
+      @click="emit('closed')"
     ></div>
     <div class="popup__body">
       <div class="popup__cross" 
-        @click="$emit('closed')"
+        @click="emit('closed')"
       >&#x2573;</div>
       <slot></slot>
     </div>
@@ -58,8 +61,8 @@ const props = defineProps({
   
   &__cross
     position: absolute
-    top: 0
-    right: 0
+    top: 3rem
+    right: 3rem
     transform: translate(-100%, 100%)
 
     width: 2.4rem

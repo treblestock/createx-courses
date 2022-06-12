@@ -4,18 +4,58 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
-import { useStoreBlogPosts } from '@/stores/blogPosts.js'
+
+import { useStoreBlogPosts } from '@/stores/BlogPosts.js'
+import { useStoreBlogPostsFilters } from '@/stores/BlogPostsFilters.js'
 
 import BlogPostCard from '@/components/BlogPostCard.vue'
-import BlogPostCard_row_s from '@/components/BlogPostCard_row_s.vue'
+
 
 const storeBlogPosts = useStoreBlogPosts()
+const storeBlogPostsFilters = useStoreBlogPostsFilters()
+
 
 const props = defineProps({
   
 })
 
-const blogPosts = computed(() => storeBlogPosts.blogPosts.slice(0, 3) )
+// filters
+const blogPostsFiltered = computed(() => storeBlogPostsFilters.blogPostsFiltered || [])
+
+
+
+const postTypes = computed(() => 
+  [...storeBlogPosts.blogPosts.reduce(
+    (postTypes, item) => postTypes.add(item.postType), new Set([null]) 
+)])
+const categories = computed(() => 
+  [...storeBlogPosts.blogPosts.reduce(
+    (categories, item) => categories.add(item.category), new Set([null]) 
+)])
+
+
+const postTypeQuery = computed({
+  get: () => storeBlogPostsFilters.postTypeQuery,
+  set: (value) => storeBlogPostsFilters.postTypeQuery = value == 'on' ? null : value,
+})
+const categoryQuery = computed({
+  get: () => storeBlogPostsFilters.categoryQuery,
+  set: (value) => storeBlogPostsFilters.categoryQuery = value == 'on' ? null : value,
+})
+const searchQuery = computed({
+  get: () => storeBlogPostsFilters.searchQuery,
+  set: (value) => storeBlogPostsFilters.searchQuery = value == 'on' ? null : value,
+})
+
+// sorts
+const blogPostsSorted = computed(() => storeBlogPostsFilters.blogPostsSorted || [])
+const dates = ['inc', 'dec']
+
+const dateQuery = computed({
+  get: () => storeBlogPostsFilters.dateQuery,
+  set: (value) => storeBlogPostsFilters.dateQuery = value,
+})
+
 
 
 </script>
@@ -23,24 +63,53 @@ const blogPosts = computed(() => storeBlogPosts.blogPosts.slice(0, 3) )
 <template>
   <section class="blog-posts-grid__section section">
     <div class="blog-posts-grid__container container">
-
       <div class="blog-posts-grid">
-        <div class="blog-posts-grid__header">
-          <div class="blog-posts-grid__text">
-            <div class="blog-posts-grid__label label">Ready to learn?</div>
-            <h2 class="blog-posts-grid__title title">Featured blogPosts</h2>
+        <div class="blog-posts-grid__toolbar">
+          <div class="blog-posts-grid__toolbar-radios">
+            <RadioBtned class="blog-posts-grid__toolbar-radio"
+              v-for="(category, ind) in categories" :key="category"
+              :checked="ind === 0 ? true : false"
+              :value="category"
+              @input="categoryQuery = $event"
+              name="categoryQuery"
+            >
+              {{ category ? category : 'all' }}
+            </RadioBtned>
           </div>
-          <AppLink class="blog-posts-grid__btn btn-outl"
-            :to="{
-              name: 'blogPosts',
-            }"
-          >View all blogPosts</AppLink>
+          <InputWithBtn class="blog-posts-grid__toolbar-input"
+            placeholder="Search BlogPost..."
+            icon=""
+            @input="searchQuery = $event"
+          />
+          <div class="blog-posts-grid__toolbar-radios">
+            <RadioBtned class="blog-posts-grid__toolbar-radio"
+              v-for="(postType, ind) in postTypes" :key="postType"
+              :checked="ind === 0 ? true : false"
+              :value="postType"
+              @input="postTypeQuery = $event"
+              name="postTypeQuery"
+            >
+              {{ postType ? postType : 'all' }}
+            </RadioBtned>
+          </div>
+          <div class="blog-posts-grid__toolbar-radios">
+            <RadioBtned class="events-grid__toolbar-radio"
+              v-for="(date, ind) in dates" :key="date"
+              :checked="ind === 0 ? true : false"
+              :value="date"
+              @input="dateQuery = $event"
+              name="dateQuery"
+            >
+              {{ date === 'inc' ? 'nearest' : 'latest' }}
+            </RadioBtned>
+          </div>
         </div>
         <div class="blog-posts-grid__items">
-          <BlogPostCard v-for="blogPost in blogPosts" :key="blogPost.id" :='blogPost'></BlogPostCard>
+          <BlogPostCard 
+            v-for="BlogPost in blogPostsSorted" :key="BlogPost.id" :='BlogPost'
+          />
         </div>
-      </div>  
-
+      </div>
     </div>
   </section>
 </template>
@@ -49,36 +118,42 @@ const blogPosts = computed(() => storeBlogPosts.blogPosts.slice(0, 3) )
 @import @/assets/css/_vars
 @import @/assets/css/_helpers
 
+
 .blog-posts-grid
   &__section
-    padding-top: 12rem
-    padding-bottom: 18rem
-
+    padding-top: 0
   &__container
 
-
-
 .blog-posts-grid
-  &__header
+  &__toolbar
     display: flex
+    flex-wrap: wrap
     justify-content: space-between
-    align-items: end
 
-  &__text
+  &__toolbar-radios
+    display: flex
 
-  &__label
+  &__toolbar-radio,
+  &__toolbar-input
+    margin-bottom: 2rem
 
-  &__title
-    margin-top: 1rem
+  &__toolbar-radio
+    & + &
+      margin-left: 1.2rem
 
-  &__btn
+  &__toolbar-input
+    margin-left: 1.2rem
+    max-width: 31.5rem
 
 
   &__items
     margin-top: 6rem
+
     display: grid
-    grid-template-columns: repeat(3, minmax(39rem, 1fr) )
+    grid-template-columns: repeat(3, 1fr)
     grid-gap: 3rem
+
+
 
 
 </style>

@@ -5,37 +5,39 @@ export const useStoreAccount = defineStore('storeAccount', {
   state: () => ({
     userId: null,
     userName: null,
+    userEmail: null,
     userPassword: null,
   }),
   getters: {
     isSignedIn: (state) => !!state.userId,
   },
   actions: {
-    signUp({userName, userPassword}) {
-      if (!userName || !userPassword) throw new Error('fill all the field to sign up')
-      if (this._isAccountExists(userName) ) throw new Error('There is already an account with such a name')
+    signUp({userEmail, userPassword, userName, shouldKeepSignedIn}) {
+      if (!userEmail || !userPassword || !userName) throw new Error('fill all the field to sign up')
+      if (this._isAccountExists(userEmail) ) throw new Error('There is already an account under this email')
       
       const userId = Date.now()
       const accounts = JSON.parse(localStorage.getItem('userAccounts') ) || []
       accounts.push({
         userId,
-        userName,
+        userEmail,
         userPassword,
+        userName,
       })
       localStorage.setItem('userAccounts', JSON.stringify(accounts) )
 
-      this.signIn({userName, userPassword})
+      this.signIn({userEmail, userPassword})
     },
-    _isAccountExists(userName) {
+    _isAccountExists(userEmail) {
       const accounts = JSON.parse(localStorage.getItem('userAccounts') )
-      return accounts?.find(item => item.userName === userName)
+      return accounts?.find(item => item.userEmail === userEmail)
     },
-    signIn({userName, userPassword}) {
-      if (!userName || !userPassword) throw new Error('fill all the field to sign in')
+    signIn({userEmail, userPassword, shouldRemember}) {
+      if (!userEmail || !userPassword) throw new Error('fill all the field to sign in')
 
       const accounts = JSON.parse(localStorage.getItem('userAccounts') )
       const foundAccount = accounts?.find(
-        item => item.userName === userName && item.userPassword === userPassword
+        item => item.userEmail === userEmail && item.userPassword === userPassword
       )
       if (!foundAccount) throw new Error('Such a user haven\'t found')
 
@@ -49,7 +51,7 @@ export const useStoreAccount = defineStore('storeAccount', {
       this.$patch( {...prevUserAccount} )
     },
     signOut() {
-      this.userId = this.userName = this.userPassword = null
+      this.userId = this.userEmail = this.userPassword = null
     },
     deleteAccount() {
       if (!this.isSignedIn) throw new Error('sign in to recieve rules of account deletion')

@@ -42,7 +42,7 @@ const teacher = computed(() => storeTeachers.findTeacher(course.value.teacherId)
         }"
       >{{ course.title}}</AppLink>
       <div class="course-card__bottom">
-        <span class="course-card__price">{{ course.price}}</span>
+        <span class="course-card__price price">{{ course.price}}</span>
         <span class="course-card__teacher">by {{ teacher.name }}</span>
       </div>
     </div>

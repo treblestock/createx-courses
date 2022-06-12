@@ -3,19 +3,11 @@ import {ref, computed, watch} from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
-import { useRouter, useRoute } from 'vue-router'
 
-import { useStoreCourses } from '@/stores/Courses.js'
-import { useStoreReviews } from '@/stores/Reviews.js'
-
-import CourseCard from '@/components/CourseCard.vue'
-import CourseCard_row from '@/components/CourseCard_row.vue'
-
-const route = useRoute()
-const router = useRouter()
-
-const storeCourses = useStoreCourses()
-const storeReviews = useStoreReviews()
+import CoursesGrid from '@/components/sections/CoursesGrid.vue'
+import Reviews from '@/components/sections/Reviews.vue';
+import Certificate from '@/components/sections/Certificate.vue';
+import SubscribeAnnouncementsForm from '@/components/sections/SubscribeAnnouncementsForm.vue';
 
 
 
@@ -25,7 +17,6 @@ const props = defineProps({
 })
 
 
-const courses = computed(() => storeCourses.courses )
 
 
 
@@ -34,8 +25,12 @@ const courses = computed(() => storeCourses.courses )
 
 <template>
   <div class="courses">
-    <CourseCard v-for="course in courses" :key="course.id" :='course'></CourseCard>
-    
+    <div class="courses__label title_label">Enjoy your studying!</div>
+    <div class="courses__title title">Our online courses</div>
+    <CoursesGrid class="courses__courses-grid"/>
+    <Reviews />
+    <Certificate/>
+    <SubscribeAnnouncementsForm/>
   </div>
 </template>
 
@@ -43,10 +38,25 @@ const courses = computed(() => storeCourses.courses )
 @import @/assets/css/_vars
 @import @/assets/css/_helpers
 
-.courses 
-  display: grid
-  grid-template-columns: repeat(auto-fit, minmax(39rem, 1fr) )
-  grid-gap: 10px
+.courses
+  &__section
+    padding-top: 8rem
+  &__container
+
+
+.courses
+  &__label
+    margin-bottom: 1rem
+    text-align: center
+
+  &__title
+    text-align: center
+
+  &__courses-grid
+    margin-top: 6rem
+    padding-bottom: 22rem
+
+
 
 
 

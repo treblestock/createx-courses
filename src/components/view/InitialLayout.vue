@@ -3,7 +3,7 @@ import { ref, computed, watch } from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
 import Header from '@/components/sections/Header.vue'
-// import Footer from '@/components/sections/Footer.vue'
+import Footer from '@/components/sections/Footer.vue'
 
 </script>
 
@@ -13,7 +13,7 @@ import Header from '@/components/sections/Header.vue'
     <div class="page__body">
       <RouterView></RouterView>
     </div>
-    <!-- <Footer class="page__footer"></Footer> -->
+    <Footer class="page__footer"></Footer>
   </div>
 </template>
 

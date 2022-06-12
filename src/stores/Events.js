@@ -8,6 +8,9 @@ export const useStoreEvents = defineStore('storeEvents', {
     events: [],
   }),
   getters: {
+    // eventTypes: (state) => state.events.reduce(
+    //   (eventTypes, event) => eventTypes.add(event.eventType), new Set()
+    // ),
     findEvent: (state) => (eventId, events) => {
       events ??= state.events // no params usage === search among all the events
       return events.find(event => event.id == eventId)

@@ -28,6 +28,15 @@
 
 .red
   color: $color-carrot
+.price
+  color: $color-carrot
+  &:before 
+    content: '$'
+    margin-right: .3rem
+    
+  
+
+
 //* Btns
 
 
@@ -73,6 +82,7 @@
     padding: 1.8rem 4rem
     font-size: 1.6rem
 
+  &:focus-visible,
   &:hover
     +hoverDark
 
@@ -88,6 +98,7 @@
     padding: 1.8rem 4rem
     font-size: 1.6rem
 
+  &:focus-visible,
   &:hover
     +btnSolidUI
 

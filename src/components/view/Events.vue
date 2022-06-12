@@ -3,32 +3,27 @@ import {ref, computed, watch} from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
-import { useRouter, useRoute } from 'vue-router'
 
-
-import { useStoreEvents } from '@/stores/Events.js'
-
-import EventCard from '@/components/EventCard.vue'
-import EventCard_row from '@/components/EventCard_row.vue'
-
-const route = useRoute()
-const router = useRouter()
-
-
-const storeEvents = useStoreEvents()
+import EventsGrid from '@/components/sections/EventsGrid.vue'
+import SubscribeAnnouncementsForm from '@/components/sections/SubscribeAnnouncementsForm.vue';
 
 const props = defineProps({
-
+  
 })
 
 
-const events = computed(() => storeEvents.events )
+
+
+
 
 </script>
 
 <template>
-  <div class="events">
-    <EventCard v-for="event in events" :key="event.id" :='event'></EventCard>
+  <div class="Events">
+    <div class="events__label title_label">Our blog</div>
+    <div class="events__title title">Createx School Journal</div>
+    <EventsGrid class="events__events-grid"/>
+    <SubscribeAnnouncementsForm/>
   </div>
 </template>
 
@@ -37,7 +32,25 @@ const events = computed(() => storeEvents.events )
 @import @/assets/css/_helpers
 
 .events
-  display: grid
-  grid-template-columns: repeat(auto-fit, 39rem)
-  grid-gap: 1rem
+  &__section
+    padding-top: 8rem
+  &__container
+
+
+.events
+  &__label
+    margin-bottom: 1rem
+    text-align: center
+
+  &__title
+    text-align: center
+
+  &__events-grid
+    margin-top: 6rem
+    padding-bottom: 22rem
+
+
+
+
+
 </style>

@@ -4,18 +4,61 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
+
 import { useStoreEvents } from '@/stores/Events.js'
+import { useStoreEventsFilters } from '@/stores/EventsFilters.js'
 
 import EventCard from '@/components/EventCard.vue'
-import EventCard_row from '@/components/EventCard_row.vue'
+
 
 const storeEvents = useStoreEvents()
+const storeEventsFilters = useStoreEventsFilters()
+
 
 const props = defineProps({
   
 })
 
-const events = computed(() => storeEvents.events.slice(0, 3) )
+
+
+// filters
+const eventsFiltered = computed(() => storeEventsFilters.eventsFiltered || [])
+
+
+const eventTypes = computed(() => 
+  [...storeEvents.events.reduce(
+    (eventTypes, item) => eventTypes.add(item.eventType), new Set([null]) 
+)])
+const categories = computed(() => 
+  [...storeEvents.events.reduce(
+    (categories, item) => categories.add(item.category), new Set([null]) 
+)])
+
+
+const eventTypeQuery = computed({
+  get: () => storeEventsFilters.eventTypeQuery,
+  set: (value) => storeEventsFilters.eventTypeQuery = value == 'on' ? null : value,
+})
+const categoryQuery = computed({
+  get: () => storeEventsFilters.categoryQuery,
+  set: (value) => storeEventsFilters.categoryQuery = value == 'on' ? null : value,
+})
+const searchQuery = computed({
+  get: () => storeEventsFilters.searchQuery,
+  set: (value) => storeEventsFilters.searchQuery = value == 'on' ? null : value,
+})
+
+
+
+// sorts
+const eventsSorted = computed(() => storeEventsFilters.eventsSorted)
+
+const dates = ['inc', 'dec']
+
+const dateQuery = computed({
+  get: () => storeEventsFilters.dateQuery,
+  set: (value) => storeEventsFilters.dateQuery = value == 'on' ? null : value,
+})
 
 
 </script>
@@ -23,28 +66,53 @@ const events = computed(() => storeEvents.events.slice(0, 3) )
 <template>
   <section class="events-grid__section section">
     <div class="events-grid__container container">
-
       <div class="events-grid">
-        <div class="events-grid__header">
-          <div class="events-grid__label label">Ready to learn?</div>
-          <h2 class="events-grid__title title">Featured Events</h2>
+        <div class="events-grid__toolbar">
+          <div class="events-grid__toolbar-radios">
+            <RadioBtned class="events-grid__toolbar-radio"
+              v-for="(category, ind) in categories" :key="category"
+              :checked="ind === 0 ? true : false"
+              :value="category"
+              @input="categoryQuery = $event"
+              name="categoryQuery"
+            >
+              {{ category ? category : 'all' }}
+            </RadioBtned>
+          </div>
+          <InputWithBtn class="events-grid__toolbar-input"
+            placeholder="Search Event..."
+            icon=""
+            @input="searchQuery = $event"
+          />
+          <div class="events-grid__toolbar-radios">
+            <RadioBtned class="events-grid__toolbar-radio"
+              v-for="(eventType, ind) in eventTypes" :key="eventType"
+              :checked="ind === 0 ? true : false"
+              :value="eventType"
+              @input="eventTypeQuery = $event"
+              name="eventTypeQuery"
+            >
+              {{ eventType ? eventType : 'all' }}
+            </RadioBtned>
+          </div>
+          <div class="events-grid__toolbar-radios">
+            <RadioBtned class="events-grid__toolbar-radio"
+              v-for="(date, ind) in dates" :key="date"
+              :checked="ind === 0 ? true : false"
+              :value="date"
+              @input="dateQuery = $event"
+              name="dateQuery"
+            >
+              {{ date === 'inc' ? 'nearest' : 'latest' }}
+            </RadioBtned>
+          </div>
         </div>
         <div class="events-grid__items">
-          <EventCard_row v-for="event in events" :key="event.id" :='event'></EventCard_row>
+          <EventCard 
+            v-for="Event in eventsSorted" :key="Event.id" :='Event'
+          />
         </div>
-        <div class="events-grid__footer">
-          <div class="events-grid__want-more">
-            Do you want more?
-          </div>
-          <AppLink class="events-grid__btn btn"
-            :to="{
-              name: 'events',
-            }"
-          >explore all events</AppLink>
-
-        </div>
-      </div>  
-
+      </div>
     </div>
   </section>
 </template>
@@ -56,62 +124,39 @@ const events = computed(() => storeEvents.events.slice(0, 3) )
 
 .events-grid
   &__section
-    position: relative
+    padding-top: 0
+  &__container
 
-    margin-top: 12rem
+.events-grid
+  &__toolbar
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
 
-    padding-top: 8rem
-    padding-bottom: 8rem
-    &:after 
-      z-index: -1
-      position: absolute
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
+  &__toolbar-radios
+    display: flex
 
-      opacity: .2
-      background: $color-carrot-gradient
-      
-      display: block
-      content: ''
+  &__toolbar-radio,
+  &__toolbar-input
+    margin-bottom: 2rem
 
-    
+  &__toolbar-radio
+    & + &
+      margin-left: 1.2rem
 
-  &__header
-    text-align: center
-
-  &__text
-
-  &__label
-
-  &__title
-    margin-top: 1rem
-
-  &__btn
+  &__toolbar-input
+    margin-left: 1.2rem
+    max-width: 31.5rem
 
 
   &__items
     margin-top: 6rem
+
     display: grid
-    grid-template-rows: repeat(3, 12.5rem )
-    grid-auto-flow: column
-    grid-gap: 2.5rem
+    grid-template-columns: repeat(3, 1fr)
+    grid-gap: 3rem
 
-  &__footer
-    margin-top: 6rem
 
-    display: flex
-    align-items: center
-    justify-content: center
 
-    text-align: center
-
-  &__want-more
-    margin-right: 4rem
-
-    font-size: 2.8rem
-    line-height: 1.5rem
-    font-weight: 700
 
 </style>

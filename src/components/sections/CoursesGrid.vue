@@ -3,47 +3,76 @@ import {ref, computed, watch} from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
-import { useRouter, useRoute } from 'vue-router'
+
 
 import { useStoreCourses } from '@/stores/Courses.js'
+import { useStoreCoursesFilters } from '@/stores/CoursesFilters.js'
 
-import CourseCard_row from '@/components/CourseCard_row.vue'
+import CourseCard from '@/components/CourseCard.vue'
 
-const route = useRoute()
-const router = useRouter()
 
 const storeCourses = useStoreCourses()
+const storeCoursesFilters = useStoreCoursesFilters()
+
 
 const props = defineProps({
   
 })
 
-const courses = computed(() => storeCourses.courses.slice(0, 6) )
+// courses
+const coursesFiltered = computed(() => storeCoursesFilters.coursesFiltered || [])
+
+
+// filters
+let categories = computed(() => 
+  [...storeCourses.courses.reduce(
+    (categories, item) => categories.add(item.category), new Set([null]) 
+)])
+
+
+let categoryQuery = computed({
+  get: () => storeCoursesFilters.categoryQuery,
+  set: (value) => storeCoursesFilters.categoryQuery = value == 'on' ? null : value,
+})
+let searchQuery = computed({
+  get: () => storeCoursesFilters.searchQuery,
+  set: (value) => storeCoursesFilters.searchQuery = value == 'on' ? null : value,
+})
+
+
+
 
 
 </script>
 
 <template>
   <section class="courses-grid__section section">
-    <div class="courses-grid__container container">
-
-      <div class="courses">
-        <div class="courses__header">
-          <div class="courses__text">
-            <div class="courses__label label">Ready to learn?</div>
-            <h2 class="courses__title title">Featured Courses</h2>
+    <div class="courses-grid__container container">        
+      <div class="courses-grid">
+        <div class="courses-grid__toolbar">
+          <div class="courses-grid__toolbar-radios">
+            <RadioBtned class="courses-grid__toolbar-radio"
+              v-for="(category, ind) in categories" :key="category"
+              :checked="ind === 0 ? true : false"
+              :value="category"
+              @input="categoryQuery = $event"
+              name="categoryQuery"
+            >
+              {{ category ? category : 'all' }}
+            </RadioBtned>
           </div>
-          <AppLink class="courses__btn btn-outl"
-            :to="{
-              name: 'courses',
-            }"
-          >View all courses</AppLink>
+          <InputWithBtn class="courses-grid__toolbar-input"
+            placeholder="Search course..."
+            icon=""
+            @input="searchQuery = $event"
+          />
         </div>
-        <div class="courses__items">
-          <CourseCard_row v-for="course in courses" :key="course.id" :='course'></CourseCard_row>
+        <div class="courses-grid__items">
+          <CourseCard 
+            v-for="course in coursesFiltered" :key="course.id" :='course'
+          />
         </div>
-      </div>  
-
+      </div>
     </div>
   </section>
 </template>
@@ -53,27 +82,37 @@ const courses = computed(() => storeCourses.courses.slice(0, 6) )
 @import @/assets/css/_helpers
 
 
-.courses
-  &__header
+.courses-grid
+  &__section
+    padding-top: 0
+
+  &__container
+
+.courses-grid
+  &__toolbar
     display: flex
     justify-content: space-between
-    align-items: end
 
-  &__text
+  &__toolbar-radios
+    display: flex
 
-  &__label
+  &__toolbar-radio
+    & + &
+      margin-left: 1.2rem
 
-  &__title
-    margin-top: 1rem
-
-  &__btn
+  &__toolbar-input
+    margin-left: 1.2rem
+    max-width: 31.5rem
 
 
   &__items
     margin-top: 6rem
+
     display: grid
-    grid-template-columns: repeat(2, minmax(60rem, 1fr) )
+    grid-template-columns: repeat(3, 1fr)
     grid-gap: 3rem
+
+
 
 
 </style>

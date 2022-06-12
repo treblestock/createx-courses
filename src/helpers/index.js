@@ -18,6 +18,19 @@ const shuffled = (arg) => Array.isArray(arg) ? arrShuffled(arg) : strShuffled(ar
 
 
 
+// Strings
+const doesIncludeWords = (str, substr) => {
+  str = str.toLowerCase()
+  substr = substr.toLowerCase()
+  const substrWords = substr.split(' ').filter(item => item != '')
+  const regexCond = substrWords.reduce((reg, word) => `(${word}.*)` , '.*')
+  const r = new RegExp(regexCond)
+
+  return r.exec(str)
+}
+
+
+// date
 // JSON-dateParser
 const r = /([0-9]{4})-([0-9]{2})-([0-9]{2})/
 const isDate = str => r.exec(str)
@@ -25,6 +38,10 @@ const isDate = str => r.exec(str)
 const parseDateHandler = (key, value) => 
   isDate(value) ? separateDate(new Date(value)) : value
 
+// toJSDate 
+const toJSDate = (dateObj) =>
+  new Date(dateObj.year, monthMap.indexOf(dateObj.month), dateObj.date )
+  
 
 
 const monthMap = [
@@ -51,7 +68,11 @@ export
   setOfSubsets,
 
   shuffled,
+  // strings
+  doesIncludeWords,
 
   // date
   parseDateHandler,
+  toJSDate,
+
 }

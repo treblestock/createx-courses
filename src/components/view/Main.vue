@@ -12,13 +12,13 @@ import { useStoreTeachers } from '@/stores/Teachers.js'
 // page sections
 // import Intro from '@/components/sections/Intro.vue'
 import WhyCreateX from '@/components/sections/WhyCreateX.vue'
-import CoursesGrid from '@/components/sections/CoursesGrid.vue'
+import CoursesGridPreview from '@/components/sections/CoursesGridPreview.vue'
 import Benefits from '@/components/sections/Benefits.vue'
-import EventsGrid from '@/components/sections/EventsGrid.vue'
+import EventsGridPreview from '@/components/sections/EventsGridPreview.vue'
 import Certificate from '@/components/sections/Certificate.vue'
 import Team from '@/components/sections/Team.vue'
 import Reviews from '@/components/sections/Reviews.vue'
-import BlogPostsGrid from '@/components/sections/BlogPostsGrid.vue'
+import BlogPostsGridPreview from '@/components/sections/BlogPostsGridPreview.vue'
 import SubscribeAnnouncementsForm from '@/components/sections/SubscribeAnnouncementsForm.vue'
 
 
@@ -37,16 +37,16 @@ const props = defineProps({
 
 <template>
   <!-- <Intro></Intro> -->
-  <WhyCreateX></WhyCreateX>
-  <CoursesGrid></CoursesGrid>
-  <Benefits></Benefits>
-  <EventsGrid></EventsGrid>
-  <Certificate></Certificate>
-  <Team></Team>
-  <Reviews></Reviews>
-  <BlogPostsGrid></BlogPostsGrid>
+  <WhyCreateX />
+  <CoursesGridPreview />
+  <Benefits />
+  <EventsGridPreview />
+  <Certificate />
+  <Team />
+  <Reviews />
+  <BlogPostsGridPreview />
 
-  <SubscribeAnnouncementsForm></SubscribeAnnouncementsForm>
+  <SubscribeAnnouncementsForm />
 </template>
 
 <style scoped lang="sass">
