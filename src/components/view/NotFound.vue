@@ -16,25 +16,25 @@
 
 <style scoped lang="sass">
 
-.not-found-warning {
-  height: 100vh;
-  width: 100vw;
+.not-found-warning 
+  height: 100vh
+  width: 100vw
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
 
-  font-size: 40px;
-  text-align: center;
+  font-size: 40px
+  text-align: center
 
-  > * {
-    margin-bottom: 20px;
-  }
-}
-.blue {
-  color: turquoise;
-}
+  > * 
+    margin-bottom: 20px
+  
+
+.blue 
+  color: turquoise
+
 
 
 </style>

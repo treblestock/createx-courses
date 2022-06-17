@@ -12,8 +12,8 @@ const props = defineProps({
   
 })
 
-const contacts = computed(() => storeCreatex.createx?.contacts)
-const socials = computed(() => storeCreatex.createx?.socials)
+const contacts = computed(() => storeCreatex.contacts)
+const socials = computed(() => storeCreatex.socials)
 
 </script>
 
@@ -40,7 +40,7 @@ const socials = computed(() => storeCreatex.createx?.socials)
       <div class="address__socials" v-if="socials">
         <div class="address__socials-label">Follow us:</div>
         <Socials
-          :links="contacts.socials"
+          :links="socials"
         ></Socials>
       </div>
     </div>

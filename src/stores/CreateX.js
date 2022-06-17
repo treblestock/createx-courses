@@ -5,37 +5,34 @@ import { parseDateHandler } from "@/helpers"
 
 export const useStoreCreatex = defineStore('storeCreatex', {
   state: () => ({
-    createx: null,
-    // categories: null,
+    socials: [],
+    contacts: null,
     benefits: null,
   }),
   getters: {
-    findReview: (state) => (reviewId, createx) => {
-      createx ??= state.createx // no params usage === search among all the Createx
-      return createx.find(review => review.id == reviewId)
-    },
+
   },
   actions: {
-    async fetchCreatex() {
-      const createx = await database.get('/createx').then(r => JSON.parse(r, parseDateHandler))
-      if (!createx) throw new Error('api failed (no answer) on: storeTeacher.fetchCreatex()')
-      this.createx = createx
+    async fetchContacts() {
+      const contacts = await database.get('/contacts').then(r => JSON.parse(r, parseDateHandler))
+      if (!contacts) throw new Error('api failed (no answer) on: storeTeacher.fetchContacts()')
+      this.contacts = contacts
+    },
+    async fetchSocials() {
+      const socials = await database.get('/socials').then(r => JSON.parse(r, parseDateHandler))
+      if (!socials) throw new Error('api failed (no answer) on: storeTeacher.fetchSocials()')
+      this.socials = socials
     },
     async fetchBenefits() {
       const benefits = await database.get('/benefits').then(r => JSON.parse(r, parseDateHandler))
       if (!benefits) throw new Error('api failed (no answer) on: storeTeacher.fetchBenefits()')
       this.benefits = benefits
     },
-    // async fetchCategories() {
-    //   const categories = await database.get('/categories').then(r => JSON.parse(r, parseDateHandler))
-    //   if (!categories) throw new Error('api failed (no answer) on: storeTeacher.fetchCategories()')
-    //   this.categories = categories
-    // },
   },
 
   async onRegister(store) {
-    await store.fetchCreatex()
+    await store.fetchContacts()
+    await store.fetchSocials()
     await store.fetchBenefits()
-    // await store.fetchCategories()
-  }
+  },
 })

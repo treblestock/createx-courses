@@ -6,19 +6,9 @@ import events from './data/events.js'
 import blogPosts from './data/blogPosts.js'
 import tags from './data/tags.js'
 import reviews from './data/reviews.js'
-import createx from './data/createx.js'
+import contacts from './data/contacts.js'
+import socials from './data/socials.js'
 import benefits from './data/benefits.js'
-
-// const categories = require('./data/categories.js')
-// const teachers = require('./data/teachers.js')
-// const courses = require('./data/courses.js')
-// const coursesCategories = require('./data/coursesCategories.js')
-// const events = require('./data/events.js')
-// const blogPosts = require('./data/blogPosts.js')
-// const tags = require('./data/tags.js')
-// const reviews = require('./data/reviews.js')
-
-
 
 
 const requestResponseMatches = {
@@ -31,7 +21,8 @@ const requestResponseMatches = {
   '/tags': tags,
 
   '/reviews': reviews,
-  '/createx': createx,
+  '/contacts': contacts,
+  '/socials': socials,
   '/benefits': benefits,
 }
 
@@ -45,7 +36,6 @@ class Database {
   get(query) {
     query = query.startsWith('/') ? query : '/' + query
     return Promise.resolve(this.requestResponseMatches[query])
-    // return this.requestResponseMatches[query]
   }
 }
 export const database = new Database(requestResponseMatches)

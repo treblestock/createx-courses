@@ -1,6 +1,4 @@
-git commit -m "Solved problem of AppLink.vue passing both positioning classes for root and attrs and ui classes for nested link. Sliced Course page and its sections. Sliced Event page and its sections. Solved multi customcheckbox v-model problem. Made tags filter. Made TextNode with redner function for dynamic content rendering. Modified all the custom form elements, now they support v-model, and correct css-classes recieving. Improved semantics (sections, articles). Redefined entities responsible for section positioning inside pages. Sliced about view and its sections (7). Attached all forms' fields with corresponding model, and made imitation of sending data to the backend (emerging popup-message with json-data). Made 3 transition group animations. Made responsive fz (based on view-port)"
-
-Analysed my way: thoughts of projects what i've learned, found new obstacles and so on
+git commit -m "removed components which aren't used, cleaned routes."
 
 Project Resaults:
 + CSS-approach: mixin naming style
