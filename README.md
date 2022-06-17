@@ -1,7 +1,21 @@
-# Vue 3 + Vite
+## Описание приложения:
+  Сайт компании, которая предоставляет онлайн-курсы по современным профессиям, по совместительству ведет блог и проводит мероприятия (мастер-классы и т.д.)
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Стек
+  - Vue 3 composition api
+  - Pinia
+  - Vue-router
+  - 'Backend': локальные переменные, хранящие данные в json + сущность, которая отдает эти json'ы в формате, приближенном к общению через http
 
-## Recommended IDE Setup
+## Из интересного:
+  - Регистрация и авторизация: работает через localStorage
+  - Pinia: кастомный хук жизненного цикла store'ов (работает, как и Mounted() во vue, но только для store'ов). Также есть плагин автокеширования состояния, но в данной работе не применяется.
+  - Vue-router: компонент AppLink, который расширяет RouterLink, позовляя передавать через .params любые типы данных js, кроме функций 
+  - Фильтрации и сортировки в декларативной манере
+  - UI: кастомные элементы форм. Поддерживают v-model, передачу атрибутов, классов. Слайдеры, спойлеры, табы.
+  - Анимации: сделал 3 вида анимаций для сортировок/фильтраций карточек со страниц 'courses', 'events', 'blog'
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## Недостатки:
+  - Desktop only
+  - авторизированный пользователь не имеет никакого дополнительного функционала (регистрация просто так)
+  - Карта со страницы 'Contacts' - просто картинка
