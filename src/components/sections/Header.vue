@@ -10,6 +10,8 @@ import Menu from '@/components/Menu.vue'
 import SignUp from '@/components/sections/SignUp.vue'
 import SignIn from '@/components/sections/SignIn.vue'
 
+import SendFormDataPopup from '@/components/sections/SendFormDataPopup.vue'
+
 
 
 const storeAccount = useStoreAccount()
@@ -113,7 +115,9 @@ function redirectSignIn() {
         />
       </Popup>
 
-
+      <!-- moch -->
+      <SendFormDataPopup />
+      
     </teleport>
   </header>
 </template>

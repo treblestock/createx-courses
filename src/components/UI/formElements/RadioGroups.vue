@@ -7,6 +7,7 @@ export default {
 const props = defineProps({
   labels: Array,
 })
+
 </script>
 
 <template>

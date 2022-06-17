@@ -17,12 +17,6 @@ const props = defineProps({
       <li class="menu__links-item">
         <AppLink class="menu__links-link link"
           :class="colorInitial ? '_menu-color' : ''"
-          :to="{name: 'UI' }"
-        >UI</AppLink>
-      </li>
-      <li class="menu__links-item">
-        <AppLink class="menu__links-link link"
-          :class="colorInitial ? '_menu-color' : ''"
           :to="{name: 'about' }"
         >About us</AppLink>
       </li>

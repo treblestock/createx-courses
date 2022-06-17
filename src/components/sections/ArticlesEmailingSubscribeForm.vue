@@ -5,39 +5,54 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
 
-const props = defineProps({
-  
-})
+import { useStoreSendFormData } from '@/stores/SendFormData.js'
+const storeSendFormData = useStoreSendFormData()
 
+const form = ref(null)
+
+const email = ref('')
+const isAgreeToRecieveEmails = ref(false)
+function onSubmit() {
+  const data = JSON.stringify({
+    form: form.value.id,
+    email: email.value,
+    isAgreeToRecieveEmails: isAgreeToRecieveEmails.value,
+  })
+  storeSendFormData.sendFormData(data)
+  email.value = ''
+  isAgreeToRecieveEmails.value = false
+}
 </script>
 
 <template>
-  <section class="articles-emailing__section section">
-    <div class="articles-emailing__container container">
-      <div class="articles-emailing">
-        <div class="articles-emailing__img">
-          <Img src="src\assets\img\decor\illustrations\02.webp" />
+  <section class="articles-emailing">
+    <div class="articles-emailing__img">
+      <Img src="src\assets\img\decor\illustrations\02.webp" />
+    </div>
+    <div class="articles-emailing__body">
+      <h2 class="articles-emailing__title title _32">
+        Want to get the best articles weekly?
+        <br/>Subscribe to our newsletter!
+      </h2>
+      <form class="articles-emailing__form" 
+        action=""
+        ref="form"
+        id="articles-emailing"
+        @submit.prevent="onSubmit"
+      >
+        <div class="articles-emailing__form-row">
+          <Input 
+            placeholder="Your working email"
+            v-model="email"
+          />
+          <button class="articles-emailing__form-btn btn">send message</button>
         </div>
-        <div class="articles-emailing__body">
-          <h2 class="articles-emailing__title title _32">
-            Want to get the best articles weekly?
-            <br/>Subscribe to our newsletter!
-          </h2>
-          <form class="articles-emailing__form"
-            @submit.prevent=""
-          >
-            <div class="articles-emailing__form-row">
-              <Input 
-                placeholder="Your working email"
-              />
-              <button class="articles-emailing__form-btn btn">send message</button>
-            </div>
-            <CheckboxGroup class="articles-emailing__form-item _col-2">
-              I agree to receive communications from Createx Online School
-            </CheckboxGroup>
-          </form>
-        </div>
-      </div>
+        <CheckboxGroup class="articles-emailing__form-item _col-2"
+          v-model="isAgreeToRecieveEmails"
+        >
+          I agree to receive communications from Createx Online School
+        </CheckboxGroup>
+      </form>
     </div>
   </section>
 </template>
@@ -46,13 +61,6 @@ const props = defineProps({
 @import @/assets/css/_vars
 @import @/assets/css/_helpers
 
-
-.articles-emailing
-  &__section
-    padding: 0
-    background: $color-gray-200
-
-  &__container
 
 .articles-emailing
   display: flex

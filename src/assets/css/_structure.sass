@@ -8,3 +8,22 @@
 
 .section
   padding-top: 18rem
+
+
+
+// fz_smooth
+$vp-min: 320px
+$vp-max: 1270px
+$fz-min: calc(10px * 11/16)
+$fz-max: 10px
+
+@function fz_smooth($vp-min: $vp-min, $vp-max: $vp-max, $fz-min: $fz-min, $fz-max: $fz-max)
+  $vp-delta: calc($vp-max - $vp-min)
+  $fz-delta: calc($fz-max - $fz-min)
+  $fz-dynamic: calc($fz-min + ($fz-delta / $vp-delta) * (100vw - $vp-min) )
+  $res: clamp($fz-min, $fz-dynamic, $fz-max)
+  @return $res
+
+html,
+body
+  font-size: fz_smooth()

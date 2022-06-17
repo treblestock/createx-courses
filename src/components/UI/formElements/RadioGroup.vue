@@ -1,11 +1,35 @@
 <script>
-export default {
+export default { 
   inheritAttrs: false,
 }
 </script>
 
+<script setup>
+import { computed } from 'vue'
+const props = defineProps({
+  modelValue: [String, Array],
+  label: String,
+  tag: String,
+})
+const emit = defineEmits([
+  'input',
+])
+
+const model = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('input', value),
+})
+
+const getElementClass = (classList) =>
+  classList ? classList.split(' ').filter(cls => cls.includes('__') ).join(' ') : ''
+const getBlockClass = (classList) =>
+  classList ? classList.split(' ').filter(cls => !cls.includes('__') ).join(' ') : ''
+</script>
+
 <template>
-  <label class="radio-group" :class="$attrs.class">
+  <label class="radio-group" 
+    :class="getElementClass($attrs?.class)"
+  >
     <Radio class="radio-group__radio"
       :="$attrs"
     ></Radio>

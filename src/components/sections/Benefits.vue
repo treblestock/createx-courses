@@ -5,84 +5,56 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
 
-const props = defineProps({
-  
-})
+import { useStoreCreatex } from '@/stores/Createx.js'
+const storeCreatex = useStoreCreatex()
+
+const benefits = computed(() => storeCreatex.benefits)
+
+
 
 </script>
 
 <template>
-  <section class="benefits__section section">
-    <div class="benefits__container container">
-      <div class="benefits">
-        <div class="benefits__header">
-          <div class="benefits__label title_label">Our benefits</div>
-          <div class="benefits__title title">That’s how we do it</div>
-        </div>
-        <Tabs class="benefits__tabs"
-          insetsClass="benefits__tabs-insets"
-          bodyClass="benefits__tabs-body"
-        >
-          <template #insets class="benefits__tabs-insets">
-            <div class="benefits__tabs-inset">
-              Experienced Tutors
-            </div>
-            <div class="benefits__tabs-inset">
-              Feedback & Support
-            </div>
-            <div class="benefits__tabs-inset">
-              24/7 Online Library
-            </div>
-            <div class="benefits__tabs-inset">
-              Community
-            </div>
-          </template>
-          <template #body class="benefits__tabs-body">
-            <div class="benefits__tabs-body-item">
-              <div class="benefits__tabs-body-item-body">
-                <div class="benefits__tabs-body-item-title">Only practicing tutors</div>
-                <div class="benefits__tabs-body-item-text">Urna nisi, arcu cras nunc. Aenean quam est lobortis mi non fames dictum suspendisse. Morbi mauris cras massa ut dolor quis sociis mollis augue. Nunc, sodales tortor sit diam mi amet massa. Fermentum diam diam sociis vestibulum. Nulla nisl accumsan, id dignissim massa ut amet. Amet enim, nisi tempus vehicula.</div>
-              </div>
-              <div class="benefits__tabs-body-item-img">
-                <Img />
-              </div>
-            </div>
-
-            <div class="benefits__tabs-body-item">
-              <div class="benefits__tabs-body-item-body">
-                <div class="benefits__tabs-body-item-title">Always ready to help</div>
-                <div class="benefits__tabs-body-item-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam perspiciatis nisi hic quod nihil nostrum expedita beatae ipsum, distinctio porro magnam in delectus laboriosam, amet commodi non vitae reprehenderit accusamus!</div>
-              </div>
-              <div class="benefits__tabs-body-item-img">
-                <Img />
-              </div>
-            </div>
-
-            <div class="benefits__tabs-body-item">
-              <div class="benefits__tabs-body-item-body">
-                <div class="benefits__tabs-body-item-title">Feedback & Support</div>
-                <div class="benefits__tabs-body-item-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, suscipit qui quod aut optio aliquid, maiores sed error porro iusto ea similique quibusdam? Praesentium quaerat quia doloribus, tempore non quam. Nihil modi error cum tempore consequuntur similique harum culpa accusantium, quidem dolores, sint ullam architecto in veritatis suscipit odit maxime.</div>
-              </div>
-              <div class="benefits__tabs-body-item-img">
-                <Img />
-              </div>
-            </div>
-
-            <div class="benefits__tabs-body-item">
-              <div class="benefits__tabs-body-item-body">
-                <div class="benefits__tabs-body-item-title">Reach community</div>
-                <div class="benefits__tabs-body-item-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime laboriosam itaque minima molestiae optio eos quo alias. Architecto ipsa animi voluptate ducimus inventore ad labore, itaque laborum et, quisquam alias ab? Non provident earum debitis, commodi labore quos, quisquam consequuntur voluptates id fugiat nihil minus alias illo atque! Velit iste quos natus dolor eveniet, quidem nihil excepturi voluptatum consequatur iure qui, enim dicta at modi illum corrupti officia aperiam? Beatae at animi quo eaque repellat dolor modi qui sunt commodi.</div>
-              </div>
-              <div class="benefits__tabs-body-item-img">
-                <Img />
-              </div>
-            </div>
-
-
-          </template>
-        </Tabs>
-      </div>
+  <section class="benefits">
+    <div class="benefits__header">
+      <div class="benefits__label title_label">Our benefits</div>
+      <div class="benefits__title title">That’s how we do it</div>
     </div>
+    <Tabs class="benefits__tabs"
+      v-if="benefits"
+      insetsClass="benefits__tabs-insets"
+      bodyClass="benefits__tabs-body"
+    >
+      <template #insets class="benefits__tabs-insets">
+        <div class="benefits__tabs-inset">
+          Experienced Tutors
+        </div>
+        <div class="benefits__tabs-inset">
+          Feedback & Support
+        </div>
+        <div class="benefits__tabs-inset">
+          24/7 Online Library
+        </div>
+        <div class="benefits__tabs-inset">
+          Community
+        </div>
+      </template>
+      <template #body class="benefits__tabs-body">
+
+        <div class="benefits__tabs-body-item"
+          v-for="(benefit, ind) in benefits" :key="benefit.id" :="benefit"
+        >
+          <div class="benefits__tabs-body-item-body">
+            <div class="benefits__tabs-body-item-title">{{ benefit.title }}</div>
+            <div class="benefits__tabs-body-item-text">{{ benefit.text }}</div>
+          </div>
+          <div class="benefits__tabs-body-item-img">
+            <Img :src="`src/assets/img/decor/illustrations/0${ind + 1}.webp`"/>
+          </div>
+        </div>
+
+      </template>
+    </Tabs>
   </section>
 </template>
 

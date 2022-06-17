@@ -18,7 +18,7 @@ const review = computed(() => storeReviews.findReview(props.id) )
 </script>
 
 <template>
-  <div class="review-card">
+  <article class="review-card">
     <div class="review-card__body" v-if="review">
       <div class="review-card__text">{{ review.body }}</div>
       <div class="review-card__student">
@@ -31,7 +31,7 @@ const review = computed(() => storeReviews.findReview(props.id) )
         </div>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <style scoped lang="sass">
@@ -39,8 +39,10 @@ const review = computed(() => storeReviews.findReview(props.id) )
 @import @/assets/css/_helpers
 .review-card
   max-width: 102rem
-  padding: 10.5rem
+  padding: 6rem 10.5rem
   padding-right: 16.5rem
+
+  background: $color-white
   &__body
 
   &__text

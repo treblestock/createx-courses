@@ -21,10 +21,6 @@ const props = defineProps({
 
 
 
-// filters
-const eventsFiltered = computed(() => storeEventsFilters.eventsFiltered || [])
-
-
 const eventTypes = computed(() => 
   [...storeEvents.events.reduce(
     (eventTypes, item) => eventTypes.add(item.eventType), new Set([null]) 
@@ -49,7 +45,6 @@ const searchQuery = computed({
 })
 
 
-
 // sorts
 const eventsSorted = computed(() => storeEventsFilters.eventsSorted)
 
@@ -61,59 +56,62 @@ const dateQuery = computed({
 })
 
 
+
+// logger
+
+
 </script>
 
 <template>
-  <section class="events-grid__section section">
-    <div class="events-grid__container container">
-      <div class="events-grid">
-        <div class="events-grid__toolbar">
-          <div class="events-grid__toolbar-radios">
-            <RadioBtned class="events-grid__toolbar-radio"
-              v-for="(category, ind) in categories" :key="category"
-              :checked="ind === 0 ? true : false"
-              :value="category"
-              @input="categoryQuery = $event"
-              name="categoryQuery"
-            >
-              {{ category ? category : 'all' }}
-            </RadioBtned>
-          </div>
-          <InputWithBtn class="events-grid__toolbar-input"
-            placeholder="Search Event..."
-            icon=""
-            @input="searchQuery = $event"
-          />
-          <div class="events-grid__toolbar-radios">
-            <RadioBtned class="events-grid__toolbar-radio"
-              v-for="(eventType, ind) in eventTypes" :key="eventType"
-              :checked="ind === 0 ? true : false"
-              :value="eventType"
-              @input="eventTypeQuery = $event"
-              name="eventTypeQuery"
-            >
-              {{ eventType ? eventType : 'all' }}
-            </RadioBtned>
-          </div>
-          <div class="events-grid__toolbar-radios">
-            <RadioBtned class="events-grid__toolbar-radio"
-              v-for="(date, ind) in dates" :key="date"
-              :checked="ind === 0 ? true : false"
-              :value="date"
-              @input="dateQuery = $event"
-              name="dateQuery"
-            >
-              {{ date === 'inc' ? 'nearest' : 'latest' }}
-            </RadioBtned>
-          </div>
-        </div>
-        <div class="events-grid__items">
-          <EventCard 
-            v-for="Event in eventsSorted" :key="Event.id" :='Event'
-          />
-        </div>
+  <section class="events-grid">
+    <header class="events-grid__toolbar">
+      <div class="events-grid__toolbar-radios">
+        <RadioBtned class="events-grid__toolbar-radio"
+          v-for="(category, ind) in categories" :key="category"
+          :checked="ind === 0 ? true : false"
+          :value="category"
+          v-model="categoryQuery"
+          name="categoryQuery"
+        >
+          {{ category ? category : 'all' }}
+        </RadioBtned>
       </div>
-    </div>
+      <InputWithBtn class="events-grid__toolbar-input"
+        placeholder="Search Event..."
+        icon=""
+        v-model="searchQuery"
+      />
+      <div class="events-grid__toolbar-radios">
+        <RadioBtned class="events-grid__toolbar-radio"
+          v-for="(eventType, ind) in eventTypes" :key="eventType"
+          :checked="ind === 0 ? true : false"
+          :value="eventType"
+          v-model="eventTypeQuery"
+          name="eventTypeQuery"
+        >
+          {{ eventType ? eventType : 'all' }}
+        </RadioBtned>
+      </div>
+      <div class="events-grid__toolbar-radios">
+        <RadioBtned class="events-grid__toolbar-radio"
+          v-for="(date, ind) in dates" :key="date"
+          :checked="ind === 0 ? true : false"
+          :value="date"
+          v-model="dateQuery"
+          name="dateQuery"
+        >
+          {{ date === 'inc' ? 'nearest' : 'latest' }}
+        </RadioBtned>
+      </div>
+    </header>
+    <section class="events-grid__items">
+      <TransitionGroup name="bubble">
+        <EventCard 
+          v-for="(event, ind) in eventsSorted" :key="event.id" :='event'
+          :data-ind="ind" 
+        />
+      </TransitionGroup>
+    </section>
   </section>
 </template>
 
@@ -153,8 +151,12 @@ const dateQuery = computed({
     margin-top: 6rem
 
     display: grid
-    grid-template-columns: repeat(3, 1fr)
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr) )
+    justify-content: center
     grid-gap: 3rem
+    > *
+      width: 100%
+
 
 
 

@@ -19,25 +19,31 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="blogPosts">
-    <div class="blogPosts__label title_label">Our blog</div>
-    <div class="blogPosts__title title">Createx School Journal</div>
-    <BlogPostsGrid class="blogPosts__BlogPosts-grid"/>
-    <ArticlesEmailingSubscribeForm/>
-  </div>
+  <main class="blog-posts">
+    <div class="blog-posts__label title_label">Our blog</div>
+    <div class="blog-posts__title title">Createx School Journal</div>
+    <div class="blog-posts__blog-posts-grid-section section">
+      <div class="blog-posts__blog-posts-grid-container container">        
+        <BlogPostsGrid class="blog-posts__blog-posts-grid"/>
+      </div>
+    </div>
+    <div class="blog-posts__articles-emailing-subscribe-form-section section">
+      <div class="blog-posts__articles-emailing-subscribe-form-container container">        
+        <ArticlesEmailingSubscribeForm class="blog-posts__articles-emailing-subscribe-form"/>
+      </div>
+    </div>
+    
+    
+  </main>
 </template>
 
 <style scoped lang="sass">
 @import @/assets/css/_vars
 @import @/assets/css/_helpers
-
-.blogPosts
-  &__section
-    padding-top: 8rem
-  &__container
+@import @/assets/css/_UI
 
 
-.blogPosts
+.blog-posts
   &__label
     margin-bottom: 1rem
     text-align: center
@@ -45,9 +51,21 @@ const props = defineProps({
   &__title
     text-align: center
 
-  &__BlogPosts-grid
-    margin-top: 6rem
-    padding-bottom: 22rem
+  &__blog-posts-grid-section
+    padding: 8rem 0 18rem
+
+
+  &__blog-posts-grid-container
+
+  &__blog-posts-grid
+
+  &__articles-emailing-subscribe-form-section
+    padding: 0
+    background: $color-gray-200
+
+  &__articles-emailing-subscribe-form-container
+
+  &__articles-emailing-subscribe-form
 
 
 

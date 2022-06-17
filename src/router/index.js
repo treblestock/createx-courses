@@ -16,16 +16,16 @@ const routes = [
     component: () => import('@/components/view/InitialLayout.vue'),
     children: [
       {
-        path: '/UI',
-        name: 'UI',
-        props: propsParser,
-        component: () => import('@/components/view/UI.vue'),
-      },
-      {
         path: '/main', alias: '',
         name: 'main',
         props: propsParser,
         component: () => import('@/components/view/Main.vue'),
+      },
+      {
+        path: '/UI',
+        name: 'UI',
+        props: propsParser,
+        component: () => import('@/components/view/UI.vue'),
       },
       {
         path: 'courses',

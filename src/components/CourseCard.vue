@@ -3,16 +3,10 @@ import {ref, computed, watch} from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
-import { useRouter, useRoute } from 'vue-router'
 
 
 import { useStoreCourses } from '@/stores/Courses.js'
 import { useStoreTeachers } from '@/stores/Teachers.js'
-
-
-const route = useRoute()
-const router = useRouter()
-
 
 
 const storeTeachers = useStoreTeachers()
@@ -28,7 +22,7 @@ const teacher = computed(() => storeTeachers.findTeacher(course.value.teacherId)
 </script>
 
 <template>
-  <div class="course-card" v-if="teacher">
+  <article class="course-card" v-if="teacher">
     <div class="course-card__img">
       <Img :src="teacher.imgCourse" />
     </div>
@@ -47,7 +41,7 @@ const teacher = computed(() => storeTeachers.findTeacher(course.value.teacherId)
         <span class="course-card__teacher">by {{ teacher.name }}</span>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <style scoped lang="sass">
@@ -66,6 +60,7 @@ const teacher = computed(() => storeTeachers.findTeacher(course.value.teacherId)
       width: 100%
       height: 100%
       object-fit: cover
+      object-position: top
 
 
     margin-bottom: 1.6rem
@@ -88,7 +83,7 @@ const teacher = computed(() => storeTeachers.findTeacher(course.value.teacherId)
     border-radius: $border-radius
 
     font-size: 1.4rem
-    line-height: 1.5
+    line-height: 1
     color: $color-white
 
     &._marketing

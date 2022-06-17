@@ -22,11 +22,18 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id))
 </script>
 
 <template>
-  <div class="blog-post-card" v-if="blogPost">
+  <article class="blog-post-card" v-if="blogPost">
     <div class="blog-post-card__img">
       <Img :src="blogPost.img" />
       <div class="blog-post-card__img-labels">
-        <div class="blog-post-card__img-label">{{ blogPost.postType }}</div>
+        <div class="blog-post-card__img-label">
+          <span class="post-type">{{ blogPost.postType }}</span>
+        </div>
+        <div class="blog-post-card__img-label blog-post-card__img-category"
+          :class="'_' + blogPost.category.toLowerCase()"
+        >
+          <span class="category">{{ blogPost.category }}</span>
+        </div>
       </div>
     </div>
     <div class="blog-post-card__body">
@@ -49,13 +56,23 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id))
         }"
       >Read</AppLink>
     </div>
-  </div>
+  </article>
 </template>
 
 <style scoped lang="sass">
 @import @/assets/css/_vars
 @import @/assets/css/_helpers
 
+=labelUI
+  padding: 0.4rem
+  border-radius: $border-radius
+  margin-bottom: .5rem
+
+  background: $color-white
+  
+  font-size: 1.4rem
+  line-height: 1.5
+  color: $color-black
 
 .blog-post-card
   width: 39rem
@@ -66,6 +83,7 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id))
 
     position: relative
     img
+      z-index: -1
       position: absolute
       top: 0
       left: 0
@@ -78,37 +96,42 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id))
     margin-bottom: 1.6rem
  
   &__img-labels
+    position: absolute
+    top: 0
+    left: 0
     width: 100%
     height: 100%
 
     padding: 1.2rem
     display: grid
     grid-template-columns: repeat(2, auto)
-    align-items: center
-    justify-items: center
+    grid-template-rows: repeat(2, auto)
+    align-content: space-between
+    justify-content: space-between
  
 
   &__img-label
-    padding: 0.4rem
-    border-radius: $border-radius
+  &__img-category
+    padding: 0.5rem
     margin-bottom: .5rem
 
-    background: $color-white
-    
+    border-radius: $border-radius
+
     font-size: 1.4rem
-    line-height: 1.5
-    color: $color-black
+    line-height: 1
+    color: $color-white
+
+    &._marketing
+      background: $color-green-light
+    &._management
+      background: $color-blue
+    &._development
+      background: $color-purple
+    &._design
+      background: $color-pink
+    &._hr
+      background: $color-orange
   
-  // &__title    
-  //   padding: 0.2rem
-  //   margin-bottom: .5rem
-
-  //   border-radius: $border-radius
-  //   background: $color-green-light
-
-  //   font-size: 1.4rem
-  //   line-height: 1.5
-  //   color: $color-white
   &__title
     font-size: 2rem
     line-height: 1.5
@@ -134,7 +157,6 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id))
         content: '|'
         padding: 0 1rem   
  
-  &__category
  
   &__date
 
@@ -145,6 +167,10 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id))
   &__read-link
     font-weight: 700
 
+
+
+.post-type
+  +labelUI
 
 
 </style>

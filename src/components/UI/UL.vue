@@ -27,17 +27,18 @@ const cssUrl = `url('${iconUrl.value}')`
   :slotted(li)
     display: flex
     align-items: center
+    // --url: v-bind(cssUrl)
     &:before
       display: block
       width: 2.4rem
       height: 2.4rem
 
       color: red
-      content: var(--url)
+      // content: var(--url)
+      content: url('http://localhost:3000/src/assets/img/icons/decor/tick-circled.svg')
+      transform: translate(0, .2rem)
       // content: url('@/assets/img/test.jpg')
-      padding-right: 0.5rem
-    --url: v-bind(cssUrl)
-    // list-style: var(--url)
+      padding-right: 1rem
       
     
 

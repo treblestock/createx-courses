@@ -5,15 +5,14 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 import Header from '@/components/sections/Header.vue'
 import Footer from '@/components/sections/Footer.vue'
 
+
 </script>
 
 <template>
   <div class="page">
-    <Header class="page__header"></Header>
-    <div class="page__body">
-      <RouterView></RouterView>
-    </div>
-    <Footer class="page__footer"></Footer>
+    <Header class="page__header" />
+    <RouterView class="page__body" />
+    <Footer class="page__footer" />
   </div>
 </template>
 

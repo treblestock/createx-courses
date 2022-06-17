@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs')
 
 
-const { shuffled } = require('../../helpers')
+const { shuffled, getRandom } = require('../helpersDataGeneration')
 
 let description = 'Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam.'
 let youWillLearn = [
@@ -39,12 +39,10 @@ function coursesFactory({category, title, price, teacherId}) {
     title,
     category,
     teacherId,
-    content: {
-      description: shuffled(description),
-      youWillLearn: shuffled(youWillLearn),
-      forWhom: shuffled(forWhom),
-      courseProgram: shuffled(courseProgram),
-    },
+    description: shuffled(description),
+    youWillLearn: shuffled(youWillLearn),
+    forWhom: shuffled(forWhom),
+    courseProgram: shuffled(courseProgram),
     price,
     dates: {
       start: new Date(2021, 6, id * 4),

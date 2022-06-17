@@ -8,6 +8,9 @@ export const useStoreBlogPosts = defineStore('storeBlogPosts', {
     blogPosts: [],
   }),
   getters: {
+    tags: (state) => state.blogPosts.reduce((tags, blogPost) => 
+      (blogPost.tags.forEach(tag => tags.add(tag) ), tags), new Set()),
+
     findBlogPost: (state) => (blogPostId, blogPosts) => {
       blogPosts ??= state.blogPosts // no params usage === search among all the blogPost
       return blogPosts.find(blogPost => blogPost.id == blogPostId)

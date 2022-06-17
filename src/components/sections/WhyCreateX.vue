@@ -15,26 +15,24 @@ const props = defineProps({
 </script>
 
 <template>
-  <section class="why__section">
-    <div class="why__container container">
-      <div class="why">
-        <div class="why__img">
-          <img src="/src/assets/img/content/why.jpg" alt="">
-        </div>
-        <div class="why__body">
-          <div class="why__label title_label">Who we are</div>
-          <h2 class="why__title title">Why Createx?</h2>
-          <ul class="why__list">
-            <li class="why__list-item">A fermentum in morbi pretium aliquam adipiscing donec tempus.</li>
-            <li class="why__list-item">Vulputate placerat amet pulvinar lorem nisl.</li>
-            <li class="why__list-item">Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.</li>
-            <li class="why__list-item">Etiam duis lobortis in fames ultrices commodo nibh.</li>
-            <li class="why__list-item">Tincidunt sagittis neque sem ac eget.</li>
-            <li class="why__list-item">Ultricies amet justo et eget quisque purus vulputate dapibus tortor.</li>
-          </ul>
-          <button class="why__btn btn">More about us</button>
-        </div>
-      </div>
+  <section class="why">
+    <div class="why__img">
+      <img src="/src/assets/img/content/why.jpg" alt="">
+    </div>
+    <div class="why__body">
+      <div class="why__label title_label">Who we are</div>
+      <h2 class="why__title title">Why Createx?</h2>
+      <ul class="why__list">
+        <li class="why__list-item">A fermentum in morbi pretium aliquam adipiscing donec tempus.</li>
+        <li class="why__list-item">Vulputate placerat amet pulvinar lorem nisl.</li>
+        <li class="why__list-item">Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.</li>
+        <li class="why__list-item">Etiam duis lobortis in fames ultrices commodo nibh.</li>
+        <li class="why__list-item">Tincidunt sagittis neque sem ac eget.</li>
+        <li class="why__list-item">Ultricies amet justo et eget quisque purus vulputate dapibus tortor.</li>
+      </ul>
+      <AppLink class="why__btn btn"
+        :to="{name: 'about'}"
+      >More about us</AppLink>
     </div>
   </section>
 </template>

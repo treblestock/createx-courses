@@ -15,7 +15,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="event-details-card">
+  <article class="event-details-card">
     <div class="event-details-card__body">
       <div class="event-details-card__info">
         <div class="event-details-card__info-label">dates</div>
@@ -31,62 +31,54 @@ const props = defineProps({
     </div>
       
     <button class="event-details-card__btn btn">Join the event</button>
-  </div>
+  </article>
 </template>
 
-<style scoped lang="scss">
-@import '@/assets/css/_vars';
-@import '@/assets/css/_helpers';
+<style scoped lang="sass">
+@import @/assets/css/_vars
+@import @/assets/css/_helpers
 
 
-.event-details-card {
-  width: 50rem;
-  padding: 4rem 3rem;
+.event-details-card
+  width: 50rem
+  padding: 4rem 3rem
 
-  border: solid 1px $color-gray-300;
-  box-shadow: $box-shadow;
+  border: solid 1px $color-gray-300
+  box-shadow: $box-shadow
   
-  &__body {
-    display: flex;
-    flex-direction: column;
-    > * + * {
-      margin-top: 3rem;
-    }
-  }
-  &__info {
-    display: flex;
-    flex-direction: column;
-    > * + * {
-      margin-top: 1rem;
-    }
-  }
-  &__info-label {
-    font-size: 1.4rem;
-    line-height: 1.5;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: $color-gray-900;
-  }
-  &__info-value {
-    font-size: 2.4rem;
-    line-height: 1.3;
-    font-weight: 700;
-    color: $color-carrot;
+  &__body
+    display: flex
+    flex-direction: column
+    > * + *
+      margin-top: 3rem
 
-  }
-  &__info-description {
-    font-size: 1.6rem;
-    line-height: 1.6;
-    color: $color-gray-700;
-  }
+  &__info
+    display: flex
+    flex-direction: column
+    > * + *
+      margin-top: 1rem
 
-  &__link {
-    text-decoration: underline;
-  }
-  &__btn {
-    margin-top: 4rem;
-  }
-}
+  &__info-label
+    font-size: 1.4rem
+    line-height: 1.5
+    font-weight: 700
+    text-transform: uppercase
+    color: $color-gray-900
+  &__info-value
+    font-size: 2.4rem
+    line-height: 1.3
+    font-weight: 700
+    color: $color-carrot
+
+  &__info-description
+    font-size: 1.6rem
+    line-height: 1.6
+    color: $color-gray-700
+
+  &__link
+    text-decoration: underline
+  &__btn
+    margin-top: 4rem
 
 
 </style>

@@ -5,42 +5,58 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
 
-const props = defineProps({
-  
-})
+import { useStoreSendFormData } from '@/stores/SendFormData.js'
+const storeSendFormData = useStoreSendFormData()
 
+const form = ref(null)
+
+const name = ref('')
+const email = ref('')
+const phone = ref('')
+function onSubmit() {
+  const data = JSON.stringify({
+    form: form.value.id,
+    name: name.value,
+    email: email.value,
+    phone: phone.value,
+  })
+  storeSendFormData.sendFormData(data)
+  name.value = email.value = phone.value = ''
+}
 </script>
 
 <template>
-  <section class="events-leave-request__section section">
-    <div class="events-leave-request__container container">
-      <div class="events-leave-request">
-        <div class="events-leave-request__img">
-          <Img src="src\assets\img\decor\illustrations\04.webp" />
-        </div>
-        <div class="events-leave-request__body">
-          <div class="events-leave-request__label title_label">Don’t miss the event</div>
-          <h2 class="events-leave-request__title title">Leave a request</h2>
-          <form class="events-leave-request__form"
-            @submit.prevent=""
-          >
-            <InputGroup class="events-leave-request__form-item"
-              label="Full Name"
-              placeholder="Your Full Name"
-            />
-            <InputGroup class="events-leave-request__form-item"
-              label="Email"
-              placeholder="Your working number"
-            />
-            <InputGroup class="events-leave-request__form-item"
-              label="Phone"
-              placeholder="Your Phone number"
-            />
-            <button class="events-leave-request__form-btn btn">Join the event</button>
-            <div class="events-leave-request__form-explication">* You will receive a link to the online lecture in an email after registration.</div>
-          </form>
-        </div>
-      </div>
+  <section class="events-register">
+    <div class="events-register__img">
+      <Img src="src\assets\img\decor\illustrations\04.webp" />
+    </div>
+    <div class="events-register__body">
+      <div class="events-register__label title_label">Don’t miss the event</div>
+      <h2 class="events-register__title title">Leave a request</h2>
+      <form class="events-register__form"
+        action=""
+        ref="form"
+        id="event-register"
+        @submit.prevent="onSubmit"
+      >
+        <InputGroup class="events-register__form-item"
+          label="Full Name"
+          placeholder="Your Full Name"
+          v-model="name"
+        />
+        <InputGroup class="events-register__form-item"
+          label="Email"
+          placeholder="Your working number"
+          v-model="email"
+        />
+        <InputGroup class="events-register__form-item"
+          label="Phone"
+          placeholder="Your Phone number"
+          v-model="phone"
+        />
+        <button class="events-register__form-btn btn">Join the event</button>
+        <div class="events-register__form-explication">* You will receive a link to the online lecture in an email after registration.</div>
+      </form>
     </div>
   </section>
 </template>
@@ -50,14 +66,7 @@ const props = defineProps({
 @import @/assets/css/_helpers
 
 
-.events-leave-request
-  &__section
-    padding: 12rem 0
-    background: $color-gray-200
-
-  &__container
-
-.events-leave-request
+.events-register
   display: flex
   align-items: center
   &__img

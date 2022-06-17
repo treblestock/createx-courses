@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 
-const { shuffled } = require('../../helpers')
+const { shuffled } = require('../helpersDataGeneration')
 
 const description = 'Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam.'
 

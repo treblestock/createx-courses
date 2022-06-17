@@ -45,7 +45,7 @@ const signIn = () => {
 </script>
 
 <template>
-  <div class="sign-in">
+  <section class="sign-in">
     <div class="sign-in__body">
       <div class="sign-in__title">Sign in</div>
       <div class="sign-in__text">Sign in to your account usign email and password provided during registration.</div>
@@ -98,7 +98,7 @@ const signIn = () => {
         colorInitial= "#787A80"
       />
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped lang="sass">

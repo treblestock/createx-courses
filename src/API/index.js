@@ -1,15 +1,18 @@
 import categories from './data/categories.js'
 import teachers from './data/teachers.js'
 import courses from './data/courses.js'
+import coursesCategories from './data/coursesCategories.js'
 import events from './data/events.js'
 import blogPosts from './data/blogPosts.js'
 import tags from './data/tags.js'
 import reviews from './data/reviews.js'
-import createX from './data/createX.js'
+import createx from './data/createx.js'
+import benefits from './data/benefits.js'
 
 // const categories = require('./data/categories.js')
 // const teachers = require('./data/teachers.js')
 // const courses = require('./data/courses.js')
+// const coursesCategories = require('./data/coursesCategories.js')
 // const events = require('./data/events.js')
 // const blogPosts = require('./data/blogPosts.js')
 // const tags = require('./data/tags.js')
@@ -22,12 +25,14 @@ const requestResponseMatches = {
   '/categories': categories,
   '/teachers': teachers,
   '/courses': courses,
+  '/coursesCategories': coursesCategories,
   '/events': events,
   '/blogPosts': blogPosts,
   '/tags': tags,
 
   '/reviews': reviews,
-  '/createX': createX,
+  '/createx': createx,
+  '/benefits': benefits,
 }
 
 

@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 
-const { shuffled, getRandomItem, getRandom, setOfSubsets } = require('../../helpers')
+const { shuffled, getRandomItem, getRandom, setOfSubsets } = require('../helpersDataGeneration')
 
 const body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo, amet lectus quam viverra mus lobortis fermentum amet, eu. Pulvinar eu sed purus facilisi. Vitae id turpis tempus ornare turpis quis non. Congue tortor in euismod vulputate etiam eros. Pulvinar neque pharetra arcu diam maecenas diam integer in.'
 

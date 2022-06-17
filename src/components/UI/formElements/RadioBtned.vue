@@ -1,17 +1,33 @@
 <script>
 export default {
   inheritAttrs: false,
-  props: {
-    modelValue: String,
-  },
 }
+</script>
+
+<script setup>
+import { ref, computed, watch } from 'vue'
+const props = defineProps({
+  modelValue: String,
+})
+const emit = defineEmits([
+  'input'
+])
+const model = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('input', value),
+})
+
+const getElementClass = (classList) =>
+  classList ? classList.split(' ').filter(cls => cls.includes('__') ).join(' ') : ''
+const getBlockClass = (classList) =>
+  classList ? classList.split(' ').filter(cls => !cls.includes('__') ).join(' ') : ''
 </script>
 
 <template>
   <label class="radio" :class="$attrs.class">
     <input type="radio" class="radio__radio"
       :="$attrs"
-      @input="$emit('input', $event.target.value)"
+      v-model="model"
     >
     <div class="radio__ui">
       <slot></slot>

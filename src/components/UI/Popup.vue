@@ -6,6 +6,8 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 const props = defineProps({
   isActive: Boolean,
+  isTransparent: Boolean,
+  isNoCross: Boolean,
 })
 const emit = defineEmits([
   'closed',
@@ -16,11 +18,11 @@ const emit = defineEmits([
 
 <template>
   <div class="popup" v-if="isActive">
-    <div class="popup__wrapper"
+    <div class="popup__wrapper" v-if="!isTransparent"
       @click="emit('closed')"
     ></div>
     <div class="popup__body">
-      <div class="popup__cross" 
+      <div class="popup__cross" v-if="!isNoCross"
         @click="emit('closed')"
       >&#x2573;</div>
       <slot></slot>
@@ -31,6 +33,7 @@ const emit = defineEmits([
 <style scoped lang="sass">
 @import @/assets/css/_vars
 @import @/assets/css/_helpers
+
 
 .popup
   position: fixed
@@ -57,6 +60,8 @@ const emit = defineEmits([
 
 
   &__body
+    max-width: 100%
+    max-height: 100%
     position: relative
   
   &__cross

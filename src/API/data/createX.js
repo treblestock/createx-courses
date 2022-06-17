@@ -1,4 +1,4 @@
-const createX = {
+const createx = {
   contacts: {
     email: 'hello@createx.com',
     tel: '+70123456789',
@@ -14,5 +14,5 @@ const createX = {
   ],
 }
   
-export default JSON.stringify(createX)
-// module.exports = JSON.stringify(createX)
+export default JSON.stringify(createx)
+// module.exports = JSON.stringify(createx)

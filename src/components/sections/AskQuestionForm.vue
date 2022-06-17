@@ -4,54 +4,82 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
+import { useStoreSendFormData } from '@/stores/SendFormData.js'
+const storeSendFormData = useStoreSendFormData()
 
-const props = defineProps({
-  
-})
+const form = ref(null)
+
+const firstName = ref('')
+const lastName = ref('')
+const email = ref('')
+const phone = ref('')
+const message = ref('')
+const agreeRecieveMessages = ref(false)
+
+function onSubmit() {
+  const data = JSON.stringify({
+    form: form.value.id,
+    firstName: firstName.value,
+    lastName: lastName.value,
+    email: email.value,
+    phone: phone.value,
+    message: message.value,
+    agreeRecieveMessages: agreeRecieveMessages.value,
+  })
+  storeSendFormData.sendFormData(data)
+  firstName.value = lastName.value = email.value = phone.value = message.value = ''
+  agreeRecieveMessages.value = false
+}
 
 </script>
 
 <template>
-  <section class="ask-question__section section">
-    <div class="ask-question__container container">
-      <div class="ask-question">
-        <div class="ask-question__img">
-          <Img src="src\assets\img\decor\illustrations\01.webp" />
-        </div>
-        <div class="ask-question__body">
-          <div class="ask-question__label title_label">Any questions?</div>
-          <h2 class="ask-question__title title">Drop us a line</h2>
-          <form class="ask-question__form"
-            @submit.prevent=""
-          >
-            <InputGroup class="ask-question__form-item"
-              label="First Name*"
-              placeholder="Your First Name"
-            />
-            <InputGroup class="ask-question__form-item"
-              label="First Last*"
-              placeholder="Your First Last"
-            />
-            <InputGroup class="ask-question__form-item"
-              label="Email*"
-              placeholder="Your Working Email"
-            />
-            <InputGroup class="ask-question__form-item"
-              label="Phone"
-              placeholder="Your phone number"
-            />
-            <InputGroup class="ask-question__form-item _col-2"
-              label="Message*"
-              placeholder="Your Message"
-              tag="Textarea"
-            />
-            <CheckboxGroup class="ask-question__form-item">
-              I agree to receive communications from Createx Online School
-            </CheckboxGroup>
-            <button class="ask-question__form-item btn">send message</button>
-          </form>
-        </div>
-      </div>
+  <section class="ask-question">
+    <div class="ask-question__img">
+      <Img src="src\assets\img\decor\illustrations\01.webp" />
+    </div>
+    <div class="ask-question__body">
+      <div class="ask-question__label title_label">Any questions?</div>
+      <h2 class="ask-question__title title">Drop us a line</h2>
+      <form class="ask-question__form"
+        action=""
+        ref="form"
+        id="support"
+        @submit.prevent="onSubmit"
+      >
+        <InputGroup class="ask-question__form-item"
+          label="First Name*"
+          placeholder="Your First Name"
+          v-model="firstName"
+        />
+        <InputGroup class="ask-question__form-item"
+          label="First Last*"
+          placeholder="Your First Last"
+          v-model="lastName"
+        />
+        <InputGroup class="ask-question__form-item"
+          label="Email*"
+          placeholder="Your Working Email"
+          v-model="email"
+        />
+        <InputGroup class="ask-question__form-item"
+          label="Phone"
+          placeholder="Your phone number"
+          v-model="phone"
+        />
+        <InputGroup class="ask-question__form-item __col-2"
+          label="Message*"
+          placeholder="Your Message"
+          tag="Textarea"
+          v-model="message"
+        />
+        <CheckboxGroup class="ask-question__form-item"
+          v-model="agreeRecieveMessages"
+        >
+          I agree to receive communications from Createx Online School
+        </CheckboxGroup>
+        <button class="ask-question__form-item btn">send message</button>
+      </form>
     </div>
   </section>
 </template>
@@ -94,7 +122,7 @@ const props = defineProps({
     grid-gap: 2.5rem
 
   &__form-item
-    &._col-2
+    &.__col-2
       grid-column: span 2
 
 

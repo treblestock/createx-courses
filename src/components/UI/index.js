@@ -7,6 +7,7 @@ import Socials from '@/components/UI/Socials.vue'
 import Logo from '@/components/UI/Logo.vue'
 
 import UL from '@/components/UI/UL.vue'
+import TextNode from '@/components/UI/TextNode.js'
 
 
 import * as formElements from '@/components/UI/formElements'
@@ -42,6 +43,7 @@ export default {
   Logo,
 
   UL,
+  TextNode,
   
   ...formElements,
   

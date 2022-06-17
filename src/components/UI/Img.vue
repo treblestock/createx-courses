@@ -2,6 +2,8 @@
 import {ref, computed, watch} from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
+// import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
+
 
 
 const props = defineProps({
@@ -10,9 +12,9 @@ const props = defineProps({
 })
 
 
-const prefix = props.absolute ? '' : 'http://localhost:3000/'
-const src = props.src ? props.src : 'src/assets/img/test.jpg'
-const path = prefix + src
+const prefix = computed(() => props.absolute ? '' : 'http://localhost:3000/')
+const src = computed(() => props.src ? props.src : 'src/assets/img/test.jpg')
+const path = computed(() => prefix.value + src.value)
 
 
 </script>

@@ -22,7 +22,7 @@ const teacher = computed(() => storeTeachers.findTeacher(props.id) )
 </script>
 
 <template>
-  <div class="teacher-card" v-if="teacher">
+  <article class="teacher-card" v-if="teacher">
     <div class="teacher-card__img">
       <Img :src="teacher.imgTeacher" />
     </div>
@@ -33,7 +33,7 @@ const teacher = computed(() => storeTeachers.findTeacher(props.id) )
         <Socials :links="teacher.socials"></Socials>
       </div> -->
     </div>
-  </div>
+  </article>
 </template>
 
 <style scoped lang="sass">
@@ -53,6 +53,7 @@ const teacher = computed(() => storeTeachers.findTeacher(props.id) )
       width: 100%
       height: 100%
       object-fit: cover
+      object-position: top
 
 
     margin-bottom: 1.6rem

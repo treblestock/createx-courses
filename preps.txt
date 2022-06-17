@@ -1,3 +1,119 @@
+git commit -m "Solved problem of AppLink.vue passing both positioning classes for root and attrs and ui classes for nested link. Sliced Course page and its sections. Sliced Event page and its sections. Solved multi customcheckbox v-model problem. Made tags filter. Made TextNode with redner function for dynamic content rendering. Modified all the custom form elements, now they support v-model, and correct css-classes recieving. Improved semantics (sections, articles). Redefined entities responsible for section positioning inside pages. Sliced about view and its sections (7). Attached all forms' fields with corresponding model, and made imitation of sending data to the backend (emerging popup-message with json-data). Made 3 transition group animations. Made responsive fz (based on view-port)"
+
+Analysed my way: thoughts of projects what i've learned, found new obstacles and so on
+
+Project Resaults:
++ CSS-approach: mixin naming style
+  Entity-UI/Pos/shape/__Elem_red_big_...
++ CSS-approach:
+  rem
++ CSS-preps:
+  radio/checkbox_btned
+
++ JS-preps-helpers: regEx searchQuery
+?+JS-preps-dom: dynamic header calc + header next elem section margin ()
+
++ Fs-vue-components: Custom UI-kit -> Project entities -> Sections -> View
+
++ Vue-view: page section structuring
++ Vue-mechanics: $attrs, class, props (catched attr), passing
++ Vue-component: Catching blockClasses and elemClasses
++ JS/Vue-meta-approach: domain-driven entities naming style
+  (entity name = domain defined part + programming context part)
+  example: 'getCourse()' at client.store (course is entity + get is store crud part)
+  example: 'course-card__some-modifier' (course is entity + css-specific naming)
+  It allows to define all the entities no matter which programming domain it belongs to:
+  being awared of specific programming domain naming bestpractices (or your own) and knowing which bussines entity (bussines model part) you deal with, you always have the only way (or some narrow range) to name variable or function.
+  It implies several things:
+    1)  Naming methodology makes naming process sequantial, 
+        therefore more affected by generalization, 
+        therefore programming automated or snippet automated. Both boost developing in times
+    2)  Unload a developer mind from unnecessary memory and thinking costs. 
+        Now he doesn't have to remember all the names of the variables or functions in the every place of the program, he may simply 'reinvent' a name for the function and it will be exactly the same as it was initially named - you may logicaly 'HERE_SHOULD_BE_A_WORD_OPOSITY_BY_SENSE_TO_FORGET', moreover, using methodologies, there is a regular pattern of naming (at least you always use such a name), so it has some sense, so it is easier to remember
++ JS/Vue-meta: dynamic functions invoke via js strings and/or callbacks
+  usage: elegant and dynamic flexible conditional logic 
+  (1 row instead of decades of 'if's or conditionMap, ('rules[condition]()' ) which is also a good choice )
+  example: namespace[operation + item]() // namespace.addCard
++ Vue-meta: started to use some deep concepts, and learned some internal meachanics
+  Pinia:  Started to use custom plugins and lerned its mechanic
+  Pinia:  Compared watch, $subscribe tools for making current project reactivify system.
+          Compared places of integration these tools (plugin, inside store, inside component).
+          Analysed all the implementation cases (2x3=6), and defined their fields of use.
++ Vue-metapreps: developed some solutions externaning, default tool functionality
+  Router-AppLink: catch params of props and to, parsing/stringifiing, as passive
+  Pinia: developed auto cashing/parsing data on Client
+  Pinia: developed async store hooks (logic attached to store lifecycle)
+  Vue: TextNodes + backend content and meta (dynamic content)
++ Vue-approach: Designed declarative filtering/sorting system
++ Vue-preps-:
++ Vue-preps-components:
+  Base-improved: Img, AppLink 
+  UI: FormElements (check, radio, checkGroup, radioGroup)
+  UI-complicated-ui: popups, sliders, tabs, spoilers
+  UI-decor: TimeCounter
+  -UI: Animation libs
++ Vue-preps-snippets:
+  pinia !filters
+
++ Project-workflow: 
+  figma analisys ui-text/btn,slider/.. and its logic 
+  sections 
+  making similar components in a row, UI-logic and solutinos
++ Project-workflow: project overview: 
+  Routing: Pages + routing + dataPassing + Redirection Auth Rules
+  Model: designing stores + 'back' api + View proper data (filtered) + view + userActions
+
+
+
++ Proved: 
+
+  
+? CSS-approach: conflict of bem nonamespace modifiers composition with specificity raise (&._mod)
+? Vue-CSS-approach: unsolved selector specificity problem (general ui + component mixin)
+? Vue-approach/architecture: component redirection with its logic invoking (external entities api) (methods, state)
+  router-query-meta info + redirection + beforeUpdate hook (comp invokes)
+    + incapsultaion
+    + low coupling
+    - ?manual non-reusable out of the box
+  store-sharing:
+    - high coupling
+    - no incapsultaion -> when adding / removing feature, you have to change many places + unclear process of entities interaction (besides, you have to remember the feature system parts work either never change them,)
+  
+? JS/Vue-preps-dom: reactive dynamic header calc 
+  dynamic header calc + onUpdate + window.onResize handlers
+? Fs-vue-components: Where to place project specific UI-Entities structures (product card)? (UI/some dir/as usual)
+? Vue-architecture-responsibility: which is responsible for preparing items for render (filter, sort)? component, or store
+? Vue-architecture/approach: components with async data for render, which way to implement? skeleton, v-if, Suspense, mochData + update
+? Vue-meachanics/approach: ref + useDomRefLogic (wrappers, onMounted + dynamic search instead of using memory)
+? Vue-meachanics: v-model final lvl: 
+  deep nested components,
+  not root html binding,
+  for multiple checkbox, radios,
+  true/false value,
+? DomLogic/approach: which way to couple entities dom logic (spoiler,..) and specific case html-implementation
+  id: 
+    - too manual, 
+    - requires, unic id or unic id generation, 
+    - few polluted code
+    - requires to remember or to understand entities structure you deal with entity, which is more a problem, when aiming to create reusabe tool with no configuration
+  html-static:
+    - remember / understand tool api
+    - there might be some more complicated claims, which are imposible to meet with current tool (e.g sophisticated design), so you should make a more universal solution, which might be not so elegant (and easy to understand), computing cheap or requiring manual configuration
+    - sets some dom restrictions (imposible to use without necessary html-elements-wrappers for content)
+    - too verbose
+  dom-relative-positioning (elem.children (direct children), elem.closest() ('nested' ancestor), elem.querySelector() (nested child), and its composition )
+    + very flexible
+    - ?might be more computing expensive
+
+? Vue-DomLogic: which way implement dom logic: 
+  globalListener + symbol for check (sideEffect) 
+  globalListener + array of handlers/tasks + Symbdol-counter:  Vue the only shared Dom listener function + array of cbs (declarative, meta), atteched to app instance (app.$_domListeners) through plugin, ?and counter of global elements, using such a plugin, to define each time elem unMounted, whether should remove this listener or not (clear own dependencies), each time elem created counter++, each time beforeUnMount - counter--
+  local listeners for each component
+  external jsUseListener (via app-instance lifecycle hook)
+
+
+
+
 
 
 ! Routing
@@ -49,7 +165,7 @@ post
   blogPosts
 
 contacts
-  ?CreateX: (address, socials,...)
+  ?Createx: (address, socials,...)
 
 
 about

@@ -11,9 +11,6 @@ import EventCard_row from '@/components/EventCard_row.vue'
 
 const storeEvents = useStoreEvents()
 
-const props = defineProps({
-  
-})
 
 const events = computed(() => storeEvents.events.slice(0, 3) )
 
@@ -21,31 +18,24 @@ const events = computed(() => storeEvents.events.slice(0, 3) )
 </script>
 
 <template>
-  <section class="events-grid__section section">
-    <div class="events-grid__container container">
-
-      <div class="events-grid">
-        <div class="events-grid__header">
-          <div class="events-grid__label label">Ready to learn?</div>
-          <h2 class="events-grid__title title">Featured Events</h2>
-        </div>
-        <div class="events-grid__items">
-          <EventCard_row v-for="event in events" :key="event.id" :='event'></EventCard_row>
-        </div>
-        <div class="events-grid__footer">
-          <div class="events-grid__want-more">
-            Do you want more?
-          </div>
-          <AppLink class="events-grid__btn btn"
-            :to="{
-              name: 'events',
-            }"
-          >explore all events</AppLink>
-
-        </div>
-      </div>  
-
-    </div>
+  <section class="events-grid">
+    <header class="events-grid__header">
+      <div class="events-grid__label label">Ready to learn?</div>
+      <h2 class="events-grid__title title">Featured Events</h2>
+    </header>
+    <section class="events-grid__items">
+      <EventCard_row v-for="event in events" :key="event.id" :='event'></EventCard_row>
+    </section>
+    <footer class="events-grid__footer">
+      <div class="events-grid__want-more">
+        Do you want more?
+      </div>
+      <AppLink class="events-grid__btn btn"
+        :to="{
+          name: 'events',
+        }"
+      >explore all events</AppLink>
+    </footer>
   </section>
 </template>
 
@@ -56,25 +46,7 @@ const events = computed(() => storeEvents.events.slice(0, 3) )
 
 .events-grid
   &__section
-    position: relative
 
-    margin-top: 12rem
-
-    padding-top: 8rem
-    padding-bottom: 8rem
-    &:after 
-      z-index: -1
-      position: absolute
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
-
-      opacity: .2
-      background: $color-carrot-gradient
-      
-      display: block
-      content: ''
 
     
 

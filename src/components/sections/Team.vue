@@ -15,19 +15,15 @@ const teachers = computed(() => storeTeachers.teachers)
 </script>
 
 <template>
-  <section class="teachers__section section">
-    <div class="teachers__container container">
-      <div class="teachers">
-        <SliderCustom
-          label="Best tutors are all here"
-          title="Meet our team"
-        >
-          <TeacherCard v-for="teacher in teachers" :key="teacher.id" :='teacher'
-            class="teachers__teacher-card"
-          />
-        </SliderCustom>
-      </div>
-    </div>
+  <section class="teachers">
+    <SliderCustom
+      label="Best tutors are all here"
+      title="Meet our team"
+    >
+      <TeacherCard v-for="teacher in teachers" :key="teacher.id" :='teacher'
+        class="teachers__teacher-card"
+      />
+    </SliderCustom>
   </section>
 </template>
 

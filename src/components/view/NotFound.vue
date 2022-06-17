@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped lang="sass">
 
 .not-found-warning {
   height: 100vh;

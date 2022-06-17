@@ -16,6 +16,11 @@ const props = defineProps({
 })
 
 
+const getElementClass = (classList) =>
+  classList ? classList.split(' ').filter(cls => cls.includes('__') ).join(' ') : ''
+const getBlockClass = (classList) =>
+  classList ? classList.split(' ').filter(cls => !cls.includes('__') ).join(' ') : ''
+
 const isExternalLink = computed(() => 
   typeof props.to === 'string' && props.to.startsWith('http')
 )
@@ -63,7 +68,10 @@ function propsParser(route) {
   The '2)' Seems good :)
  -->
 <template>
-  <span> 
+  <span 
+    :class="getElementClass($attrs.class)"
+  >
+  <!-- <span :class="$attrs.class">  -->
     <a v-if="isExternalLink" :="$attrs" :href="to" target="_blank">
       <slot />
     </a>
@@ -71,7 +79,7 @@ function propsParser(route) {
       v-else
       :="$props"
       :to="toStringifiedParams"
-      
+      :class="getBlockClass($attrs?.class)"
       
       custom
       v-slot="{ isActive, href, navigate }"
@@ -80,6 +88,7 @@ function propsParser(route) {
         @click="navigate"
         :href="href"
         :="$attrs"
+        :class="getBlockClass($attrs.class)"
       >
         <slot />
       </a>

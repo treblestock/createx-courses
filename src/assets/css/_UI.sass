@@ -1,5 +1,6 @@
 @import @/assets/css/_vars
 @import @/assets/css/_helpers
+@import @/assets/css/_vueAnimations
 
 //* Font
 .title
@@ -19,6 +20,11 @@
     font-size: 3.2rem
 
 
+body > *
+  font-size: 1.6rem
+  line-height: 1.6
+  color: $color-gray-800
+
 // links
 .link
   color: $color-gray-900
@@ -28,6 +34,11 @@
 
 .red
   color: $color-carrot
+.bold
+  font-weight: 700
+.fw400
+  font-weight: 700
+
 .price
   color: $color-carrot
   &:before 
@@ -39,6 +50,8 @@
 
 //* Btns
 
+*[class*='btn']
+  display: inline-block
 
 // animations
 =hoverDark
@@ -56,12 +69,12 @@
     background: $color-black
     opacity: .2
 
-=btnSolidUI
+=btn-ui_solid
   border-radius: $border-radius
   background: $color-carrot-gradient
   color: $color-white
 
-=btnOutlUI
+=btn-ui_outl
   border-radius: $border-radius
   box-shadow: inset 0 0 0 1px $color-carrot
   background: $color-white
@@ -69,11 +82,15 @@
   
 
 
+span.btn
+  padding: 0
+
 .btn
   display: inline-block
   padding: 1.5rem 3rem
   font-size: 1.4rem
-  +btnSolidUI
+  text-align: center
+  +btn-ui_solid
   
   &._s
     padding: 1.2rem 2.4rem
@@ -89,7 +106,7 @@
 .btn-outl
   padding: 1.5rem 3rem
   font-size: 1.4rem
-  +btnOutlUI
+  +btn-ui_outl
 
   &._s
     padding: 1.2rem 2.4rem
@@ -100,8 +117,10 @@
 
   &:focus-visible,
   &:hover
-    +btnSolidUI
+    +btn-ui_solid
 
+
+//* icons
 
 svg
   fill: currentColor
@@ -113,3 +132,87 @@ svg
     color: $color-carrot
 
 
+
+._ticked
+  display: flex
+  &:before 
+    content: url('http://localhost:3000/src/assets/img/icons/decor/tick-circled.svg')
+    flex: 0 0 1.6rem
+    height: 1.6rem
+    margin-right: 1rem
+
+  
+// Tags
+.tag
+  padding: 0.5rem 1.5rem
+
+  background: $color-white
+  border-radius: $border-radius
+  box-shadow: inset 0 0 0 1px $color-gray-700
+
+  font-size: 1.4rem
+  line-height: 1.5
+  font-weight: 700
+  color: $color-gray-700
+
+  transition: all ease .2s
+
+  &:hover
+    background: $color-carrot
+    color: $color-white
+    box-shadow: none
+    
+
+  &:before 
+    content: '#'
+    
+
+//* Sections
+=section-ui_carrot
+  position: relative
+  &:after 
+    z-index: -1
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+
+    opacity: .2
+    background: $color-carrot-gradient
+    
+    display: block
+    content: ''
+
+
+=section-ui_carrot_bg-decor
+  position: relative
+
+  &:before 
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: -1
+
+    background: $color-carrot-gradient
+    opacity: 0.2
+    content: ''
+    
+  .section__decor
+    z-index: -1
+    position: absolute
+    bottom: 0
+    
+    width: 100%
+    &:after,
+    &:before
+      position: absolute
+      bottom: 0
+      content: url("http://localhost:3000/src/assets/img/decor/illustrations/08.webp")
+    
+    &:before
+      left: 0
+    &:after
+      right: 0

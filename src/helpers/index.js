@@ -22,8 +22,8 @@ const shuffled = (arg) => Array.isArray(arg) ? arrShuffled(arg) : strShuffled(ar
 const doesIncludeWords = (str, substr) => {
   str = str.toLowerCase()
   substr = substr.toLowerCase()
-  const substrWords = substr.split(' ').filter(item => item != '')
-  const regexCond = substrWords.reduce((reg, word) => `(${word}.*)` , '.*')
+  const substrWords = substr.split(' ').filter(item => item != ' ' && item != '')
+  const regexCond = substrWords.reduce((reg, word) => reg += `(${word}.*)` , '.*')
   const r = new RegExp(regexCond)
 
   return r.exec(str)
@@ -31,6 +31,30 @@ const doesIncludeWords = (str, substr) => {
 
 
 // date
+const monthMap = [
+  'January', 'February', 'March',
+  'April', 'May', 'June',
+  'July', 'August', 'September',
+  'October', 'Novemmbar', 'December',
+]
+const timeInMs = {
+  second: 1000,
+  minute: 1000 * 60,
+  hour:   1000 * 60 * 60,
+  date:   1000 * 60 * 60 * 24,
+  month:  1000 * 60 * 60 * 24 * 30,
+  year:   1000 * 60 * 60 * 24 * 365,
+}
+
+
+function separateDate(date) {
+  return {
+    date: date.getDate(),
+    month: monthMap[date.getMonth()],
+    year: date.getFullYear(),
+  }
+}
+
 // JSON-dateParser
 const r = /([0-9]{4})-([0-9]{2})-([0-9]{2})/
 const isDate = str => r.exec(str)
@@ -43,20 +67,15 @@ const toJSDate = (dateObj) =>
   new Date(dateObj.year, monthMap.indexOf(dateObj.month), dateObj.date )
   
 
-
-const monthMap = [
-  'January', 'February', 'March',
-  'April', 'May', 'June',
-  'July', 'August', 'September',
-  'October', 'Novemmbar', 'December',
-]
-function separateDate(date) {
-  return {
-    date: date.getDate(),
-    month: monthMap[date.getMonth()],
-    year: date.getFullYear(),
-  }
+// duration
+const getDuration = (dateA, dateB, period = 'month') => {
+  dateA = typeof dateA === 'date' ? dateA : toJSDate(dateA)
+  dateB = typeof dateB === 'date' ? dateB : toJSDate(dateB)
+  const time = Math.abs(dateB - dateA)
+  return time / timeInMs[period]
 }
+  
+
 
 
 
@@ -74,5 +93,6 @@ export
   // date
   parseDateHandler,
   toJSDate,
+  getDuration,
 
 }

@@ -23,8 +23,10 @@ const {
   shift: true,
 })
 
+
 onMounted(() => {
-  body.value.children[0].classList.add('_active')
+  // console.log(body.value.children)
+  // body.value.children[0].classList.add('_active')
 })
 
 </script>

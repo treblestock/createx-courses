@@ -3,13 +3,8 @@ import {ref, computed, watch} from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
-import { useRouter, useRoute } from 'vue-router'
 
 import { useStoreBlogPosts } from '@/stores/BlogPosts.js'
-
-
-const route = useRoute()
-const router = useRouter()
 
 
 const storeBlogPosts = useStoreBlogPosts()
@@ -24,7 +19,7 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id) )
 </script>
 
 <template>
-  <div class="blog-post-card">
+  <article class="blog-post-card">
     <div class="blog-post-card__img">
       <Img :src="blogPost.img"/>
         <div class="blog-post-card__img-labels">
@@ -32,7 +27,7 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id) )
     </div>
     <div class="blog-post-card__body">
       <div class="blog-post-card__top">
-        <span class="blog-post-card__date">{{ blogPost.date.date }} {{ blogPost.date.month }}</span>
+        <span class="blog-post-card__date">{{ blogPost.date.date }} {{ blogPost.date.month }}, {{ blogPost.date.year }}</span>
       </div>
       <AppLink class="blog-post-card__title link"
         :to="{
@@ -41,7 +36,7 @@ const blogPost = computed(() => storeBlogPosts.findBlogPost(props.id) )
         }"
       >{{ blogPost.title }}</AppLink>
     </div>
-  </div>
+  </article>
 </template>
 
 <style scoped lang="sass">

@@ -2,6 +2,7 @@ import { defineStore } from "pinia"
 import { useStoreBlogPosts } from "./BlogPosts"
 import { doesIncludeWords } from "@/helpers"
 import { toJSDate } from "@/helpers"
+import { storeToRefs } from "pinia"
 
 
 export const useStoreBlogPostsFilters = defineStore('storeBlogPostsFilters', {
@@ -9,6 +10,7 @@ export const useStoreBlogPostsFilters = defineStore('storeBlogPostsFilters', {
     // filters
     categoryQuery: null,
     postTypeQuery: null,
+    tagsQuery: [],
     searchQuery: null,
     // sorts
     dateQuery: null,
@@ -18,6 +20,9 @@ export const useStoreBlogPostsFilters = defineStore('storeBlogPostsFilters', {
     filterRules: (state) => ({
       categoryQuery: (blogPost => blogPost.category === state.categoryQuery),
       postTypeQuery: (blogPost => blogPost.postType === state.postTypeQuery),
+      tagsQuery: (blogPost => 
+        !state.tagsQuery.length ? true : state.tagsQuery.every(tag => blogPost.tags.includes(tag) )
+      ),
       searchQuery: (blogPost => doesIncludeWords(blogPost.title, state.searchQuery) ),
     }),
     blogPostsFiltered() {

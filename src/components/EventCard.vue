@@ -20,11 +20,11 @@ const event = computed(() => storeEvents.findEvent(props.id) )
 </script>
 
 <template>
-  <div class="event-preview-card" v-if="event">
+  <article class="event-preview-card" v-if="event">
     <div class="event-preview-card__body">
       <div class="event-preview-card__date">{{ event.date.date }} {{event.date.month}}</div>
       <div class="event-preview-card__time">{{ event.time }}</div>
-      <AppLink class="event-preview-card__title"
+      <AppLink class="event-preview-card__title link"
         :to="{
           name: 'event',
           params: {eventId: event.id},
@@ -39,59 +39,61 @@ const event = computed(() => storeEvents.findEvent(props.id) )
         params: {eventId: event.id }
       }"
     >View more</AppLink>
-  </div>
+  </article>
 </template>
 
-<style scoped lang="scss">
-@import '@/assets/css/_vars';
-@import '@/assets/css/_helpers';
+<style scoped lang="sass">
+@import @/assets/css/_vars
+@import @/assets/css/_helpers
 
 
-.event-preview-card {
-  width: 39rem;
-  padding: 2.4rem;
-  border: solid 1px $color-gray-300;
-  box-shadow: $box-shadow;
+.event-preview-card
+  padding: 2.4rem
+
+  display: flex
+  flex-direction: column
+  justify-content: space-between
   
+  
+  border: solid 1px $color-gray-300
+  box-shadow: $box-shadow
+  background: $color-white
+  &__body
+    display: flex
+    flex-direction: column
+    align-items: start
+    
+    > * + *
+      margin-top: 1rem
 
-  background: $color-white;
-  &__body {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    > * + * {
-      margin-top: 1rem;
-    }
-  }
-  &__date {
-    font-size: 2.8rem;
-    line-height: 1.5;
-    font-weight: 700;
-    color: $color-carrot;
-  }
-  &__time {
-    font-size: 1.6rem;
-    line-height: 1.6;
+  &__date
+    font-size: 2.8rem
+    line-height: 1.5
+    font-weight: 700
+    color: $color-carrot
+
+  &__time
+    font-size: 1.6rem
+    line-height: 1.6
     color: $color-gray-700
-  }
-  &__title {
-    margin-top: 2rem;
 
-    font-size: 1.8rem;
-    line-height: 1.5;
-    font-weight: 700;
-    color: $color-gray-900;
+  &__title
+    margin-top: 2rem
 
-  }
-  &__event-type {
-    font-size: 1.6rem;
-    line-height: 1.6;
-    color: $color-gray-700;
-  }
-  &__btn {
-    margin-top: 5rem;
-  }
-}
+    font-size: 1.8rem
+    line-height: 1.5
+    font-weight: 700
+    color: $color-gray-900
+
+  &__event-type
+    font-size: 1.6rem
+    line-height: 1.6
+    color: $color-gray-700
+
+  &__btn
+    display: block
+    margin-top: 2.5rem
+
 
 
 </style>

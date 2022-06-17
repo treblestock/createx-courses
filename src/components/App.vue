@@ -3,52 +3,25 @@ import { ref, computed, watch } from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
-import { useRouter, useRoute } from 'vue-router'
-
-
-import Nav from '@/components/Nav.vue'
 
 
 
 
+// import { useVirtualPagination } from '@/components/composable/useVirtualPagination.js'
+// const {
+//   limit,
+//   pages,
+//   currentPage,
+//   currentPageItems: currentPagePosts,
+// } = useVirtualPagination(posts)
 
+// limit.value = 10
 
-import { useVirtualPagination } from '@/components/composable/useVirtualPagination.js'
-
-const route = useRoute()
-const router = useRouter()
-
-
-
-
-
-
-const posts = ref([])
-
-const {
-  limit,
-  pages,
-  currentPage,
-  currentPageItems: currentPagePosts,
-} = useVirtualPagination(posts)
-
-limit.value = 10
-
-
-
-
-
-
-onMounted(async () => {
-  // posts.value = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10').then(r => r.json())
-  
-})
 
 </script>
 
 <template>
-  <RouterView></RouterView>
-  
+  <RouterView />
 </template>
 
   <!-- <div class="posts">
@@ -71,64 +44,55 @@ onMounted(async () => {
     <Post v-for="post in currentPagePosts" :key="post.id" :='post'/>
   </div> -->
 
-<style lang="scss">
+<style lang="sass">
 // Preset
-@import '@/assets/css/_null';
-@import '@/assets/css/_helpers';
-@import '@/assets/css/_UI';
-@import '@/assets/css/_structure';
+@import @/assets/css/_null
+@import @/assets/css/_helpers
+@import @/assets/css/_UI
+@import @/assets/css/_structure
 
 
-#app {
-
-}
+#app
 </style>
 
-<style scoped lang="scss">
-@import '@/assets/css/_helpers';
-@import '@/assets/css/_vars';
+<style scoped lang="sass">
+@import @/assets/css/_helpers
+@import @/assets/css/_vars
 
-.search {
-  border: 1px solid #000;
-}
+// .search
+//   border: 1px solid #000
 
-.pagination {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+// .pagination
+//   display: flex
+//   flex-direction: row
+//   align-items: center
 
-  margin-bottom: 2rem;
+//   margin-bottom: 2rem
   
-  > * + * {
-    margin-left: 1rem;
-  }
-  &__item {
-    padding: 0.5rem;
-    text-align: center;
-    box-shadow: 0 0 0 1px #000;
-  }
-}
+//   > * + *
+//     margin-left: 1rem
+
+//   &__item
+//     padding: 0.5rem
+//     text-align: center
+//     box-shadow: 0 0 0 1px #000
 
 
-.limiter {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+
+// .limiter
+//   display: flex
+//   flex-direction: row
+//   align-items: center
   
-  margin-bottom: 5rem;
-  > * + * {
-    margin-left: 1rem;
-  }
-  &__value {
-    font-weight: 700;
-  }
-  &__btn {
-    padding: 1rem;
-    background: #eee;
-  }
+//   margin-bottom: 5rem
+//   > * + *
+//     margin-left: 1rem
 
-}
+//   &__value
+//     font-weight: 700
 
-
+//   &__btn
+//     padding: 1rem
+//     background: #eee
 
 </style>

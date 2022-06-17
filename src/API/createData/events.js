@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs')
 
 
-const { shuffled, getRandomItem, getRandom } = require('../../helpers')
+const { shuffled, getRandomItem, getRandom } = require('../helpersDataGeneration')
 
 let forWhom = [
   "Specialists with more than 1 year of active work experience",
@@ -11,7 +11,7 @@ let forWhom = [
 ]
 let body = 'Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.'
 
-let weWillTalk = [
+let eventProgram = [
   { title: 'Aliquet lectus urna viverra in odio.', body: shuffled(body), },
   { title: 'Orci commodo, viverra orci mollis ut euismod.', body: shuffled(body), },
   { title: 'Sagittis vitae facilisi rutrum amet mauris quisque vel.', body: shuffled(body), },
@@ -43,10 +43,8 @@ function eventsFactory({category, title, price, teacherId}) {
     category,
     eventType: getRandomItem(eventTypes),
     teacherId,
-    content: {
-      weWillTalk: shuffled(weWillTalk),
-      forWhom: shuffled(forWhom),
-    },
+    eventProgram: shuffled(eventProgram),
+    forWhom: shuffled(forWhom),
     price,
     date: new Date(2021, 6, id * 4),
     time: getRandomItem(times),

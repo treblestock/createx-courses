@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs')
 
 
-const { shuffled, getRandomItem, getRandom, setOfSubsets } = require('../../helpers')
+const { shuffled, getRandomItem, getRandom, setOfSubsets } = require('../helpersDataGeneration')
 
 const categories = ["Marketing", "Management", "HR & Recruting", "Design", "Development"]
 
@@ -17,12 +17,12 @@ const lis = [
 
 const blogPostTypes = ['video', 'podcast', 'article']
 const tags = [
-  "#marketing",
-  "#recruiting",
-  "#coding",
-  "#learning",
-  "#HR",
-  "#self-development",
+  "marketing",
+  "recruiting",
+  "coding",
+  "learning",
+  "HR",
+  "self-development",
 ]
 
 
@@ -49,7 +49,7 @@ function blogPostsFactory({title}) {
       {quote: shuffled(p) },
       {p: shuffled(p) },
       {ul: {
-        icon: 'tick',
+        icon: 'tick-circled',
         lis: shuffled(lis),
       }},
       {p: shuffled(p) },

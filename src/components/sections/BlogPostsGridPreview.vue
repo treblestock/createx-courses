@@ -21,28 +21,22 @@ const blogPosts = computed(() => storeBlogPosts.blogPosts.slice(0, 3) )
 </script>
 
 <template>
-  <section class="blog-posts-grid__section section">
-    <div class="blog-posts-grid__container container">
-
-      <div class="blog-posts-grid">
-        <div class="blog-posts-grid__header">
-          <div class="blog-posts-grid__text">
-            <div class="blog-posts-grid__label label">Ready to learn?</div>
-            <h2 class="blog-posts-grid__title title">Featured blogPosts</h2>
-          </div>
-          <AppLink class="blog-posts-grid__btn btn-outl"
-            :to="{
-              name: 'blogPosts',
-            }"
-          >View all blogPosts</AppLink>
-        </div>
-        <div class="blog-posts-grid__items">
-          <BlogPostCard v-for="blogPost in blogPosts" :key="blogPost.id" :='blogPost'></BlogPostCard>
-        </div>
-      </div>  
-
-    </div>
-  </section>
+  <section class="blog-posts-grid">
+    <header class="blog-posts-grid__header">
+      <div class="blog-posts-grid__text">
+        <div class="blog-posts-grid__label label">Ready to learn?</div>
+        <h2 class="blog-posts-grid__title title">Featured blogPosts</h2>
+      </div>
+      <AppLink class="blog-posts-grid__btn btn-outl"
+        :to="{
+          name: 'blogPosts',
+        }"
+      >View all blogPosts</AppLink>
+    </header>
+    <section class="blog-posts-grid__items">
+      <BlogPostCard v-for="blogPost in blogPosts" :key="blogPost.id" :='blogPost'></BlogPostCard>
+    </section>
+  </section>  
 </template>
 
 <style scoped lang="sass">

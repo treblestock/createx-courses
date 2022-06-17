@@ -15,18 +15,14 @@ const reviews = computed(() => storeReviews.reviews)
 </script>
 
 <template>
-  <section class="reviews__section section">
-    <div class="reviews__container container">
-      <div class="reviews">
-        <SliderCasual
-          label="TESTIMONIALS"
-          title="What our students say"
-          :itemsCount="reviews.length"
-        >
-          <ReviewCard v-for="review in reviews" :key="review.id" :='review'/>
-        </SliderCasual>
-      </div>
-    </div>
+  <section class="reviews">
+    <SliderCasual
+      label="TESTIMONIALS"
+      title="What our students say"
+      :itemsCount="reviews.length"
+    >
+      <ReviewCard v-for="review in reviews" :key="review.id" :='review'/>
+    </SliderCasual>
   </section>
 </template>
 
@@ -35,8 +31,7 @@ const reviews = computed(() => storeReviews.reviews)
 @import @/assets/css/_helpers
 .reviews
   &__section
-    background: $color-gray-200
-    padding-bottom: 8rem
+
 
   &__container
 

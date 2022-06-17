@@ -5,53 +5,47 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
 
-import { useStoreCreateX } from '@/stores/CreateX.js'
-const storeCreateX = useStoreCreateX()
+import { useStoreCreatex } from '@/stores/Createx.js'
+const storeCreatex = useStoreCreatex()
 
 const props = defineProps({
   
 })
 
-const contacts = computed(() => storeCreateX.createX?.contacts)
-const socials = computed(() => storeCreateX.createX?.socials)
+const contacts = computed(() => storeCreatex.createx?.contacts)
+const socials = computed(() => storeCreatex.createx?.socials)
 
 </script>
 
 <template>
-  <section class="address__section section">
-    <div class="address__container container">
-      <div class="address">
-        <div class="address">
-          <div class="address__body">
-            <div class="address__label title_label">Contact info</div>
-            <h2 class="address__title title">Get in touch</h2>
-            <ul class="address__contacts" v-if="contacts">
-              <li class="address__contacts-item">
-                <div class="address__contacts-item-label">Talk to us:</div>
-                <div class="address__contacts-item-info">{{ contacts.email }}</div>
-              </li>
-              <li class="address__contacts-item">
-                <div class="address__contacts-item-label">Call us:</div>
-                <div class="address__contacts-item-info">{{ contacts.tel }}</div>
-              </li>
-              <li class="address__contacts-item">
-                <div class="address__contacts-item-label">Address:</div>
-                <div class="address__contacts-item-info">{{ contacts.address }}</div>
-              </li>
-            </ul>
+  <section class="address">
+    <div class="address__body">
+      <div class="address__label title_label">Contact info</div>
+      <h2 class="address__title title">Get in touch</h2>
+      <ul class="address__contacts" v-if="contacts">
+        <li class="address__contacts-item">
+          <div class="address__contacts-item-label">Talk to us:</div>
+          <div class="address__contacts-item-info">{{ contacts.email }}</div>
+        </li>
+        <li class="address__contacts-item">
+          <div class="address__contacts-item-label">Call us:</div>
+          <div class="address__contacts-item-info">{{ contacts.tel }}</div>
+        </li>
+        <li class="address__contacts-item">
+          <div class="address__contacts-item-label">Address:</div>
+          <div class="address__contacts-item-info">{{ contacts.address }}</div>
+        </li>
+      </ul>
 
-            <div class="address__socials" v-if="socials">
-              <div class="address__socials-label">Follow us:</div>
-              <Socials
-                :links="contacts.socials"
-              ></Socials>
-            </div>
-          </div>
-          <div class="address__img">
-            <Img src="src/assets/img/content/contacts/map.webp"/>
-          </div>
-        </div>
+      <div class="address__socials" v-if="socials">
+        <div class="address__socials-label">Follow us:</div>
+        <Socials
+          :links="contacts.socials"
+        ></Socials>
       </div>
+    </div>
+    <div class="address__img">
+      <Img src="src/assets/img/content/contacts/map.webp"/>
     </div>
   </section>
 </template>
@@ -60,13 +54,6 @@ const socials = computed(() => storeCreateX.createX?.socials)
 @import @/assets/css/_vars
 @import @/assets/css/_helpers
 
-
-.address
-  &__section
-    padding-top: 8rem
-
-    // width: 100%
-  &__container
 
 .address
   display: flex

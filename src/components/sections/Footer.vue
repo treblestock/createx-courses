@@ -4,15 +4,27 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
-import { useStoreCreateX } from '@/stores/CreateX.js'
+import { useStoreCreatex } from '@/stores/Createx.js'
+import { useStoreSendFormData } from '@/stores/SendFormData.js'
 
-const storeCreateX = useStoreCreateX()
 
-const props = defineProps({
-  
-})
+const storeCreatex = useStoreCreatex()
+const storeSendFormData = useStoreSendFormData()
 
-const socials = computed(() => storeCreateX?.createX?.socials )
+const socials = computed(() => storeCreatex?.createx?.socials )
+
+const form = ref(null)
+
+const email= ref('')
+
+function onSubmit() {
+  const data = JSON.stringify({
+    form: form.value.id,
+    email: email.value,
+  })
+  storeSendFormData.sendFormData(data)
+  email.value = ''
+}
 
 </script>
 
@@ -65,10 +77,16 @@ const socials = computed(() => storeCreateX?.createX?.socials )
           </div>
           <div class="footer__body-col footer__emailing">
             <div class="footer__emailing-title _white">SIGN UP TO OUR NEWSLETTER</div>
-            <form action="" class="footer__emailing-form"
-              @submit.prevent=""
+            <form class="footer__emailing-form"
+              action=""
+              ref="form"
+              id="createx-emailing-footer"
+              @submit.prevent="onSubmit"
             >
-              <Input></Input>
+              <Input 
+                placeholder="Email address"
+                v-model="email"
+              />
             </form>
             <div class="footer__emailing-text">*Subscribe to our newsletter to receive communications and early updates from Createx SEO Agency.</div>
           </div>

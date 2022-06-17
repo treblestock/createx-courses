@@ -1,18 +1,37 @@
 <script>
-export default {
+export default { 
   inheritAttrs: false,
-  props: {
-    modelValue: String,
-    icon: String
-  },
 }
 </script>
 
+<script setup>
+import { computed } from 'vue'
+const props = defineProps({
+  modelValue: [String, Array, Boolean],
+  icon: String,
+})
+const emit = defineEmits([
+  'input',
+])
+
+const model = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('input', value),
+})
+
+const getElementClass = (classList) =>
+  classList ? classList.split(' ').filter(cls => cls.includes('__') ).join(' ') : ''
+const getBlockClass = (classList) =>
+  classList ? classList.split(' ').filter(cls => !cls.includes('__') ).join(' ') : ''
+</script>
+
 <template>
-  <label class="input" :class="$attrs.class">
+  <label class="input" 
+    :class="getElementClass($attrs.class)"
+  >
     <input type="text" class="input__input"
       :="$attrs"
-      @input="$emit('input', $event.target.value)"
+      v-model="model"
     >
     <button class="input__icon">
       <slot>

@@ -3,20 +3,8 @@ import {ref, computed, watch} from 'vue'
 import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue'
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
-import { useRouter, useRoute } from 'vue-router'
 
 
-
-
-
-const route = useRoute()
-const router = useRouter()
-
-
-
-const props = defineProps({
-  
-})
 
 </script>
 
@@ -46,20 +34,17 @@ const props = defineProps({
 </template>
 
 
-<style scoped lang="scss">
-@import '@/assets/css/_vars';
-@import '@/assets/css/_helpers';
+<style scoped lang="sass">
+@import @/assets/css/_vars
+@import @/assets/css/_helpers
 
 
-.nav {
-  display: flex;
+.nav
+  display: flex
   // ::v-deep &__link,
-  &__link {
-    margin: 1rem;
-    &:hover {
-      color: red;
-    }
-  }
-}
+  &__link
+    margin: 1rem
+    &:hover
+      color: red
 
 </style>

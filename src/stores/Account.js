@@ -12,8 +12,8 @@ export const useStoreAccount = defineStore('storeAccount', {
     isSignedIn: (state) => !!state.userId,
   },
   actions: {
-    signUp({userEmail, userPassword, userName, shouldKeepSignedIn}) {
-      if (!userEmail || !userPassword || !userName) throw new Error('fill all the field to sign up')
+    signUp({userEmail, userName, userPassword, userConfirmPassword, shouldKeepSignedIn}) {
+      if (!userEmail || !userName || !userPassword || !userConfirmPassword) throw new Error('fill all the field to sign up')
       if (this._isAccountExists(userEmail) ) throw new Error('There is already an account under this email')
       
       const userId = Date.now()

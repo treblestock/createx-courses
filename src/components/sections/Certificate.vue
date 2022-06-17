@@ -8,18 +8,14 @@ import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 </script>
 
 <template>
-  <section class="certificate__section section">
-    <div class="certificate__container container">
-      <div class="certificate">
-        <div class="certificate__body">
-          <div class="certificate__label title_label">Createx Certificate</div>
-          <div class="certificate__title title">Your expertise will be confirmed</div>
-          <div class="certificate__text">We are accredited by international professional organizations and institutes:</div>
-        </div>
-        <div class="certificate__img">
-          <Img src="src/assets/img/content/sertificate.webp"/>
-        </div>
-      </div>
+  <section class="certificate">
+    <div class="certificate__body">
+      <div class="certificate__label title_label">Createx Certificate</div>
+      <div class="certificate__title title">Your expertise will be confirmed</div>
+      <div class="certificate__text">We are accredited by international professional organizations and institutes:</div>
+    </div>
+    <div class="certificate__img">
+      <Img src="src/assets/img/content/sertificate.webp"/>
     </div>
   </section>
 </template>
@@ -29,14 +25,6 @@ import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 @import @/assets/css/_helpers
 
   
-.certificate
-  &__section
-    padding-top: 12rem
-    margin-bottom: -15rem
-
-
-  &__container
-
 .certificate
   display: flex
   &__body

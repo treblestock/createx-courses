@@ -8,9 +8,7 @@ import { useStoreAccount } from '@/stores/Account.js'
 
 const storeAccount = useStoreAccount()
 
-const props = defineProps({
-  
-})
+
 const emit = defineEmits([
   'redirect-sign-in'
 ])
@@ -27,12 +25,14 @@ const links = [
 // 
 const email = ref('')
 const password = ref('')
+const confirmPassword = ref('')
 const name = ref('')
 const rememberMe = ref(false)
 
 const signUp = () => storeAccount.signUp({
   userEmail: email.value,
   userPassword: password.value,
+  userConfirmPassword: confirmPassword.value,
   userName: name.value,
   shouldRemember: rememberMe.value,
 })
@@ -40,7 +40,7 @@ const signUp = () => storeAccount.signUp({
 </script>
 
 <template>
-  <div class="sign-up">
+  <section class="sign-up">
     <div class="sign-up__body">
       <div class="sign-up__title">Sign up</div>
       <div class="sign-up__text">Registration takes less than a minute but gives you full control over your studying.</div>
@@ -75,6 +75,8 @@ const signUp = () => storeAccount.signUp({
           placeholder="Your Password"
           type="password"
           tabindex="4"
+
+          v-model="confirmPassword"
         />
         <CheckboxGroup class="sign-up__form-item"
           tabindex="5"
@@ -101,7 +103,7 @@ const signUp = () => storeAccount.signUp({
         colorInitial= "#787A80"
       />
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped lang="sass">

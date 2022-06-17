@@ -1,12 +1,37 @@
 <script>
-export default {
+export default { 
   inheritAttrs: false,
 }
 </script>
 
+<script setup>
+import { computed } from 'vue'
+const props = defineProps({
+  modelValue: [String, Array, Boolean],
+})
+const emit = defineEmits([
+  'input',
+])
+
+const model = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('input', value),
+})
+
+const getElementClass = (classList) =>
+  classList ? classList.split(' ').filter(cls => cls.includes('__') ).join(' ') : ''
+const getBlockClass = (classList) =>
+  classList ? classList.split(' ').filter(cls => !cls.includes('__') ).join(' ') : ''
+</script>
+
 <template>
-  <label class="textarea" :class="$attrs.class">
-    <textarea :="$attrs" class="textarea__textarea" />
+  <label class="textarea" 
+    :class="$attrs.class"
+  >
+    <textarea class="textarea__textarea" 
+      :="$attrs"
+      v-model="model"
+    />
   </label>
 </template>
 

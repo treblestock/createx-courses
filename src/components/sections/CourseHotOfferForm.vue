@@ -4,64 +4,61 @@ import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, o
 
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
+import { useStoreSendFormData } from '@/stores/SendFormData.js'
+const storeSendFormData = useStoreSendFormData()
 
+const form = ref(null)
+
+const name = ref('')
+const email = ref('')
+const phone = ref('')
+function onSubmit() {
+  const data = JSON.stringify({
+    form: form.value.id,
+    name: name.value,
+    email: email.value,
+    phone: phone.value,
+  })
+  storeSendFormData.sendFormData(data)
+  name.value = email.value = phone.value = ''
+}
 </script>
 
 <template>
-  <section class="course-hot-offer__section section">
-    <div class="course-hot-offer__container container">
-      <div class="course-hot-offer">
-        <div class="course-hot-offer__header">
-          <h2 class="course-hot-offer__title title _32">20% discount for early birds!</h2>
-          <TimeCounter />
-        </div>
-        <form action="" class="course-hot-offer__form"
-          @submit.prevent=""
-        >
-          <InputGroup class="course-hot-offer__input-group"
-            label="Full name"
-            placeholder="Your full name"
-          />
-          <InputGroup class="course-hot-offer__input-group"
-            label="email"
-            placeholder="Your working email"
-          />
-          <InputGroup class="course-hot-offer__input-group"
-            label="Phone"
-            placeholder="Your phone number"
-          />
-          <button class="course-hot-offer__btn btn">join the course</button>
-        </form>
-        
-      </div>
+  <section class="course-hot-offer">
+    <div class="course-hot-offer__header">
+      <h2 class="course-hot-offer__title title _32">20% discount for early birds!</h2>
+      <TimeCounter />
     </div>
-  </section>  
+    <form class="course-hot-offer__form"
+      action=""
+      ref="form"
+      id="course-register-hot-offer"
+      @submit.prevent="onSubmit"
+    >
+      <InputGroup class="course-hot-offer__input-group"
+        label="Full name"
+        placeholder="Your full name"
+        v-model="name"
+      />
+      <InputGroup class="course-hot-offer__input-group"
+        label="email"
+        placeholder="Your working email"
+        v-model="email"
+      />
+      <InputGroup class="course-hot-offer__input-group"
+        label="Phone"
+        placeholder="Your phone number"
+        v-model="phone"
+      />
+      <button class="course-hot-offer__btn btn">join the course</button>
+    </form>
+  </section>
 </template>
 
 <style scoped lang="sass">
 @import @/assets/css/_vars
 @import @/assets/css/_helpers
-
-
-.course-hot-offer
-  &__section
-    position: relative
-    padding: 5rem 6rem
-
-    &:before 
-      position: absolute
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
-      z-index: -1
-
-
-      background: $color-carrot-gradient
-      opacity: 0.2
-      content: ''
-
-  &__container
 
 .course-hot-offer
   &__header
