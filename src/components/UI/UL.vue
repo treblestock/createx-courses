@@ -35,7 +35,7 @@ const cssUrl = `url('${iconUrl.value}')`
 
       color: red
       // content: var(--url)
-      content: url('http://localhost:3000/src/assets/img/icons/decor/tick-circled.svg')
+      content: url('/src/assets/img/icons/decor/tick-circled.svg')
       transform: translate(0, .2rem)
       // content: url('@/assets/img/test.jpg')
       padding-right: 1rem

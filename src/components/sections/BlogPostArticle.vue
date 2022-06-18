@@ -224,7 +224,7 @@ const blogPostsFiltered = computed(() => storeBlogPostsFilters.blogPostsFiltered
 
       display: flex
       &:before 
-        content: url('http://localhost:3000/src/assets/img/icons/decor/quotes.svg')
+        content: url('/src/assets/img/icons/decor/quotes.svg')
         display: block
         margin-right: 3rem
         
