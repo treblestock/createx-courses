@@ -24,7 +24,7 @@ const prices = [
   100, 170,
   200, 220,
 ]
-const eventLinks = ['facebook.com']
+const eventLinks = ['https://facebook.com']
 const eventTypes = ['Workshop', 'Lecture', 'Master-class']
 const times = [
   '10:00-11:00', '10:00-12:00', '10:00-13:00',

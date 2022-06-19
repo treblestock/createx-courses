@@ -29,7 +29,7 @@ import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
       </div>
     </div>
     <div class="about-intro__img">
-      <Img src="src/assets/img/decor/illustrations/05.webp"/>
+      <Img src="/img/decor/illustrations/05.webp"/>
     </div>
   </section>
 </template>

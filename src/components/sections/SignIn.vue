@@ -17,10 +17,10 @@ const emit = defineEmits([
 ])
 
 const links = [
-  'facebook.com',
-  'instagram.com',
-  'twitter.com',
-  'linkedin.com',
+  'https://facebook.com',
+  'https://instagram.com',
+  'https://twitter.com',
+  'https://linkedin.com',
 ]
 // document.body.addEventListener('focusin', (e) => console.log(e.target) ) // TEST TAB-INDEX
 

@@ -38,7 +38,7 @@ const props = defineProps({
       </ul>
     </div>
     <div class="course-program__img">
-      <Img src="src\assets\img\decor\illustrations\06.webp"/>
+      <Img src="/img/decor/illustrations/06.webp"/>
     </div>
 
   </section>

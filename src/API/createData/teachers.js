@@ -14,13 +14,13 @@ function teacherFactory({name, pos}) {
 
     description: shuffled(description),
 
-    imgTeacher: `src/assets/img/content/teachers/for-teachers/0${id}.webp`,
-    imgCourse: `src/assets/img/content/teachers/for-courses/0${id}.webp`,
+    imgTeacher: `/img/content/teachers/for-teachers/0${id}.webp`,
+    imgCourse: `/img/content/teachers/for-courses/0${id}.webp`,
     socials: [
-      'facebook.com',
-      'instagram.com',
-      'linkedin.com',
-      'twitter.com',
+      'https://facebook.com',
+      'https://instagram.com',
+      'https://linkedin.com',
+      'https://twitter.com',
     ],
 
     rate: 4.5 + id / 100,

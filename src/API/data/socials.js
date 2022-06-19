@@ -1,10 +1,10 @@
 const socials = [
-  'facebook.com',
-  'twitter.com',
-  'telegram.com',
-  'instagram.com',
-  'linkedin.com',
-  'youtube.com',
+  'https://facebook.com',
+  'https://twitter.com',
+  'https://telegram.com',
+  'https://instagram.com',
+  'https://linkedin.com',
+  'https://youtube.com',
 ]
 
 export default JSON.stringify(socials)

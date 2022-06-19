@@ -45,7 +45,7 @@ const socials = computed(() => storeCreatex.socials)
       </div>
     </div>
     <div class="address__img">
-      <Img src="src/assets/img/content/contacts/map.webp"/>
+      <Img src="/img/content/contacts/map.webp"/>
     </div>
   </section>
 </template>

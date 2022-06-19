@@ -29,7 +29,7 @@ function reviewsFactory() {
     body: shuffled(body),
 
     student: {
-      img: `src/assets/img/content/students/0${id}.webp`,
+      img: `/img/content/students/0${id}.webp`,
       pos: 'position',
       name: getRandomItem(names),
       course: getRandomItem(categories),

@@ -17,7 +17,7 @@ const props = defineProps({
 <template>
   <section class="why">
     <div class="why__img">
-      <img src="/src/assets/img/content/why.jpg" alt="">
+      <img src="/img/content/why.jpg" alt="">
     </div>
     <div class="why__body">
       <div class="why__label title_label">Who we are</div>

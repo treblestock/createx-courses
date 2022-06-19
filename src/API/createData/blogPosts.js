@@ -34,7 +34,7 @@ function blogPostsFactory({title}) {
     title,
     description: shuffled(description) + '...',
 
-    img: `src/assets/img/content/blogPosts/0${id}.webp`,
+    img: `/img/content/blogPosts/0${id}.webp`,
     teacherId: getRandom(1, 8),
     timeToRead: getRandom(4, 10),
     date: new Date(2021, 6, id * 4),

@@ -49,7 +49,7 @@ const benefits = computed(() => storeCreatex.benefits)
             <div class="benefits__tabs-body-item-text">{{ benefit.text }}</div>
           </div>
           <div class="benefits__tabs-body-item-img">
-            <Img :src="`src/assets/img/decor/illustrations/0${ind + 1}.webp`"/>
+            <Img :src="`/img/decor/illustrations/0${ind + 1}.webp`"/>
           </div>
         </div>
 

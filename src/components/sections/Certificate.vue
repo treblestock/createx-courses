@@ -15,7 +15,7 @@ import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
       <div class="certificate__text">We are accredited by international professional organizations and institutes:</div>
     </div>
     <div class="certificate__img">
-      <Img src="src/assets/img/content/sertificate.webp"/>
+      <Img src="/img/content/sertificate.webp"/>
     </div>
   </section>
 </template>

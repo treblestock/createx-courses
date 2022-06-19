@@ -16,28 +16,28 @@ import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
     
       <li class="createx-values__item">
         <div class="createx-values__item-icon">
-          <Img src="src/assets/img/content/about/structure.webp"/>
+          <Img src="/img/content/about/structure.webp"/>
         </div>
         <div class="createx-values__item-title">Structured Approach</div>
         <div class="createx-values__item-text">Aenean urna dictum adipiscing nec, cras quisque. Nunc in mauris</div>
       </li>
       <li class="createx-values__item">
         <div class="createx-values__item-icon">
-          <Img src="src/assets/img/content/about/chat.webp"/>
+          <Img src="/img/content/about/chat.webp"/>
         </div>
         <div class="createx-values__item-title">Professional Feedbacks</div>
         <div class="createx-values__item-text">Culpa nostrud commodo ea consequat reprehenderit aliquip.</div>
       </li>
       <li class="createx-values__item">
         <div class="createx-values__item-icon">
-          <Img src="src/assets/img/content/about/target.webp"/>
+          <Img src="/img/content/about/target.webp"/>
         </div>
         <div class="createx-values__item-title">Efficiency</div>
         <div class="createx-values__item-text">Viverra scelerisque consequat net. Adipisicing esse consequat.</div>
       </li>
       <li class="createx-values__item">
         <div class="createx-values__item-icon">
-          <Img src="src/assets/img/content/about/calendar.webp"/>
+          <Img src="/img/content/about/calendar.webp"/>
         </div>
         <div class="createx-values__item-title">Flexible Shedule</div>
         <div class="createx-values__item-text">Aute eiusmod dolore dolore deserunt veniam ad deserunt.</div>

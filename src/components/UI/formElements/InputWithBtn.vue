@@ -35,7 +35,7 @@ const getBlockClass = (classList) =>
     >
     <button class="input__icon">
       <slot>
-        <Img :src="icon || 'src/assets/img/icons/search.svg'" />
+        <Img :src="icon || '/img/icons/search.svg'" />
       </slot>
     </button>
   </label>

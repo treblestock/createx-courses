@@ -39,7 +39,7 @@ import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
       </ul>
     </div>
     <div class="learning-process__img">
-      <Img src="src/assets/img/decor/illustrations/03.webp"/>
+      <Img src="/img/decor/illustrations/03.webp"/>
     </div>
   </section>  
 </template>

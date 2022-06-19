@@ -9,7 +9,7 @@ const props = defineProps({
 })
 
 
-const src = computed(() => '/' + props.src ? props.src : 'src/assets/img/test.jpg')
+const src = computed(() => props.src ? props.src : '/img/test.jpg')
 
 
 </script>

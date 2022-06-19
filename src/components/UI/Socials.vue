@@ -13,17 +13,18 @@ const props = defineProps({
 const iconColor = computed(() => props.colorInitial || '#1E212C')
 const iconColorHover = computed(() => props.colorHover || '#FF3F3A')
 
-
+const spitePath = '/img/icons/socials/sprite.svg#'
+const getSvgId = (link) => link.split('https://')[1].split('.')[0]
 </script>
 
 <template>
   <div class="socials">
     <a class="socials__link"
       v-for="link in links" :key="link"
-      :href="'https://' + link" target="_blank"
+      :href="link" target="_blank"
     >
       <svg class="socials__icon">
-        <use :xlink:href="'/src/assets/img/icons/socials/sprite.svg#' + link.split('.')[0]"></use>
+        <use :xlink:href="spitePath + getSvgId(link)"></use>
       </svg>
     </a>
   </div>

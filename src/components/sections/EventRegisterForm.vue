@@ -28,7 +28,7 @@ function onSubmit() {
 <template>
   <section class="events-register">
     <div class="events-register__img">
-      <Img src="src\assets\img\decor\illustrations\04.webp" />
+      <Img src="/img/decor/illustrations/04.webp" />
     </div>
     <div class="events-register__body">
       <div class="events-register__label title_label">Don’t miss the event</div>

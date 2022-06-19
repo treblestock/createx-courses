@@ -27,7 +27,7 @@ const props = defineProps({
 })
 
 
-const shareLinks = ['facebook.com', 'twitter.com', 'linkedin.com']
+const shareLinks = ['https://facebook.com', 'https://twitter.com', 'https://linkedin.com']
 
 
 const searchQuery = computed({
@@ -224,7 +224,7 @@ const blogPostsFiltered = computed(() => storeBlogPostsFilters.blogPostsFiltered
 
       display: flex
       &:before 
-        content: url('/src/assets/img/icons/decor/quotes.svg')
+        content: url('/img/icons/decor/quotes.svg')
         display: block
         margin-right: 3rem
         

@@ -36,7 +36,7 @@ function onSubmit() {
 <template>
   <section class="ask-question">
     <div class="ask-question__img">
-      <Img src="src\assets\img\decor\illustrations\01.webp" />
+      <Img src="/img/decor/illustrations/01.webp" />
     </div>
     <div class="ask-question__body">
       <div class="ask-question__label title_label">Any questions?</div>

@@ -29,7 +29,7 @@ function onSubmit() {
 <template>
   <section class="course-register">
     <div class="course-register__img">
-      <Img src="src\assets\img\decor\illustrations\06.webp" />
+      <Img src="/img/decor/illustrations/06.webp" />
     </div>
     <div class="course-register__body">
       <div class="course-register__label title_label">Leave a request now and get 20% off!</div>

@@ -11,7 +11,7 @@ import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 <template>
   <section class="about-video">
     <div class="about-video__img">
-      <Img src="src/assets/img/content/about/video.webp"/>
+      <Img src="/img/content/about/video.webp"/>
     </div>
     <div class="about-video__body">
       <ul class="about-video__advantages">
